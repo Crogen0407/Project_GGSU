@@ -12,7 +12,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3c58923-7ceb-4de5-8acf-9b3b917aebe8" name="Changes" comment="" />
+    <list default="true" id="d3c58923-7ceb-4de5-8acf-9b3b917aebe8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Project_GGSU/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project_GGSU/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -63,7 +65,7 @@
     "C/C++ Project.Project_GGSU.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "YW",
+    "git-widget-placeholder": "main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -182,6 +184,7 @@
       <updated>1714607351882</updated>
       <workItem from="1754992221847" duration="766000" />
       <workItem from="1755759533803" duration="5644000" />
+      <workItem from="1755867473482" duration="649000" />
     </task>
     <servers />
   </component>

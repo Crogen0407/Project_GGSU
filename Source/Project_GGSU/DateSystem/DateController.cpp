@@ -23,7 +23,7 @@ void ADateController::BeginPlay()
 
 // Called every frame
 void ADateController::Tick(float DeltaTime)
-{
+{	
 	Super::Tick(DeltaTime);
 	Time += DeltaTime * 10;
 	DirectionalLightComponent->SetWorldRotation(FRotator(Time+90, 0, 0));
