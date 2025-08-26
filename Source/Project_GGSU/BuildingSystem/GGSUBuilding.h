@@ -4,18 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "DateController.generated.h"
+#include "GGSUBuilding.generated.h"
 
-class UDirectionalLightComponent;
+class UStaticMeshComponent;
+class UBoxComponent;
 
 UCLASS()
-class PROJECT_GGSU_API ADateController : public AActor
+class PROJECT_GGSU_API AGGSUBuilding : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	ADateController();
+	AGGSUBuilding();
 
 protected:
 	// Called when the game starts or when spawned
@@ -26,10 +27,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Time")
-	float Time;
-	
-private:
-	UPROPERTY(VisibleAnywhere, Category="Components")
-	UDirectionalLightComponent* DirectionalLightComponent;
+	UPROPERTY(VisibleAnywhere)
+	UStaticMeshComponent* Visual;
+
+	UPROPERTY(VisibleAnywhere)
+	UBoxComponent* BoxComponent;
 };

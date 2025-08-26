@@ -1,11 +1,13 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "DateController.h"
+#include "GGSUDateController.h"
 #include "Components/DirectionalLightComponent.h"
 
+float AGGSUDateController::Time = 0.0f;
+
 // Sets default values
-ADateController::ADateController()
+AGGSUDateController::AGGSUDateController()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
@@ -15,17 +17,17 @@ ADateController::ADateController()
 }
 
 // Called when the game starts or when spawned
-void ADateController::BeginPlay()
+void AGGSUDateController::BeginPlay()
 {
 	Super::BeginPlay();
 	
 }
 
 // Called every frame
-void ADateController::Tick(float DeltaTime)
+void AGGSUDateController::Tick(float DeltaTime)
 {	
 	Super::Tick(DeltaTime);
-	Time += DeltaTime * 10;
-	DirectionalLightComponent->SetWorldRotation(FRotator(Time+90, 0, 0));
+	AGGSUDateController::Time += DeltaTime * 10;
+	DirectionalLightComponent->SetWorldRotation(FRotator(AGGSUDateController::Time+90, 0, 0));
 }
 
