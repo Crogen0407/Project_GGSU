@@ -1,0 +1,71 @@
+#include "GGSUInputMapperComponent.h"
+#include "GGSUPlayerMovementComponent.h"
+#include "GameFramework/PlayerInput.h"
+
+UGGSUInputMapperComponent::UGGSUInputMapperComponent()
+{
+	bAllowConcurrentTick = true;
+}
+
+void UGGSUInputMapperComponent::BeginPlay()
+{
+	Super::BeginPlay();
+
+	// --- 여기 로그를 확인해야 해! ---
+	UE_LOG(LogTemp, Warning, TEXT("--- InputMapperComponent BeginPlay for: %s ---"), *GetOwner()->GetName());
+	if (CachedMovementComponent)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("In BeginPlay Not NULL"));
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("In BeginPlay, CachedMovementComponent is NULL!"));
+	}
+	// --- 여기까지 ---
+}
+
+void UGGSUInputMapperComponent::SetMovementComponent(UGGSUPlayerMovementComponent* InMovementComponent)
+{
+	CachedMovementComponent = InMovementComponent;
+}
+
+void UGGSUInputMapperComponent::SetupPlayerInput(UInputComponent* PlayerInputComponent)
+{
+	check(PlayerInputComponent);
+	InitializeDefaultPawnInputBindings();
+	PlayerInputComponent->BindAxis("PlayerPawn_MoveForward", this, &UGGSUInputMapperComponent::MoveForward);
+	PlayerInputComponent->BindAxis("PlayerPawn_MoveRight", this, &UGGSUInputMapperComponent::MoveRight);
+}
+
+void UGGSUInputMapperComponent::InitializeDefaultPawnInputBindings()
+{
+	static bool bBindingsAdded = false;
+	if (!bBindingsAdded)
+	{
+		bBindingsAdded = true;
+
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveForward", EKeys::W, 1.f));
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveForward", EKeys::S, -1.f));
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveForward", EKeys::Up, 1.f));
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveForward", EKeys::Down, -1.f));
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveForward", EKeys::Gamepad_LeftY, 1.f));
+
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveRight", EKeys::A, -1.f));
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveRight", EKeys::D, 1.f));
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveRight", EKeys::Right, -1.f));
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveRight", EKeys::Left, 1.f));
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveRight", EKeys::Gamepad_LeftX, 1.f));
+	}
+}
+
+void UGGSUInputMapperComponent::MoveForward(float Val)
+{
+	if (CachedMovementComponent)
+		CachedMovementComponent->MoveForward(Val);
+}
+
+void UGGSUInputMapperComponent::MoveRight(float Val)
+{
+	if (CachedMovementComponent)
+		CachedMovementComponent->MoveRight(Val);
+}

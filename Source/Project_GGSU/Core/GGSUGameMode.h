@@ -13,5 +13,7 @@ UCLASS()
 class PROJECT_GGSU_API AGGSUGameMode : public AGameMode
 {
 	GENERATED_BODY()
-	
+
+public:
+	AGGSUGameMode();
 };
