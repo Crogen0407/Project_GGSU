@@ -31,15 +31,11 @@ AGGSUPlayerPawn::AGGSUPlayerPawn()
 	MovementComponent = CreateDefaultSubobject<UGGSUPlayerMovementComponent>(TEXT("MovementComponent"));
 	InputMapperComponent = CreateDefaultSubobject<UGGSUInputMapperComponent>(TEXT("InputMapper"));
 
-    if (InputMapperComponent && MovementComponent)
-    {
-	    UE_LOG(LogTemp, Warning, TEXT("Connecting components..."));
-	    InputMapperComponent->SetMovementComponent(MovementComponent);
-    }
-    else
-    {
-	    UE_LOG(LogTemp, Error, TEXT("One of the components is null IN THE CONSTRUCTOR!"));
-    }
+	if (InputMapperComponent)
+	{
+		InputMapperComponent->SetMovementComponent(MovementComponent);
+		InputMapperComponent->SetCameraBoomComponent(CameraBoomComponent);
+	}
 }
 
 void AGGSUPlayerPawn::BeginPlay()

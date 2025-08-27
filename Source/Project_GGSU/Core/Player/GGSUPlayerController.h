@@ -17,5 +17,9 @@ class PROJECT_GGSU_API AGGSUPlayerController : public APlayerController
 public:
 	AGGSUPlayerController();
 
+public:
+	virtual void Tick(float DeltaSeconds) override;
+
+public:
 	virtual FRotator GetControlRotation() const override;
 };

@@ -5,6 +5,8 @@
 
 AGGSUPlayerController::AGGSUPlayerController()
 {
+	PrimaryActorTick.bCanEverTick = true;
+	
 	// 커서 표시
 	bShowMouseCursor = true;
 
@@ -14,6 +16,12 @@ AGGSUPlayerController::AGGSUPlayerController()
 	{
 		CurrentMouseCursor = EMouseCursor::Custom;
 	}
+}
+
+void AGGSUPlayerController::Tick(float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+	
 }
 
 FRotator AGGSUPlayerController::GetControlRotation() const

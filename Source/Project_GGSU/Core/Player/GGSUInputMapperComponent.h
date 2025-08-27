@@ -6,6 +6,7 @@
 #include "Components/ActorComponent.h"
 #include "GGSUInputMapperComponent.generated.h"
 
+class USpringArmComponent;
 class UInputComponent;
 class UGGSUPlayerMovementComponent;
 
@@ -23,6 +24,10 @@ public:
 	// Pawn이 직접 MovementComponent를 설정해주는 함수
 	void SetMovementComponent(UGGSUPlayerMovementComponent* InMovementComponent);
 
+	// Pawn이 직접 MovementComponent를 설정해주는 함수
+	void SetCameraBoomComponent(USpringArmComponent* InCameraBoomComponent);
+
+	
 protected:
 	virtual void BeginPlay() override;
 
@@ -30,7 +35,11 @@ private:
 	UPROPERTY()
 	TObjectPtr<UGGSUPlayerMovementComponent> CachedMovementComponent;
 
+	UPROPERTY()
+	TObjectPtr<USpringArmComponent> CachedCameraBoomComponent;
+	
 	void InitializeDefaultPawnInputBindings();
 	void MoveForward(float Val);
 	void MoveRight(float Val);
+	void MoveCameraDistance(float Val);
 };

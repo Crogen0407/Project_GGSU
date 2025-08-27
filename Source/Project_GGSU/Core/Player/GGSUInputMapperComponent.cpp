@@ -1,6 +1,8 @@
 #include "GGSUInputMapperComponent.h"
 #include "GGSUPlayerMovementComponent.h"
+#include "MathUtil.h"
 #include "GameFramework/PlayerInput.h"
+#include "GameFramework/SpringArmComponent.h"
 
 UGGSUInputMapperComponent::UGGSUInputMapperComponent()
 {
@@ -29,12 +31,18 @@ void UGGSUInputMapperComponent::SetMovementComponent(UGGSUPlayerMovementComponen
 	CachedMovementComponent = InMovementComponent;
 }
 
+void UGGSUInputMapperComponent::SetCameraBoomComponent(USpringArmComponent* InCameraBoomComponent)
+{
+	CachedCameraBoomComponent = InCameraBoomComponent;
+}
+
 void UGGSUInputMapperComponent::SetupPlayerInput(UInputComponent* PlayerInputComponent)
 {
 	check(PlayerInputComponent);
 	InitializeDefaultPawnInputBindings();
 	PlayerInputComponent->BindAxis("PlayerPawn_MoveForward", this, &UGGSUInputMapperComponent::MoveForward);
 	PlayerInputComponent->BindAxis("PlayerPawn_MoveRight", this, &UGGSUInputMapperComponent::MoveRight);
+	PlayerInputComponent->BindAxis("PlayerPawn_MoveCameraDistance", this, &UGGSUInputMapperComponent::MoveCameraDistance);
 }
 
 void UGGSUInputMapperComponent::InitializeDefaultPawnInputBindings()
@@ -48,13 +56,13 @@ void UGGSUInputMapperComponent::InitializeDefaultPawnInputBindings()
 		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveForward", EKeys::S, -1.f));
 		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveForward", EKeys::Up, 1.f));
 		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveForward", EKeys::Down, -1.f));
-		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveForward", EKeys::Gamepad_LeftY, 1.f));
 
 		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveRight", EKeys::A, -1.f));
 		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveRight", EKeys::D, 1.f));
-		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveRight", EKeys::Right, -1.f));
-		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveRight", EKeys::Left, 1.f));
-		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveRight", EKeys::Gamepad_LeftX, 1.f));
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveRight", EKeys::Left, -1.f));
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveRight", EKeys::Right, 1.f));
+		
+		UPlayerInput::AddEngineDefinedAxisMapping(FInputAxisKeyMapping("PlayerPawn_MoveCameraDistance", EKeys::MouseWheelAxis, 1.f));
 	}
 }
 
@@ -68,4 +76,13 @@ void UGGSUInputMapperComponent::MoveRight(float Val)
 {
 	if (CachedMovementComponent)
 		CachedMovementComponent->MoveRight(Val);
+}
+
+void UGGSUInputMapperComponent::MoveCameraDistance(float Val)
+{
+	if (CachedCameraBoomComponent)
+	{
+		CachedCameraBoomComponent->TargetArmLength = FMathf::Clamp(CachedCameraBoomComponent->TargetArmLength - Val * 100, 250.f, 5000.f);
+		
+	}
 }
