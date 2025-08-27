@@ -12,19 +12,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3c58923-7ceb-4de5-8acf-9b3b917aebe8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/Project_GGSU/Core/Player/GGSUPlayerPawn.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Project_GGSU/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project_GGSU/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Core/BP_GGSUGameMode.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/Core/BP_GGSUGameMode.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/Core/BP_GGSUPlayerPawn.uasset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Levels/GameLevel.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Levels/GameLevel.umap" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Project_GGSU/Core/GGSUGameMode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Project_GGSU/Core/GGSUGameMode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Project_GGSU/Core/GGSUGameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Project_GGSU/Core/GGSUGameMode.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Project_GGSU/Core/GGSUPlayerPawn.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Project_GGSU/Core/GGSUPlayerPawn.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Project_GGSU/Core/Player/GGSUPlayerPawn.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Project_GGSU/DateSystem/GGSUDateController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Project_GGSU/DateSystem/GGSUDateController.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="d3c58923-7ceb-4de5-8acf-9b3b917aebe8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
