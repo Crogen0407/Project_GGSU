@@ -14,6 +14,8 @@ AGGSUDateController::AGGSUDateController()
 	DirectionalLightComponent = CreateDefaultSubobject<UDirectionalLightComponent>(TEXT("DirectionalLight"));
 	
 	RootComponent = DirectionalLightComponent;
+
+	AGGSUDateController::Time = 0.0f;
 }
 
 // Called when the game starts or when spawned
