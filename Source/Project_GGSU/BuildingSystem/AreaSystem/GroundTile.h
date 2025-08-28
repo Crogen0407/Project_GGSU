@@ -30,5 +30,5 @@ public:
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GroundTile")
-	bool isUnlocked = false;
+	bool IsUnlocked = false;
 };

@@ -28,14 +28,14 @@ void AGroundTile::OnUnhovered_Implementation()
 
 bool AGroundTile::IsUnlocked_Implementation() const
 {
-	return isUnlocked;
+	return IsUnlocked;
 }
 
 void AGroundTile::SetUnlocked(bool bNewState)
 {
-	isUnlocked = bNewState;
+	IsUnlocked = bNewState;
 	// 해금 상태가 변경될 때 시각적 피드백을 추가할 수 있습니다.
-	if (isUnlocked)
+	if (IsUnlocked)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("lock!"));
 	}
