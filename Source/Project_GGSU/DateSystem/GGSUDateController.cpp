@@ -29,7 +29,7 @@ void AGGSUDateController::BeginPlay()
 void AGGSUDateController::Tick(float DeltaTime)
 {	
 	Super::Tick(DeltaTime);
-	AGGSUDateController::Time += DeltaTime * 10;
+	AGGSUDateController::Time += DeltaTime * TimeSpeed;
 	DirectionalLightComponent->SetWorldRotation(FRotator(AGGSUDateController::Time+90, 0, 0));
 }
 

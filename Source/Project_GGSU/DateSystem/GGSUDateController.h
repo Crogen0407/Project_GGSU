@@ -31,6 +31,10 @@ public:
 	{
 		return Time;
 	}
+
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Time")
+	float TimeSpeed = 10.f;
 	
 private:
 	static float Time;
