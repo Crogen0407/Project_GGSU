@@ -22,7 +22,7 @@ AGGSUDateController::AGGSUDateController()
 void AGGSUDateController::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
 }
 
 // Called every frame
