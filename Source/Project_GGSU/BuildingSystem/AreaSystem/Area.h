@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "BuildingSystem/AreaSystem/GroundTile.h"
+#include "ResourceSystem/GGSUResourceInstance.h"
 #include "Area.generated.h"
 
 UCLASS()
@@ -30,4 +31,7 @@ protected:
 	// 구역의 모든 땅
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	TArray<AGroundTile*> GroundTiles;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
+	UGGSUResourceInstance* ResourceInstance;
 };

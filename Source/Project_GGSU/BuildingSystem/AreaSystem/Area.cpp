@@ -2,6 +2,8 @@
 
 
 #include "BuildingSystem/AreaSystem/Area.h"
+#include "Kismet/GameplayStatics.h"
+
 
 AArea::AArea()
 {
@@ -10,15 +12,16 @@ AArea::AArea()
 }
 void AArea::BeginPlay()
 {
+	UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(GetWorld());
+	ResourceInstance = GameInstance->GetSubsystem<UGGSUResourceInstance>();
+	
 	Super::BeginPlay();
 }
 
 bool AArea::UnlockArea()
 {
-	if (true) // 플레이어 돈이 구매 비용보다 많거나 같은지 확인
+	if (ResourceInstance->TryRemoveResource(EResourceType::Gold, UnlockCost))
 	{
-		// 비용 지불 로직
-
 		// 이 구역에 속한 모든 땅 해금
 		for (AGroundTile* Tile : GroundTiles)
 		{
