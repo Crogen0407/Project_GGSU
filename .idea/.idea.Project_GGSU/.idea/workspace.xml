@@ -12,10 +12,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3c58923-7ceb-4de5-8acf-9b3b917aebe8" name="Changes" comment="Changes">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Project_GGSU/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Project_GGSU/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Project_GGSU/DateSystem/GGSUDateController.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Project_GGSU/DateSystem/GGSUDateController.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="d3c58923-7ceb-4de5-8acf-9b3b917aebe8" name="Changes" comment="Changes" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
