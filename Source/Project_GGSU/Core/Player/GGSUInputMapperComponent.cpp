@@ -13,7 +13,6 @@ void UGGSUInputMapperComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// --- 여기 로그를 확인해야 해! ---
 	UE_LOG(LogTemp, Warning, TEXT("--- InputMapperComponent BeginPlay for: %s ---"), *GetOwner()->GetName());
 	if (CachedMovementComponent)
 	{
@@ -81,8 +80,5 @@ void UGGSUInputMapperComponent::MoveRight(float Val)
 void UGGSUInputMapperComponent::MoveCameraDistance(float Val)
 {
 	if (CachedCameraBoomComponent)
-	{
 		CachedCameraBoomComponent->TargetArmLength = FMathf::Clamp(CachedCameraBoomComponent->TargetArmLength - Val * 100, 250.f, 5000.f);
-		
-	}
 }
