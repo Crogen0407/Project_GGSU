@@ -2,26 +2,41 @@
 
 
 #include "BuildingSystem/AreaSystem/GroundTile.h"
+#include "Engine/Engine.h"
 
-// Sets default values
 AGroundTile::AGroundTile()
 {
- 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
-
-// Called when the game starts or when spawned
 void AGroundTile::BeginPlay()
 {
 	Super::BeginPlay();
+}
+
+void AGroundTile::OnClicked_Implementation()
+{
 	
 }
-
-// Called every frame
-void AGroundTile::Tick(float DeltaTime)
+void AGroundTile::OnHovered_Implementation()
 {
-	Super::Tick(DeltaTime);
+	
+}
+void AGroundTile::OnUnhovered_Implementation()
+{
 
 }
 
+bool AGroundTile::IsUnlocked_Implementation() const
+{
+	return isUnlocked;
+}
+
+void AGroundTile::SetUnlocked(bool bNewState)
+{
+	isUnlocked = bNewState;
+	// 해금 상태가 변경될 때 시각적 피드백을 추가할 수 있습니다.
+	if (isUnlocked)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("lock!"));
+	}
+}
