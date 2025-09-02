@@ -17,9 +17,17 @@ class PROJECT_GGSU_API AGGSUPlayerController : public APlayerController
 public:
 	AGGSUPlayerController();
 
+protected:
+	virtual void SetupInputComponent() override;
+
 public:
 	virtual void Tick(float DeltaSeconds) override;
 
 public:
+	void HandleClick();
 	virtual FRotator GetControlRotation() const override;
+
+private:
+	// 레이의 최대 사정거리
+	float TraceDistance = 10000.0f;
 };
