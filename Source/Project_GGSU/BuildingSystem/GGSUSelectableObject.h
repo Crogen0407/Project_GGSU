@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
-#include "Interactable.generated.h"
+#include "GGSUSelectableObject.generated.h"
 
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
-class UInteractable : public UInterface
+class UGGSUSelectableObject : public UInterface
 {
 	GENERATED_BODY()
 };
@@ -16,7 +16,7 @@ class UInteractable : public UInterface
 /**
  * 
  */
-class PROJECT_GGSU_API IInteractable
+class PROJECT_GGSU_API IGGSUSelectableObject
 {
 	GENERATED_BODY()
 

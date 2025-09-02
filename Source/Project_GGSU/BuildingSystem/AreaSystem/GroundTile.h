@@ -4,11 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "BuildingSystem/Interactable.h"
+#include "BuildingSystem/GGSUSelectableObject.h"
 #include "GroundTile.generated.h"
 
 UCLASS()
-class PROJECT_GGSU_API AGroundTile : public AActor, public IInteractable
+class PROJECT_GGSU_API AGroundTile : public AActor, public IGGSUSelectableObject
 {
 	GENERATED_BODY()
 	

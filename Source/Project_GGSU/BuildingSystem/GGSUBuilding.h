@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Interactable.h"
+#include "GGSUSelectableObject.h"
 #include "GameFramework/Actor.h"
 #include "GGSUBuilding.generated.h"
 
@@ -11,7 +11,7 @@ class UStaticMeshComponent;
 class UBoxComponent;
 
 UCLASS()
-class PROJECT_GGSU_API AGGSUBuilding : public AActor, public IInteractable
+class PROJECT_GGSU_API AGGSUBuilding : public AActor, public IGGSUSelectableObject
 {
 	GENERATED_BODY()
 	

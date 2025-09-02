@@ -9,6 +9,9 @@
 /**
  * 
  */
+
+class AGGSUBuilding;
+
 UCLASS()
 class PROJECT_GGSU_API AGGSUPlayerController : public APlayerController
 {
@@ -24,10 +27,16 @@ public:
 	virtual void Tick(float DeltaSeconds) override;
 
 public:
-	void HandleClick();
+	void HandlePressed();
+	void HandleReleased();
+	
 	virtual FRotator GetControlRotation() const override;
-
+	void Select() const;
+	void Deselect();
+	void BuildingSelect(AGGSUBuilding* Building) const;
+	
 private:
 	// 레이의 최대 사정거리
 	float TraceDistance = 10000.0f;
+	bool IsSelecting = false;
 };
