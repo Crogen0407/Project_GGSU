@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Interactable.h"
 #include "GameFramework/Actor.h"
 #include "GGSUBuilding.generated.h"
 
@@ -10,7 +11,7 @@ class UStaticMeshComponent;
 class UBoxComponent;
 
 UCLASS()
-class PROJECT_GGSU_API AGGSUBuilding : public AActor
+class PROJECT_GGSU_API AGGSUBuilding : public AActor, public IInteractable
 {
 	GENERATED_BODY()
 	
@@ -25,8 +26,11 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	virtual void OnClicked() override;
+	virtual void OnHovered() override;
+	virtual void OnUnhovered() override;
+	virtual bool IsUnlocked() const override;
 
-public:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Visual;
 

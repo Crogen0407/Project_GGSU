@@ -20,15 +20,15 @@ protected:
 
 public:
 	// IInteractable 인터페이스 구현
-	virtual void OnClicked_Implementation() override;
-	virtual void OnHovered_Implementation() override;
-	virtual void OnUnhovered_Implementation() override;
-	virtual bool IsUnlocked_Implementation() const override;
+	virtual void OnClicked() override;
+	virtual void OnHovered() override;
+	virtual void OnUnhovered() override;
+	virtual bool IsUnlocked() const override;
 
 	// 해재 상태 설정
 	void SetUnlocked(bool bNewState);
 
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GroundTile")
-	bool IsUnlocked = false;
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "GroundTile")
+	//bool IsUnlocked = false;
 };
