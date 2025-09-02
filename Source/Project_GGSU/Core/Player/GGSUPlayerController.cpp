@@ -2,6 +2,7 @@
 
 
 #include "GGSUPlayerController.h"
+#include "BuildingSystem/Interactable.h"
 
 AGGSUPlayerController::AGGSUPlayerController()
 {
@@ -18,10 +19,63 @@ AGGSUPlayerController::AGGSUPlayerController()
 	}
 }
 
+void AGGSUPlayerController::SetupInputComponent()
+{
+	Super::SetupInputComponent();
+
+	InputComponent->BindAction("Click", IE_Pressed, this, &AGGSUPlayerController::HandleClick);
+}
+
 void AGGSUPlayerController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 	
+}
+
+void AGGSUPlayerController::HandleClick()
+{
+	 FVector WorldLocation, WorldDirection;
+   
+        // 마우스 커서의 2D 화면 위치를 3D 월드 공간의 위치와 방향으로 변환합니다.
+        if (DeprojectMousePositionToWorld(WorldLocation, WorldDirection))
+        {
+            FHitResult HitResult;
+            FVector StartLocation = WorldLocation;
+            FVector EndLocation = StartLocation + (WorldDirection * TraceDistance);
+   
+            // 충돌 쿼리 파라미터를 설정합니다. (예: 플레이어 자신은 무시)
+            FCollisionQueryParams CollisionParams;
+            if (GetPawn())
+            {
+                CollisionParams.AddIgnoredActor(GetPawn());
+            }
+   
+            // 월드에 라인 트레이스(레이캐스트)를 실행합니다.
+            bool bHit = GetWorld()->LineTraceSingleByChannel(
+                HitResult,
+                StartLocation,
+                EndLocation,
+                ECC_Visibility, // Visibility 채널에 있는 오브젝트만 감지
+                CollisionParams
+            );
+   
+            // 무언가에 부딪혔고, 해당 액터가 유효하다면
+            if (bHit && HitResult.GetActor())
+            {
+                AActor* HitActor = HitResult.GetActor();
+
+                // 부딪힌 액터가 InteractableInterface를 구현하고 있는지 확인합니다.
+                if (HitActor->GetClass()->ImplementsInterface(UInteractable::StaticClass()))
+                {
+                    // 인터페이스 함수를 실행합니다.
+                    IInteractable* Interactable = Cast<IInteractable>(HitActor);
+                    if (Interactable)
+                    {
+                    	Interactable->OnClicked();
+                    }
+                }
+            }
+        }
 }
 
 FRotator AGGSUPlayerController::GetControlRotation() const

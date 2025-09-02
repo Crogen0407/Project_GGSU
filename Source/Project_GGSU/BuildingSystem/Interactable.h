@@ -21,15 +21,11 @@ class PROJECT_GGSU_API IInteractable
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Interaction")
-	void OnClicked();
+	virtual void OnClicked() = 0;
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Interaction")
-	void OnHovered();
+	virtual void OnHovered() = 0;
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Interaction")
-	void OnUnhovered();
+	virtual void OnUnhovered() = 0;
 
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Interaction")
-	bool IsUnlocked() const;
+	virtual bool IsUnlocked() const = 0;
 };
