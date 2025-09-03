@@ -33,7 +33,7 @@ public:
 	}
 
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category="Time")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
 	float TimeSpeed = 10.f;
 	
 private:

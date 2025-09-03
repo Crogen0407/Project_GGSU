@@ -22,7 +22,7 @@ void AGGSUCrops::BeginPlay()
 	Super::BeginPlay();
 	
 	SpawnTime = AGGSUDateController::GetTime();
-	MeshCount = CropsDataAsset->StaticMeshs.Num();
+	MeshCount = CropsDataAsset->StaticMeshs.Max();
 }
 
 // Called every frame
