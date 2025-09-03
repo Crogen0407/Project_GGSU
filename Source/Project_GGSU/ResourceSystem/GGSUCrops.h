@@ -24,6 +24,18 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+private:
+	UStaticMesh* GetCurrentStaticMesh() const;
+
+private:
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* MeshComp;
+	int32 MeshCount;
+
+public:
+	float SpawnTime;
+	float Age;
+
 public:
 	UPROPERTY(EditAnywhere)
 	UGGSUCropsAsset* CropsDataAsset;

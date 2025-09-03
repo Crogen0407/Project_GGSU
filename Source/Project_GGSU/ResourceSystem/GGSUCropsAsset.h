@@ -16,7 +16,7 @@ class PROJECT_GGSU_API UGGSUCropsAsset : public UDataAsset
 
 public:
 	UPROPERTY(EditAnywhere)
-	UStaticMesh* StaticMesh;
+	TArray<UStaticMesh*> StaticMeshs;
 	
 	UPROPERTY(EditAnywhere)
 	FName Name;
