@@ -3,7 +3,7 @@
 
 #include "BuildingSystem/AreaSystem/Area.h"
 #include "Kismet/GameplayStatics.h"
-
+#include "BuildingSystem/GGSUBuilding.h"
 
 AArea::AArea()
 {
@@ -23,11 +23,11 @@ bool AArea::UnlockArea()
 	if (ResourceInstance->TryRemoveResource(EResourceType::Gold, UnlockCost))
 	{
 		// 이 구역에 속한 모든 땅 해금
-		for (AGroundTile* Tile : GroundTiles)
+		for (const AGGSUBuilding* Building : Buildings)
 		{
-			if (Tile)
+			if (Building)
 			{
-				Tile->SetUnlocked(true);
+				Building->OnUnlock();
 			}
 		}
 		UE_LOG(LogTemp, Warning, TEXT("unlock area!"));

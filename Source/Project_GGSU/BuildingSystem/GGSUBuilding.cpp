@@ -60,3 +60,8 @@ bool AGGSUBuilding::IsUnlocked() const
 	return true;
 }
 
+void AGGSUBuilding::OnUnlock() const
+{
+	
+}
+
