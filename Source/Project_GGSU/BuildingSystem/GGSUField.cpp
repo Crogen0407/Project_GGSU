@@ -19,7 +19,6 @@ void AGGSUField::OnClicked()
 		
 		return;
 	}
-	
 
 	// Crop spawn.
 	if (const UGGSUCropsSelection* CropsSelection = GetGameInstance()->GetSubsystem<UGGSUCropsSelection>(); CropsSelection)
