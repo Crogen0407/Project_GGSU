@@ -6,20 +6,20 @@
 #include "ResourceSystem/CropsSystem/GGSUCropDataAsset.h"
 #include "ResourceSystem/CropsSystem/GGSUCropsGenerator.h"
 #include "ResourceSystem/CropsSystem/GGSUCropsSelection.h"
+#include "ResourceSystem/CropsSystem/GGSUCrop.h"
 
 void AGGSUField::OnClicked()
 {
 	Super::OnClicked();
 
 	// 이미 심어져 있는 작물이 있는지 판별
-	if (CurrentCrops.Num() > 0)
+	if (CurrentCrops != nullptr)
 	{
-		// 심어져 있다면 수확 시도
-		HarvestCurrentCrops(); 
-			
-		// TODO : 메세지 UI 띄우는 로직
+		HarvestCurrentCrops();
+		
 		return;
 	}
+	
 
 	// Crop spawn.
 	if (const UGGSUCropsSelection* CropsSelection = GetGameInstance()->GetSubsystem<UGGSUCropsSelection>(); CropsSelection)
@@ -31,14 +31,26 @@ void AGGSUField::SpawnCrop(UGGSUCropDataAsset* CropDataAsset)
 {
 	if (const UGGSUCropsGenerator* CropsGenerator = GetGameInstance()->GetSubsystem<UGGSUCropsGenerator>())
 	{
-		for (int i = 0; i < CropSpawnLocations.Max(); ++i)
-		{
-			CurrentCrops.Add(CropsGenerator->SpawnCrop(CropDataAsset, CropSpawnLocations[i]->GetComponentLocation()));
-		}	
+		CurrentCrops = CropsGenerator->SpawnCrop(CropDataAsset, GetActorLocation());
 	}
 }
 
-void AGGSUField::HarvestCurrentCrops()
+bool AGGSUField::HarvestCurrentCrops()
 {
-	// 다 자랐다면 수확
+	// TODO : 다 자랐는지 확인
+	if (true)
+	{
+		// TODO : 저장소에 자원 넣는 로직
+		// 어쩌구저쩌구
+
+		// 오브젝트 없애기
+		if (UWorld* World = GetWorld())
+			World->DestroyActor(CurrentCrops);
+		
+		return true; 
+	}
+
+
+	// TODO : 메시지 띄우기
+	return false;		
 }

@@ -20,12 +20,9 @@ class PROJECT_GGSU_API AGGSUField : public AGGSUBuilding
 public:
 	virtual void OnClicked() override;
 	void SpawnCrop(UGGSUCropDataAsset* CropDataAsset);
-	void HarvestCurrentCrops();
+	bool HarvestCurrentCrops();
 	
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "CropLocations")
-	TArray<TObjectPtr<USceneComponent>> CropSpawnLocations;
-
 	UPROPERTY(Transient)
-	TArray<TObjectPtr<AGGSUCrop>> CurrentCrops;
+	TObjectPtr<AGGSUCrop> CurrentCrops;
 };
