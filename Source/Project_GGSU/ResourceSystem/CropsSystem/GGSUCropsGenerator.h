@@ -6,7 +6,7 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "GGSUCropsGenerator.generated.h"
 
-class AGGSUCrops;
+class AGGSUCrop;
 class UGGSUCropDataAsset;
 
 UCLASS()
@@ -15,5 +15,5 @@ class PROJECT_GGSU_API UGGSUCropsGenerator : public UGameInstanceSubsystem
 	GENERATED_BODY()
 	
 public:
-	AGGSUCrops* SpawnCrop(UGGSUCropDataAsset* CropsDataAsset, const FVector& Location) const;
+	AGGSUCrop* SpawnCrop(UGGSUCropDataAsset* CropsDataAsset, const FVector& Location) const;
 };
