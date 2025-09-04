@@ -29,7 +29,7 @@ private:
 
 private:
 	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* MeshComp;
+	TArray<UStaticMeshComponent*> MeshComponents;
 	int32 MeshCount;
 
 public:
@@ -37,6 +37,6 @@ public:
 	float Age;
 
 public:
-	UPROPERTY(Transient)
+	UPROPERTY(EditAnywhere)
 	TObjectPtr<UGGSUCropDataAsset> CachedCropsDataAsset;
 };
