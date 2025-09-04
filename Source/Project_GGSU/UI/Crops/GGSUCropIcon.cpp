@@ -1,0 +1,25 @@
+#include "UI/Crops/GGSUCropIcon.h"
+#include "Components/Image.h"
+#include "Components/Button.h"
+#include "ResourceSystem/CropsSystem/GGSUCropsSelection.h"
+
+void UGGSUCropIcon::SetTargetCrop(UGGSUCropDataAsset* InCrop)
+{
+	TargetCrop = InCrop;
+
+	Button->OnClicked.AddDynamic(this, &UGGSUCropIcon::HandleSelectTargetCrop);
+	
+	// TODO : 아이콘 만들어야 됨
+	// IconImage->SetBrush()
+}
+
+void UGGSUCropIcon::HandleSelectTargetCrop()
+{
+	UE_LOG(LogTemp, Log, TEXT("sfsf"));
+	if (UGGSUCropsSelection* CropsSelection = GetGameInstance()->GetSubsystem<UGGSUCropsSelection>())
+	{
+		CropsSelection->SetSelectedCrop(TargetCrop);
+	}
+}
+
+
