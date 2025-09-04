@@ -26,11 +26,6 @@ void AGroundTile::OnUnhovered()
 
 }
 
-bool AGroundTile::IsUnlocked() const
-{
-	return false;
-}
-
 void AGroundTile::SetUnlocked(bool bNewState)
 {
 	// 해금 상태가 변경될 때 시각적 피드백을 추가할 수 있습니다.

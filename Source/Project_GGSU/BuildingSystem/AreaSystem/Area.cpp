@@ -23,7 +23,7 @@ bool AArea::UnlockArea()
 	if (ResourceInstance->TryRemoveResource(EResourceType::Gold, UnlockCost))
 	{
 		// 이 구역에 속한 모든 땅 해금
-		for (const AGGSUBuilding* Building : Buildings)
+		for (AGGSUBuilding* Building : Buildings)
 		{
 			if (Building)
 			{

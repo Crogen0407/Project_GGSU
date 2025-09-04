@@ -30,14 +30,15 @@ public:
 	virtual void OnClicked() override;
 	virtual void OnHovered() override;
 	virtual void OnUnhovered() override;
-	virtual bool IsUnlocked() const override;
-	void OnUnlock() const;
+	void OnUnlock();
 
 public:
-	
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Visual;
 
 	UPROPERTY(VisibleAnywhere)
 	UBoxComponent* BoxComponent;
+
+	UPROPERTY(EditAnywhere)
+	bool IsUnlocked = false;
 };

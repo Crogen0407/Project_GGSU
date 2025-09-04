@@ -32,7 +32,9 @@ AGGSUBuilding::AGGSUBuilding()
 void AGGSUBuilding::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	if (IsUnlocked)
+		Visual->SetScalarParameterValueOnMaterials(FName(""), 1.f);
 }
 
 // Called every frame
@@ -55,13 +57,10 @@ void AGGSUBuilding::OnUnhovered()
 {
 }
 
-bool AGGSUBuilding::IsUnlocked() const
+void AGGSUBuilding::OnUnlock()
 {
-	return true;
-}
-
-void AGGSUBuilding::OnUnlock() const
-{
+	IsUnlocked = true;
 	
+	Visual->SetScalarParameterValueOnMaterials(FName("IsLocked"), 0.f);
 }
 
