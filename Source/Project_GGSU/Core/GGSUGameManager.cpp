@@ -5,5 +5,5 @@
 
 void UGGSUGameManager::GameStart()
 {
-	GameStartEvent->Broadcast();
+	GameStartEvent.Broadcast();
 }

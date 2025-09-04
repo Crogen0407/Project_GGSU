@@ -16,7 +16,12 @@ class PROJECT_GGSU_API UGGSUTitleUI : public UUserWidget
 
 	virtual void NativeOnInitialized() override;
 	virtual void NativeTick(const FGeometry& MyGeometry, float DeltaTime) override;
+
+public:
+	UFUNCTION(BlueprintNativeEvent, Category="Handle")
 	void HandleGameStart();
+	
+	void HandleGameStart_Implementation();
 	
 public:
 	UPROPERTY(meta=(BindWidget), BlueprintReadOnly)

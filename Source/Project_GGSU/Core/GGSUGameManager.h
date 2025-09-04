@@ -17,5 +17,5 @@ public:
 	void GameStart();
 	
 public:
-	FGameStartEvent* GameStartEvent;
+	FGameStartEvent GameStartEvent;
 };

@@ -11,7 +11,7 @@ void UGGSUTitleUI::NativeOnInitialized()
 
 	if (UGGSUGameManager* GameManager = GetGameInstance()->GetSubsystem<UGGSUGameManager>())
 	{
-		GameManager->GameStartEvent->AddDynamic(this, &UGGSUTitleUI::HandleGameStart);
+		GameManager->GameStartEvent.AddDynamic(this, &UGGSUTitleUI::HandleGameStart);
 	}
 }
 
@@ -20,7 +20,7 @@ void UGGSUTitleUI::NativeTick(const FGeometry& MyGeometry, float DeltaTime)
 	Super::NativeTick(MyGeometry, DeltaTime);
 }
 
-void UGGSUTitleUI::HandleGameStart()
+void UGGSUTitleUI::HandleGameStart_Implementation()
 {
-	// 블루 프린트에서 재정의하는 함수 실행
+	
 }
