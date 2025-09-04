@@ -2,7 +2,7 @@
 
 
 #include "ResourceSystem/GGSUCrops.h"
-
+#include "GGSUCropDataAsset.h"
 #include "DateSystem/GGSUDateController.h"
 
 // Sets default values
@@ -16,13 +16,11 @@ AGGSUCrops::AGGSUCrops()
 
 }
 
-// Called when the game starts or when spawned
-void AGGSUCrops::BeginPlay()
+void AGGSUCrops::Initialize(UGGSUCropDataAsset* CropDataAsset)
 {
-	Super::BeginPlay();
-	
+	CachedCropsDataAsset = CropDataAsset;
 	SpawnTime = AGGSUDateController::GetTime();
-	MeshCount = CropsDataAsset->StaticMeshs.Max();
+	MeshCount = CropDataAsset->StaticMeshes.Max();
 }
 
 // Called every frame
@@ -30,7 +28,9 @@ void AGGSUCrops::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	Age = FMath::Clamp(AGGSUDateController::GetTime() - SpawnTime, 0., CropsDataAsset->GrowthTime);
+	if (CachedCropsDataAsset == nullptr) return;
+	
+	Age = FMath::Clamp(AGGSUDateController::GetTime() - SpawnTime, 0., CachedCropsDataAsset->GrowthTime);
 
 	UStaticMesh* CurrentMesh = GetCurrentStaticMesh();
 	if (MeshComp->GetStaticMesh() != CurrentMesh)
@@ -41,11 +41,11 @@ void AGGSUCrops::Tick(float DeltaTime)
 
 UStaticMesh* AGGSUCrops::GetCurrentStaticMesh() const
 {
-	float Amount = Age / CropsDataAsset->GrowthTime;	// 0~1
+	float Amount = Age / CachedCropsDataAsset->GrowthTime;	// 0~1
 	int32 Index = FMath::Floor(MeshCount * Amount);
 	Index = FMath::Clamp(Index, 0, MeshCount - 1);
 
 	UE_LOG(LogTemp, Warning, TEXT("%d 아아아아아아아아아아아아아아아악"), Index);
-	return CropsDataAsset->StaticMeshs[Index];
+	return CachedCropsDataAsset->StaticMeshes[Index];
 }
 

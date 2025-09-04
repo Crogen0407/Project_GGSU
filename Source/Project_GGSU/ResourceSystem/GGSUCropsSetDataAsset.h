@@ -7,7 +7,7 @@
 #include "GGSUCropsSetDataAsset.generated.h"
 
 class AGGSUCrops;
-class UGGSUCropsAsset;
+class UGGSUCropDataAsset;
 
 UCLASS()
 class PROJECT_GGSU_API UGGSUCropsSetDataAsset : public UPrimaryDataAsset
@@ -15,9 +15,9 @@ class PROJECT_GGSU_API UGGSUCropsSetDataAsset : public UPrimaryDataAsset
 	GENERATED_BODY()
 
 public:
-	UGGSUCropsAsset* GetCropsAsset(FName Name);
+	UGGSUCropDataAsset* GetCropsAsset(FName Name);
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Crops")
-	TArray<UGGSUCropsAsset*> CropsAssets; 
+	TArray<UGGSUCropDataAsset*> CropsAssets; 
 };

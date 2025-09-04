@@ -3,9 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GGSUCropsAsset.h"
 #include "GameFramework/Actor.h"
 #include "GGSUCrops.generated.h"
+
+class UGGSUCropDataAsset;
 
 UCLASS()
 class PROJECT_GGSU_API AGGSUCrops : public AActor
@@ -16,10 +17,9 @@ public:
 	// Sets default values for this actor's properties
 	AGGSUCrops();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
+public:
+	virtual void Initialize(UGGSUCropDataAsset* CropsDataAsset);
+	
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -37,6 +37,6 @@ public:
 	float Age;
 
 public:
-	UPROPERTY(EditAnywhere)
-	UGGSUCropsAsset* CropsDataAsset;
+	UPROPERTY(Transient)
+	TObjectPtr<UGGSUCropDataAsset> CachedCropsDataAsset;
 };

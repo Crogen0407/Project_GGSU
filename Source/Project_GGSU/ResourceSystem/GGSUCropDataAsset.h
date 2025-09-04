@@ -4,19 +4,19 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
-#include "GGSUCropsAsset.generated.h"
+#include "GGSUCropDataAsset.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class PROJECT_GGSU_API UGGSUCropsAsset : public UDataAsset
+class PROJECT_GGSU_API UGGSUCropDataAsset : public UDataAsset
 {
 	GENERATED_BODY()
 
 public:
 	UPROPERTY(EditAnywhere)
-	TArray<UStaticMesh*> StaticMeshs;
+	TArray<UStaticMesh*> StaticMeshes;
 	
 	UPROPERTY(EditAnywhere)
 	FName Name;

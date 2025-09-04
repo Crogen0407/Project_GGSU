@@ -3,9 +3,9 @@
 
 #include "ResourceSystem/GGSUCropsSetDataAsset.h"
 
-#include "GGSUCropsAsset.h"
+#include "GGSUCropDataAsset.h"
 
-UGGSUCropsAsset* UGGSUCropsSetDataAsset::GetCropsAsset(FName Name)
+UGGSUCropDataAsset* UGGSUCropsSetDataAsset::GetCropsAsset(FName Name)
 {
 	for (auto CropsAsset : CropsAssets)
 	{
