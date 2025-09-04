@@ -29,4 +29,7 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	float GrowthTime;
+	
+	UPROPERTY(EditAnywhere)
+	FVector2D Size;
 };
