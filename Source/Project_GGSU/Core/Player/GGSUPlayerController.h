@@ -25,7 +25,8 @@ protected:
 
 public:
 	virtual void Tick(float DeltaSeconds) override;
-
+	virtual bool InputKey(const FInputKeyParams& Params) override;
+	
 public:
 	void HandlePressed();
 	void HandleReleased();
@@ -39,4 +40,7 @@ private:
 	// 레이의 최대 사정거리
 	float TraceDistance = 10000.0f;
 	bool IsSelecting = false;
+
+private:
+	bool IsGameStarted = false;
 };

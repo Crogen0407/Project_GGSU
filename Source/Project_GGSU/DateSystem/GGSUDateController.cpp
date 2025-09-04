@@ -30,7 +30,7 @@ void AGGSUDateController::Tick(float DeltaTime)
 {	
 	Super::Tick(DeltaTime);
 	float OneHourAngle = 360.f/24.f;
-	AGGSUDateController::Time += DeltaTime * TimeSpeed;
+	Time += DeltaTime * TimeSpeed;
 	DirectionalLightComponent->SetWorldRotation(FRotator(OneHourAngle * Time + 90.f, 0, 0));
 }
 
