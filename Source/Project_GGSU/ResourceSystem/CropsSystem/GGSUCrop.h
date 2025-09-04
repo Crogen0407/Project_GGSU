@@ -4,18 +4,18 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "GGSUCrops.generated.h"
+#include "GGSUCrop.generated.h"
 
 class UGGSUCropDataAsset;
 
 UCLASS()
-class PROJECT_GGSU_API AGGSUCrops : public AActor
+class PROJECT_GGSU_API AGGSUCrop : public AActor
 {
 	GENERATED_BODY()
 	
 public:	
 	// Sets default values for this actor's properties
-	AGGSUCrops();
+	AGGSUCrop();
 
 public:
 	virtual void Initialize(UGGSUCropDataAsset* CropsDataAsset);

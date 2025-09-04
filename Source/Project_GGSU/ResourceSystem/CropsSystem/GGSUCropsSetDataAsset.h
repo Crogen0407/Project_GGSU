@@ -6,7 +6,7 @@
 #include "Engine/DataAsset.h"
 #include "GGSUCropsSetDataAsset.generated.h"
 
-class AGGSUCrops;
+class AGGSUCrop;
 class UGGSUCropDataAsset;
 
 UCLASS()

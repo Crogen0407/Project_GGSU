@@ -1,12 +1,12 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "ResourceSystem/CropsSystem/GGSUCrops.h"
+#include "ResourceSystem/CropsSystem/GGSUCrop.h"
 #include "GGSUCropDataAsset.h"
 #include "DateSystem/GGSUDateController.h"
 
 // Sets default values
-AGGSUCrops::AGGSUCrops()
+AGGSUCrop::AGGSUCrop()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -16,7 +16,7 @@ AGGSUCrops::AGGSUCrops()
 
 }
 
-void AGGSUCrops::Initialize(UGGSUCropDataAsset* CropDataAsset)
+void AGGSUCrop::Initialize(UGGSUCropDataAsset* CropDataAsset)
 {
 	CachedCropsDataAsset = CropDataAsset;
 	SpawnTime = AGGSUDateController::GetTime();
@@ -24,7 +24,7 @@ void AGGSUCrops::Initialize(UGGSUCropDataAsset* CropDataAsset)
 }
 
 // Called every frame
-void AGGSUCrops::Tick(float DeltaTime)
+void AGGSUCrop::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
@@ -39,7 +39,7 @@ void AGGSUCrops::Tick(float DeltaTime)
 	}
 }
 
-UStaticMesh* AGGSUCrops::GetCurrentStaticMesh() const
+UStaticMesh* AGGSUCrop::GetCurrentStaticMesh() const
 {
 	float Amount = Age / CachedCropsDataAsset->GrowthTime;	// 0~1
 	int32 Index = FMath::Floor(MeshCount * Amount);
