@@ -3,7 +3,7 @@
 
 #include "ResourceSystem/CropsSystem/GGSUCrop.h"
 #include "GGSUCropDataAsset.h"
-#include "DateSystem/GGSUDateController.h"
+#include "DateSystem/GGSUDateManager.h"
 
 // Sets default values
 AGGSUCrop::AGGSUCrop()
@@ -27,7 +27,7 @@ AGGSUCrop::AGGSUCrop()
 void AGGSUCrop::Initialize(UGGSUCropDataAsset* CropDataAsset)
 {
 	CachedCropsDataAsset = CropDataAsset;
-	SpawnTime = AGGSUDateController::GetTime();
+	SpawnTime = UGGSUDateManager::GetTime();
 	MeshCount = CropDataAsset->StaticMeshes.Max();
 }
 
@@ -40,7 +40,7 @@ void AGGSUCrop::Tick(float DeltaTime)
 	else if (MeshCount == 0)
 		Initialize(CachedCropsDataAsset);
 
-	Age = AGGSUDateController::GetTime() - SpawnTime;
+	Age = UGGSUDateManager::GetTime() - SpawnTime;
 
 	UStaticMesh* CurrentMesh = GetCurrentStaticMesh();
 	if (MeshComponents[0]->GetStaticMesh() != CurrentMesh)

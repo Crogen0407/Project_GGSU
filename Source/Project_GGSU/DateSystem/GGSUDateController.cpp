@@ -2,9 +2,10 @@
 
 
 #include "GGSUDateController.h"
+
+#include "GGSUDateManager.h"
 #include "Components/DirectionalLightComponent.h"
 
-FDateTime AGGSUDateController::Time = 0.0f;
 
 // Sets default values
 AGGSUDateController::AGGSUDateController()
@@ -21,8 +22,6 @@ AGGSUDateController::AGGSUDateController()
 	MoonDirectionalLightComponent = CreateDefaultSubobject<UDirectionalLightComponent>(TEXT("MoonDirectionalLight"));
 	MoonDirectionalLightComponent->SetWorldRotation(FRotator(180.f, 0.f, 0.f));
 	MoonDirectionalLightComponent->AttachToComponent(LightSceneComponent, FAttachmentTransformRules::KeepWorldTransform);
-	
-	AGGSUDateController::Time = 0.0f;
 }
 
 // Called when the game starts or when spawned
@@ -36,7 +35,7 @@ void AGGSUDateController::BeginPlay()
 void AGGSUDateController::Tick(float DeltaTime)
 {	
 	Super::Tick(DeltaTime);
-	Time = FDateTime::UtcNow() + FTimespan::FromHours(CurrentCountry.GetIntValue());
+	Time = UGGSUDateManager::GetTime();
 
 	constexpr float OneHourAngle = 360.f/24.f;
 	const float CurrentHourAngle = OneHourAngle * Time.GetHour();
