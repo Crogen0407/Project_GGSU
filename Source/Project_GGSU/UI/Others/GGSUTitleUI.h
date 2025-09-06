@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "UI/GGSUUserWidget.h"
 #include "GGSUTitleUI.generated.h"
 
 class UCanvasPanel;
 class UBackgroundBlur;
 
 UCLASS()
-class PROJECT_GGSU_API UGGSUTitleUI : public UUserWidget
+class PROJECT_GGSU_API UGGSUTitleUI : public UGGSUUserWidget
 {
 	GENERATED_BODY()
 

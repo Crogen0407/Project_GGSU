@@ -15,5 +15,19 @@ class PROJECT_GGSU_API UGGSUUserWidget : public UUserWidget
 {
 	GENERATED_BODY()
 
-	virtual void NativeConstruct() override;
+protected:
+	virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
+
+public:
+	UFUNCTION(BlueprintCallable)
+	void Show(float Duration);
+	
+	UFUNCTION(BlueprintCallable)
+	void Hide(float Duration);
+
+private:
+	bool IsFade = false;
+	float FadeDuration;
+	float TargetOpacity;
+	float OpacityTimer;
 };

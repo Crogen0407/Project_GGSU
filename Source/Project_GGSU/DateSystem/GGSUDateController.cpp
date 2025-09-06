@@ -31,11 +31,11 @@ void AGGSUDateController::Tick(float DeltaTime)
 {	
 	Super::Tick(DeltaTime);
 	Time = UGGSUDateManager::GetTime();
-
+	
 	constexpr float OneHourAngle = 360.f/24.f;
 	const float CurrentHourAngle = OneHourAngle * Time.GetHour();
 	const float CurrentMinuteAngle =  OneHourAngle * Time.GetMinute() / 60.f;
-	const float FinalAngle = CurrentHourAngle + CurrentMinuteAngle + 180.f;
+	const float FinalAngle = CurrentHourAngle + CurrentMinuteAngle + 90.f;
 	
 	LightSceneComponent->SetWorldRotation(FRotator(FinalAngle, 45.f, 0.f));
 }
