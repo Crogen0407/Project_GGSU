@@ -25,6 +25,5 @@ public:
 	UFUNCTION(BlueprintPure, Category="Time")
 	static FDateTime GetTime();
 
-private:
 	static TEnumAsByte<ECountry> CurrentCountry;
 };

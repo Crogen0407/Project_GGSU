@@ -34,7 +34,4 @@ private:
 	
 	UPROPERTY(VisibleAnywhere, Category="Lights")
 	UDirectionalLightComponent* SunDirectionalLightComponent;
-
-	UPROPERTY(VisibleAnywhere, Category="Lights")
-	UDirectionalLightComponent* MoonDirectionalLightComponent;
 };
