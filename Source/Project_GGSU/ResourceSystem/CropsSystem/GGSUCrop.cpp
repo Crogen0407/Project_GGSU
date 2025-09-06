@@ -39,8 +39,8 @@ void AGGSUCrop::Tick(float DeltaTime)
 	if (CachedCropsDataAsset == nullptr) return;
 	else if (MeshCount == 0)
 		Initialize(CachedCropsDataAsset);
-	
-	Age = FMath::Clamp(AGGSUDateController::GetTime() - SpawnTime, 0., CachedCropsDataAsset->GrowthTime);
+
+	Age = AGGSUDateController::GetTime() - SpawnTime;
 
 	UStaticMesh* CurrentMesh = GetCurrentStaticMesh();
 	if (MeshComponents[0]->GetStaticMesh() != CurrentMesh)
@@ -54,7 +54,7 @@ void AGGSUCrop::Tick(float DeltaTime)
 
 UStaticMesh* AGGSUCrop::GetCurrentStaticMesh() const
 {
-	float Amount = Age / CachedCropsDataAsset->GrowthTime;	// 0~1
+	float Amount = Age.GetMinutes() / CachedCropsDataAsset->GrowthTime;	// 0~1
 	int32 Index = FMath::Floor(MeshCount * Amount);
 	Index = FMath::Clamp(Index, 0, MeshCount - 1);
 	

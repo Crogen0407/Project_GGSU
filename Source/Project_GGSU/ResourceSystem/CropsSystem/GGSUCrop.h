@@ -33,8 +33,8 @@ private:
 	int32 MeshCount;
 
 public:
-	float SpawnTime;
-	float Age;
+	FDateTime SpawnTime;
+	FTimespan Age;
 
 public:
 	UPROPERTY(EditAnywhere)

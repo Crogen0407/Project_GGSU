@@ -27,7 +27,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	FText Description;
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (Units = "min"))
 	float GrowthTime;
 	
 	UPROPERTY(EditAnywhere)

@@ -4,17 +4,24 @@
 #include "GGSUDateController.h"
 #include "Components/DirectionalLightComponent.h"
 
-float AGGSUDateController::Time = 0.0f;
+FDateTime AGGSUDateController::Time = 0.0f;
 
 // Sets default values
 AGGSUDateController::AGGSUDateController()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
-	DirectionalLightComponent = CreateDefaultSubobject<UDirectionalLightComponent>(TEXT("DirectionalLight"));
-	
-	RootComponent = DirectionalLightComponent;
+	LightSceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("LightRoot"));
+	RootComponent = LightSceneComponent;
 
+	SunDirectionalLightComponent = CreateDefaultSubobject<UDirectionalLightComponent>(TEXT("SunDirectionalLight"));
+	SunDirectionalLightComponent->SetWorldRotation(FRotator(-0.f, 0.f, 0.f));
+	SunDirectionalLightComponent->AttachToComponent(LightSceneComponent, FAttachmentTransformRules::KeepWorldTransform);
+
+	MoonDirectionalLightComponent = CreateDefaultSubobject<UDirectionalLightComponent>(TEXT("MoonDirectionalLight"));
+	MoonDirectionalLightComponent->SetWorldRotation(FRotator(180.f, 0.f, 0.f));
+	MoonDirectionalLightComponent->AttachToComponent(LightSceneComponent, FAttachmentTransformRules::KeepWorldTransform);
+	
 	AGGSUDateController::Time = 0.0f;
 }
 
@@ -29,8 +36,13 @@ void AGGSUDateController::BeginPlay()
 void AGGSUDateController::Tick(float DeltaTime)
 {	
 	Super::Tick(DeltaTime);
-	float OneHourAngle = 360.f/24.f;
-	Time += DeltaTime * TimeSpeed;
-	DirectionalLightComponent->SetWorldRotation(FRotator(OneHourAngle * Time + 90.f, 45.f, 0.f));
+	Time = FDateTime::UtcNow() + FTimespan::FromHours(CurrentCountry.GetIntValue());
+
+	constexpr float OneHourAngle = 360.f/24.f;
+	const float CurrentHourAngle = OneHourAngle * Time.GetHour();
+	const float CurrentMinuteAngle =  OneHourAngle * Time.GetMinute() / 60.f;
+	const float FinalAngle = CurrentHourAngle + CurrentMinuteAngle + 90.f;
+	
+	LightSceneComponent->SetWorldRotation(FRotator(FinalAngle, 45.f, 0.f));
 }
 

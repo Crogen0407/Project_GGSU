@@ -8,6 +8,17 @@
 
 class UDirectionalLightComponent;
 
+UENUM(BlueprintType, Blueprintable)
+enum ECountry
+{
+	Seoul = 9,
+	Tokyo = 9,
+	London = 0,
+	Washington = -5,
+	LandBerlin = 1,
+};
+
+
 UCLASS()
 class PROJECT_GGSU_API AGGSUDateController : public AActor
 {
@@ -27,19 +38,25 @@ public:
 
 public:
 	UFUNCTION(BlueprintPure, Category="Time")
-	static float GetTime()
+	static FDateTime GetTime()
 	{
 		return Time;
 	}
 
+private:
+	static FDateTime Time;
+
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
-	float TimeSpeed = 10.f;
+	UPROPERTY(EditAnywhere, Category="Country")
+	TEnumAsByte<ECountry> CurrentCountry;
 	
 private:
-	static float Time;
+	UPROPERTY(VisibleAnywhere, Category="Lights")
+	USceneComponent* LightSceneComponent;	
 	
-private:
-	UPROPERTY(VisibleAnywhere, Category="Components")
-	UDirectionalLightComponent* DirectionalLightComponent;
+	UPROPERTY(VisibleAnywhere, Category="Lights")
+	UDirectionalLightComponent* SunDirectionalLightComponent;
+
+	UPROPERTY(VisibleAnywhere, Category="Lights")
+	UDirectionalLightComponent* MoonDirectionalLightComponent;
 };
