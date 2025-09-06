@@ -20,8 +20,6 @@ UCLASS()
 class PROJECT_GGSU_API UGGSUDateManager : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
-
-
 	
 public:
 	UFUNCTION(BlueprintPure, Category="Time")
