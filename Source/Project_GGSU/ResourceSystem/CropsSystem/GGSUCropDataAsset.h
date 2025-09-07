@@ -16,9 +16,6 @@ public:
 	TArray<UStaticMesh*> StaticMeshes;
 
 	UPROPERTY(EditAnywhere)
-	UImage* Icon;
-	
-	UPROPERTY(EditAnywhere)
 	FName Name;
 	
 	UPROPERTY(EditAnywhere)
