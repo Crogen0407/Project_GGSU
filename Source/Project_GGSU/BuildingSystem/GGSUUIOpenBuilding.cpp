@@ -1,26 +1,17 @@
 #include "BuildingSystem/GGSUUIOpenBuilding.h"
 #include "Kismet/GameplayStatics.h"
+#include "UI/GGSUUIManager.h"
 #include "UI/GGSUUserWidget.h"
 
 void AGGSUUIOpenBuilding::OnClicked()
 {
 	Super::OnClicked();
 
-	if (CachedUIInstance)
+	if (UIClass)
 	{
-		
-	}
-	else
-	{
-		if (UIClass)
+		if (CachedUIInstance == nullptr)
 		{
-			CachedUIInstance = CreateWidget<UGGSUUserWidget>(this, UIClass);
-
-			if (CachedUIInstance)
-			{
-				AHUD* HUD = UGameplayStatics::GetPlayerController(this, 0)->GetHUD();
-				//HUD->Get
-			}
+			CachedUIInstance = GetGameInstance()->GetSubsystem<UGGSUUIManager>()->ShowPopupUI(UIClass);
 		}
 	}
 }

@@ -6,9 +6,6 @@
 #include "Engine/DataAsset.h"
 #include "GGSUCropDataAsset.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class PROJECT_GGSU_API UGGSUCropDataAsset : public UDataAsset
 {
@@ -17,6 +14,9 @@ class PROJECT_GGSU_API UGGSUCropDataAsset : public UDataAsset
 public:
 	UPROPERTY(EditAnywhere)
 	TArray<UStaticMesh*> StaticMeshes;
+
+	UPROPERTY(EditAnywhere)
+	UImage* Icon;
 	
 	UPROPERTY(EditAnywhere)
 	FName Name;

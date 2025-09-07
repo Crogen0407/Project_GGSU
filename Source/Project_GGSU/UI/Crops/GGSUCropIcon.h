@@ -9,9 +9,7 @@
 class UButton;
 class UImage;
 class UGGSUCropDataAsset;
-/**
- * 
- */
+
 UCLASS()
 class PROJECT_GGSU_API UGGSUCropIcon : public UGGSUUserWidget
 {
