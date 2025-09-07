@@ -38,7 +38,7 @@ public:
 	
 private:
 	// 레이의 최대 사정거리
-	float TraceDistance = 10000.0f;
+	float TraceDistance = 1000000.0f;
 	bool IsSelecting = false;
 
 private:

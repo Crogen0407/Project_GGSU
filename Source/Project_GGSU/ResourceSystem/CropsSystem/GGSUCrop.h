@@ -29,9 +29,10 @@ private:
 
 private:
 	UPROPERTY(EditAnywhere)
-	TArray<UStaticMeshComponent*> MeshComponents;
-	int32 MeshCount;
+	TObjectPtr<UStaticMeshComponent> MeshComponent;
 
+	uint32 MeshCount;
+	
 public:
 	FDateTime SpawnTime;
 	FTimespan Age;

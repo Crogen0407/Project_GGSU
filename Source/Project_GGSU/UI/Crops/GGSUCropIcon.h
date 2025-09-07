@@ -19,6 +19,8 @@ class PROJECT_GGSU_API UGGSUCropIcon : public UGGSUUserWidget
 
 public:
 	void SetTargetCrop(UGGSUCropDataAsset* InCrop);
+
+	UFUNCTION()
 	void HandleSelectTargetCrop(); 
 	
 public:

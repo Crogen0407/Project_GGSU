@@ -13,22 +13,16 @@ AGGSUCrop::AGGSUCrop()
 	
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 
-  	for (int i = 0; i < 4; ++i)
-  	{
-		float Interval = 100.0f;
-  	    FString CompName = FString::Printf(TEXT("MeshComp_%d"), i);
-  		UStaticMeshComponent* MeshCompo = CreateDefaultSubobject<UStaticMeshComponent>(*CompName);
-  		MeshCompo->SetupAttachment(RootComponent);
-		MeshCompo->SetRelativeLocation(FVector((i % 2 - 0.5f) * Interval, (FMath::Floor(i / 2) - 0.5f) * Interval, 0.f));
-  		MeshComponents.Add(MeshCompo);
-  	}
+  	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("MeshComponent");
+  	MeshComponent->SetupAttachment(RootComponent);
+	MeshComponent->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 }
 
 void AGGSUCrop::Initialize(UGGSUCropDataAsset* CropDataAsset)
 {
 	CachedCropsDataAsset = CropDataAsset;
 	SpawnTime = UGGSUDateManager::GetTime();
-	MeshCount = CropDataAsset->StaticMeshes.Max();
+	MeshCount = CropDataAsset->StaticMeshes.Num();
 }
 
 // Called every frame
@@ -37,24 +31,22 @@ void AGGSUCrop::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	if (CachedCropsDataAsset == nullptr) return;
-	else if (MeshCount == 0)
-		Initialize(CachedCropsDataAsset);
 
 	Age = UGGSUDateManager::GetTime() - SpawnTime;
 
 	UStaticMesh* CurrentMesh = GetCurrentStaticMesh();
-	if (MeshComponents[0]->GetStaticMesh() != CurrentMesh)
+	if (MeshComponent->GetStaticMesh() != CurrentMesh)
 	{
 		for (int i = 0; i < 4; ++i)
 		{
-			MeshComponents[i]->SetStaticMesh(CurrentMesh);
+			MeshComponent->SetStaticMesh(CurrentMesh);
 		}
 	}
 }
 
 UStaticMesh* AGGSUCrop::GetCurrentStaticMesh() const
 {
-	float Amount = Age.GetMinutes() / CachedCropsDataAsset->GrowthTime;	// 0~1
+	float Amount = Age.GetTotalMinutes() / CachedCropsDataAsset->GrowthTime;	// 0~1
 	int32 Index = FMath::Floor(MeshCount * Amount);
 	Index = FMath::Clamp(Index, 0, MeshCount - 1);
 	

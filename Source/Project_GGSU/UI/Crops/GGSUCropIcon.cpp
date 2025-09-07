@@ -7,7 +7,8 @@ void UGGSUCropIcon::SetTargetCrop(UGGSUCropDataAsset* InCrop)
 {
 	TargetCrop = InCrop;
 
-	Button->OnClicked.AddDynamic(this, &UGGSUCropIcon::HandleSelectTargetCrop);
+	if (TargetCrop)
+		Button->OnClicked.AddDynamic(this, &UGGSUCropIcon::HandleSelectTargetCrop);
 	
 	// TODO : 아이콘 만들어야 됨
 	// IconImage->SetBrush()
@@ -15,7 +16,6 @@ void UGGSUCropIcon::SetTargetCrop(UGGSUCropDataAsset* InCrop)
 
 void UGGSUCropIcon::HandleSelectTargetCrop()
 {
-	UE_LOG(LogTemp, Log, TEXT("sfsf"));
 	if (UGGSUCropsSelection* CropsSelection = GetGameInstance()->GetSubsystem<UGGSUCropsSelection>())
 	{
 		CropsSelection->SetSelectedCrop(TargetCrop);

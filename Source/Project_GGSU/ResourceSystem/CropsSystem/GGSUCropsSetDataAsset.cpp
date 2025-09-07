@@ -15,3 +15,8 @@ UGGSUCropDataAsset* UGGSUCropsSetDataAsset::GetCropsAsset(FName Name)
 
 	return nullptr;
 }
+
+TArray<UGGSUCropDataAsset*> UGGSUCropsSetDataAsset::GetCropAssets() const
+{
+	return CropsAssets;
+}
