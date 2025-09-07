@@ -20,13 +20,6 @@ public:
 
 	// Pawn에서 호출할 입력 설정 함수
 	void SetupPlayerInput(UInputComponent* PlayerInputComponent);
-
-	// Pawn이 직접 MovementComponent를 설정해주는 함수
-	void SetMovementComponent(UGGSUPlayerMovementComponent* InMovementComponent);
-
-	// Pawn이 직접 MovementComponent를 설정해주는 함수
-	void SetCameraBoomComponent(USpringArmComponent* InCameraBoomComponent);
-
 	
 protected:
 	virtual void BeginPlay() override;

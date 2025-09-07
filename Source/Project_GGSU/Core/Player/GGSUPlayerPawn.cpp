@@ -30,18 +30,11 @@ AGGSUPlayerPawn::AGGSUPlayerPawn()
 
 	MovementComponent = CreateDefaultSubobject<UGGSUPlayerMovementComponent>(TEXT("MovementComponent"));
 	InputMapperComponent = CreateDefaultSubobject<UGGSUInputMapperComponent>(TEXT("InputMapper"));
-
-	if (InputMapperComponent)
-	{
-		InputMapperComponent->SetMovementComponent(MovementComponent);
-		InputMapperComponent->SetCameraBoomComponent(CameraBoomComponent);
-	}
 }
 
 void AGGSUPlayerPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
 
 void AGGSUPlayerPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)

@@ -13,26 +13,14 @@ void UGGSUInputMapperComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
-	UE_LOG(LogTemp, Warning, TEXT("--- InputMapperComponent BeginPlay for: %s ---"), *GetOwner()->GetName());
-	if (CachedMovementComponent)
-	{
-		UE_LOG(LogTemp, Warning, TEXT("In BeginPlay Not NULL"));
-	}
-	else
-	{
+	CachedMovementComponent = GetOwner()->GetComponentByClass<UGGSUPlayerMovementComponent>();
+	CachedCameraBoomComponent = GetOwner()->GetComponentByClass<USpringArmComponent>();
+	
+	if (CachedMovementComponent == nullptr)
 		UE_LOG(LogTemp, Error, TEXT("In BeginPlay, CachedMovementComponent is NULL!"));
-	}
-	// --- 여기까지 ---
-}
 
-void UGGSUInputMapperComponent::SetMovementComponent(UGGSUPlayerMovementComponent* InMovementComponent)
-{
-	CachedMovementComponent = InMovementComponent;
-}
-
-void UGGSUInputMapperComponent::SetCameraBoomComponent(USpringArmComponent* InCameraBoomComponent)
-{
-	CachedCameraBoomComponent = InCameraBoomComponent;
+	if (CachedCameraBoomComponent == nullptr)
+		UE_LOG(LogTemp, Error, TEXT("In BeginPlay, CachedCameraBoomComponent is NULL!"));
 }
 
 void UGGSUInputMapperComponent::SetupPlayerInput(UInputComponent* PlayerInputComponent)
