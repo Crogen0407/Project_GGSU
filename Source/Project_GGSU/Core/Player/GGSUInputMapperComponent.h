@@ -14,7 +14,7 @@ UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
 class PROJECT_GGSU_API UGGSUInputMapperComponent : public UActorComponent
 {
 	GENERATED_BODY()
-
+	
 public:
 	UGGSUInputMapperComponent();
 

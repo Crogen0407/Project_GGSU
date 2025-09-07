@@ -19,13 +19,9 @@ void UGGSUCropSelectBar::CreateCropElements()
 	{
 		for (int32 i = 0; i < CropSetDataAsset->GetDropsCount(); ++i)
 		{
-			UGGSUCropIcon* CreatedItemWidget = CreateWidget<UGGSUCropIcon>(this, ItemWidgetClass);
-
-			if (CreatedItemWidget)
+			if (UGGSUCropIcon* CreatedItemWidget = CreateWidget<UGGSUCropIcon>(this, ItemWidgetClass))
 			{
-				UHorizontalBoxSlot* NewSlot = CropIcons->AddChildToHorizontalBox(CreatedItemWidget);
-
-				if (NewSlot)
+				if (UHorizontalBoxSlot* NewSlot = CropIcons->AddChildToHorizontalBox(CreatedItemWidget))
 				{
 					FSlateChildSize ChildSize;
 					ChildSize.SizeRule = ESlateSizeRule::Fill;

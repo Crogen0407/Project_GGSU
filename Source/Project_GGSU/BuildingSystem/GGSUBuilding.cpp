@@ -46,7 +46,7 @@ void AGGSUBuilding::Tick(float DeltaTime)
 
 void AGGSUBuilding::OnClicked()
 {
-	UE_LOG(LogTemp, Warning, TEXT("OnClicked"));
+	
 }
 
 void AGGSUBuilding::OnHovered()
