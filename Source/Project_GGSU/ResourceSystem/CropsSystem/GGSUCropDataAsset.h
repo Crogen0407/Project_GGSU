@@ -15,6 +15,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	TArray<UStaticMesh*> StaticMeshes;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UTexture2D> IconTexture;
+	
 	UPROPERTY(EditAnywhere)
 	FName Name;
 	

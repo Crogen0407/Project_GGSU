@@ -11,8 +11,8 @@ void UGGSUCropIcon::SetTargetCrop(UGGSUCropDataAsset* InCrop)
 	if (TargetCrop)
 		Button->OnClicked.AddDynamic(this, &UGGSUCropIcon::HandleSelectTargetCrop);
 	
-	// TODO : 아이콘 만들어야 됨
-	//IconImage->SetBrush(InCrop->Icon);
+	if (InCrop->IconTexture)
+		IconImage->SetBrushFromTexture(InCrop->IconTexture);
 }
 
 void UGGSUCropIcon::HandleSelectTargetCrop()

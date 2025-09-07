@@ -30,7 +30,7 @@ void UGGSUCropSelectBar::CreateCropElements()
 					NewSlot->SetSize(ChildSize);
 					NewSlot->SetVerticalAlignment(VAlign_Center);
 					NewSlot->SetHorizontalAlignment(HAlign_Center);
-					NewSlot->SetPadding(FMargin(10.f));
+					NewSlot->SetPadding(FMargin(5.f));
 				}
 				
 				// 초기화
