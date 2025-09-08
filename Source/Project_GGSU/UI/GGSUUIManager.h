@@ -17,7 +17,7 @@ class PROJECT_GGSU_API UGGSUUIManager : public UGameInstanceSubsystem
 
 public:
 	UGGSUUserWidget* ShowPopupUI(TSubclassOf<UGGSUUserWidget> UserWidgetClass);
-
+	void HidePopupUI(TSubclassOf<UGGSUUserWidget> UserWidgetClass);
 private:
 	UPROPERTY(Transient)
 	TMap<TSubclassOf<UGGSUUserWidget>, UGGSUUserWidget*> WidgetInstances;
