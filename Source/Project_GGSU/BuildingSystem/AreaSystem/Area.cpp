@@ -5,7 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "BuildingSystem/GGSUBuilding.h"
 #include "Components/WidgetComponent.h"
-#include "Widget/GGSUOpenAreaWidget.h"
+#include "UI/Area/GGSUOpenAreaWidget.h"
 
 AArea::AArea()
 {
