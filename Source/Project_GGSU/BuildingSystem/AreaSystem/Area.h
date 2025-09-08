@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "BuildingSystem/AreaSystem/GroundTile.h"
+#include "Components/WidgetComponent.h"
 #include "ResourceSystem/GGSUResourceInstance.h"
 #include "Area.generated.h"
 
@@ -34,4 +35,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	UGGSUResourceInstance* ResourceInstance;
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "UI")
+	UWidgetComponent* AreaWidgetComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+	TSubclassOf<class UGGSUOpenAreaWidget> OpenAreaWidgetClass;
 };
