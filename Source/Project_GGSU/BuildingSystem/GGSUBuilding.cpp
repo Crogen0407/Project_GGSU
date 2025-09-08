@@ -18,6 +18,7 @@ AGGSUBuilding::AGGSUBuilding()
 	
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
 	BoxComponent->SetupAttachment(RootComponent);
+	BoxComponent->SetCollisionResponseToAllChannels(ECR_Block);
 
 	// Asset Load...
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("/Script/Engine.StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
