@@ -4,18 +4,37 @@
 #include "BuildingSystem/AreaSystem/Area.h"
 #include "Kismet/GameplayStatics.h"
 #include "BuildingSystem/GGSUBuilding.h"
+#include "Components/WidgetComponent.h"
+#include "Widget/GGSUOpenAreaWidget.h"
 
 AArea::AArea()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
+	OpenAreaWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("UIComponent"));
+	OpenAreaWidgetComponent->SetupAttachment(GetRootComponent());
+	OpenAreaWidgetComponent->SetRelativeLocation(FVector(0.0f , 0.0f , 90.0f));
+
+	static ConstructorHelpers::FClassFinder<UUserWidget> OpenAreaWidgetRef(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/Widget/Building/WBP_OpenArea.WBP_OpenArea_C'"));
+	if (OpenAreaWidgetRef.Succeeded()) {
+		OpenAreaWidgetComponent->SetWidgetClass(OpenAreaWidgetRef.Class);
+		OpenAreaWidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
+		OpenAreaWidgetComponent->SetDrawSize(FVector2D(50.0f , 50.0f));
+		OpenAreaWidgetComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+	}
 }
 void AArea::BeginPlay()
 {
+	Super::BeginPlay();
+	
 	UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(GetWorld());
 	ResourceInstance = GameInstance->GetSubsystem<UGGSUResourceInstance>();
-	
-	Super::BeginPlay();
+
+	UGGSUOpenAreaWidget* OpenAreaWidget = Cast<UGGSUOpenAreaWidget>(OpenAreaWidgetComponent->GetUserWidgetObject());
+	if (OpenAreaWidget) {
+		OpenAreaWidget->SettingUI(UnlockCost);
+		UE_LOG(LogTemp, Warning, TEXT("setting ui"));
+	}
 }
 
 bool AArea::UnlockArea()
