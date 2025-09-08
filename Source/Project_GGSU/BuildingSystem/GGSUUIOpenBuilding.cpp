@@ -10,7 +10,5 @@ void AGGSUUIOpenBuilding::OnClicked()
 	if (UIClass)
 	{
 		GetGameInstance()->GetSubsystem<UGGSUUIManager>()->ShowPopupUI(UIClass);
-
-		UE_LOG(LogTemp, Log, TEXT("UI가 왜 안보이는데 신발"));
 	}
 }
