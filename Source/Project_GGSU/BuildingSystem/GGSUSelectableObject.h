@@ -26,6 +26,4 @@ public:
 	virtual void OnHovered() = 0;
 
 	virtual void OnUnhovered() = 0;
-
-	virtual bool IsUnlocked() const = 0;
 };

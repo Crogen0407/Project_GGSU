@@ -3,7 +3,7 @@
 
 #include "ResourceSystem/CropsSystem/GGSUCrop.h"
 #include "GGSUCropDataAsset.h"
-#include "DateSystem/GGSUDateController.h"
+#include "DateSystem/GGSUDateManager.h"
 
 // Sets default values
 AGGSUCrop::AGGSUCrop()
@@ -11,16 +11,18 @@ AGGSUCrop::AGGSUCrop()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	
-	MeshComp = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MeshComp"));
-	RootComponent = MeshComp;
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 
+  	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("MeshComponent");
+  	MeshComponent->SetupAttachment(RootComponent);
+	MeshComponent->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 }
 
 void AGGSUCrop::Initialize(UGGSUCropDataAsset* CropDataAsset)
 {
 	CachedCropsDataAsset = CropDataAsset;
-	SpawnTime = AGGSUDateController::GetTime();
-	MeshCount = CropDataAsset->StaticMeshes.Max();
+	SpawnTime = UGGSUDateManager::GetTime();
+	MeshCount = CropDataAsset->StaticMeshes.Num();
 }
 
 // Called every frame
@@ -29,23 +31,25 @@ void AGGSUCrop::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	if (CachedCropsDataAsset == nullptr) return;
-	
-	Age = FMath::Clamp(AGGSUDateController::GetTime() - SpawnTime, 0., CachedCropsDataAsset->GrowthTime);
+
+	Age = UGGSUDateManager::GetTime() - SpawnTime;
 
 	UStaticMesh* CurrentMesh = GetCurrentStaticMesh();
-	if (MeshComp->GetStaticMesh() != CurrentMesh)
-	{		
-		MeshComp->SetStaticMesh(CurrentMesh);
+	if (MeshComponent->GetStaticMesh() != CurrentMesh)
+	{
+		for (int i = 0; i < 4; ++i)
+		{
+			MeshComponent->SetStaticMesh(CurrentMesh);
+		}
 	}
 }
 
 UStaticMesh* AGGSUCrop::GetCurrentStaticMesh() const
 {
-	float Amount = Age / CachedCropsDataAsset->GrowthTime;	// 0~1
+	float Amount = Age.GetTotalMinutes() / CachedCropsDataAsset->GrowthTime;	// 0~1
 	int32 Index = FMath::Floor(MeshCount * Amount);
 	Index = FMath::Clamp(Index, 0, MeshCount - 1);
-
-	UE_LOG(LogTemp, Warning, TEXT("%d 아아아아아아아아아아아아아아아악"), Index);
+	
 	return CachedCropsDataAsset->StaticMeshes[Index];
 }
 

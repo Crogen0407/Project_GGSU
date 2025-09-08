@@ -20,22 +20,25 @@ public:
 	AGGSUBuilding();
 
 	virtual ~AGGSUBuilding() override {}
-	
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
 
 public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 	virtual void OnClicked() override;
 	virtual void OnHovered() override;
 	virtual void OnUnhovered() override;
-	virtual bool IsUnlocked() const override;
+	void OnUnlock();
 
+public:
 	UPROPERTY(VisibleAnywhere)
 	UStaticMeshComponent* Visual;
 
 	UPROPERTY(VisibleAnywhere)
 	UBoxComponent* BoxComponent;
+
+	UPROPERTY(EditAnywhere)
+	bool IsUnlocked = false;
 };

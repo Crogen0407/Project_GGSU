@@ -5,6 +5,8 @@
 #include "BuildingSystem/GGSUBuilding.h"
 #include "BuildingSystem/GGSUSelectSubSystem.h"
 #include "BuildingSystem/GGSUSelectableObject.h"
+#include "Core/GGSUGameManager.h"
+#include "GameFramework/PlayerInput.h"
 
 AGGSUPlayerController::AGGSUPlayerController()
 {
@@ -38,6 +40,20 @@ void AGGSUPlayerController::Tick(float DeltaSeconds)
 		Select();
 	}
 	
+}
+
+bool AGGSUPlayerController::InputKey(const FInputKeyParams& Params)
+{
+	// 게임 시작
+	if (IsGameStarted == false && Params.Event == IE_Pressed)
+	{
+		if (UGGSUGameManager* GameManager = GetGameInstance()->GetSubsystem<UGGSUGameManager>())
+			GameManager->GameStart();
+		
+		IsGameStarted = true;
+	}
+	
+	return Super::InputKey(Params);
 }
 
 void AGGSUPlayerController::HandlePressed()

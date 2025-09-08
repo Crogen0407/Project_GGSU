@@ -6,7 +6,7 @@ AGGSUCrop* UGGSUCropsGenerator::SpawnCrop(UGGSUCropDataAsset* CropsDataAsset, co
 {
 	if (UWorld* World = GetWorld(); World && CropsDataAsset)
 	{
-		AGGSUCrop* NewCrop = World->SpawnActor<AGGSUCrop>(Location, FRotator::ZeroRotator);
+		AGGSUCrop* NewCrop = World->SpawnActor<AGGSUCrop>(Location, FRotator(0.f, -90.f, 0.f));
 		NewCrop->Initialize(CropsDataAsset);
 		return NewCrop;
 	}

@@ -25,21 +25,13 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-public:
-	UFUNCTION(BlueprintPure, Category="Time")
-	static float GetTime()
-	{
-		return Time;
-	}
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Time")
-	float TimeSpeed = 10.f;
+private:
+	FDateTime Time;
 	
 private:
-	static float Time;
+	UPROPERTY(VisibleAnywhere, Category="Lights")
+	USceneComponent* LightSceneComponent;	
 	
-private:
-	UPROPERTY(VisibleAnywhere, Category="Components")
-	UDirectionalLightComponent* DirectionalLightComponent;
+	UPROPERTY(VisibleAnywhere, Category="Lights")
+	UDirectionalLightComponent* SunDirectionalLightComponent;
 };

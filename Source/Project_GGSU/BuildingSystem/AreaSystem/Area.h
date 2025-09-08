@@ -4,10 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "BuildingSystem/AreaSystem/GroundTile.h"
-#include "Components/WidgetComponent.h"
 #include "ResourceSystem/GGSUResourceInstance.h"
 #include "Area.generated.h"
+
+class AGGSUBuilding;
 
 UCLASS()
 class PROJECT_GGSU_API AArea : public AActor
@@ -31,14 +31,8 @@ protected:
 
 	// 구역의 모든 땅
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
-	TArray<AGroundTile*> GroundTiles;
+	TArray<AGGSUBuilding*> Buildings;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	UGGSUResourceInstance* ResourceInstance;
-protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "UI")
-	UWidgetComponent* AreaWidgetComponent;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
-	TSubclassOf<class UGGSUOpenAreaWidget> OpenAreaWidgetClass;
 };

@@ -29,14 +29,15 @@ private:
 
 private:
 	UPROPERTY(EditAnywhere)
-	UStaticMeshComponent* MeshComp;
-	int32 MeshCount;
+	TObjectPtr<UStaticMeshComponent> MeshComponent;
+
+	uint32 MeshCount;
+	
+public:
+	FDateTime SpawnTime;
+	FTimespan Age;
 
 public:
-	float SpawnTime;
-	float Age;
-
-public:
-	UPROPERTY(Transient)
+	UPROPERTY(EditAnywhere)
 	TObjectPtr<UGGSUCropDataAsset> CachedCropsDataAsset;
 };

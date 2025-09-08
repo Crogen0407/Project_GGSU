@@ -16,8 +16,15 @@ class PROJECT_GGSU_API UGGSUCropsSetDataAsset : public UPrimaryDataAsset
 
 public:
 	UGGSUCropDataAsset* GetCropsAsset(FName Name);
-
+	TArray<UGGSUCropDataAsset*> GetCropAssets() const;
+	
+public:
+	int GetDropsCount() const
+	{
+		return CropsAssets.Num();
+	}
+	
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Crops")
-	TArray<UGGSUCropDataAsset*> CropsAssets; 
+	TArray<UGGSUCropDataAsset*> CropsAssets;
 };

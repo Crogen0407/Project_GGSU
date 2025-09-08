@@ -1,0 +1,24 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "Subsystems/GameInstanceSubsystem.h"
+#include "GGSUUIManager.generated.h"
+
+class UGGSUUserWidget;
+/**
+ * 
+ */
+UCLASS()
+class PROJECT_GGSU_API UGGSUUIManager : public UGameInstanceSubsystem
+{
+	GENERATED_BODY()
+
+public:
+	UGGSUUserWidget* ShowPopupUI(TSubclassOf<UGGSUUserWidget> UserWidgetClass);
+	void HidePopupUI(TSubclassOf<UGGSUUserWidget> UserWidgetClass);
+private:
+	UPROPERTY(Transient)
+	TMap<TSubclassOf<UGGSUUserWidget>, UGGSUUserWidget*> WidgetInstances;
+};

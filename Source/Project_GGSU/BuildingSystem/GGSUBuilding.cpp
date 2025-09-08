@@ -18,6 +18,7 @@ AGGSUBuilding::AGGSUBuilding()
 	
 	BoxComponent = CreateDefaultSubobject<UBoxComponent>(TEXT("BoxComponent"));
 	BoxComponent->SetupAttachment(RootComponent);
+	BoxComponent->SetCollisionResponseToAllChannels(ECR_Block);
 
 	// Asset Load...
 	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("/Script/Engine.StaticMesh'/Engine/BasicShapes/Cube.Cube'"));
@@ -32,7 +33,9 @@ AGGSUBuilding::AGGSUBuilding()
 void AGGSUBuilding::BeginPlay()
 {
 	Super::BeginPlay();
-	
+
+	if (IsUnlocked)
+		Visual->SetScalarParameterValueOnMaterials(FName(""), 1.f);
 }
 
 // Called every frame
@@ -44,7 +47,7 @@ void AGGSUBuilding::Tick(float DeltaTime)
 
 void AGGSUBuilding::OnClicked()
 {
-	UE_LOG(LogTemp, Warning, TEXT("OnClicked"));
+	
 }
 
 void AGGSUBuilding::OnHovered()
@@ -55,8 +58,10 @@ void AGGSUBuilding::OnUnhovered()
 {
 }
 
-bool AGGSUBuilding::IsUnlocked() const
+void AGGSUBuilding::OnUnlock()
 {
-	return true;
+	IsUnlocked = true;
+	
+	Visual->SetScalarParameterValueOnMaterials(FName("IsLocked"), 0.f);
 }
 

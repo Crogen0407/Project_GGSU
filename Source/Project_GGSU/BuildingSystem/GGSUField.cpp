@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "BuildingSystem/GGSUField.h"
 
 #include "ResourceSystem/CropsSystem/GGSUCropDataAsset.h"
@@ -19,7 +16,6 @@ void AGGSUField::OnClicked()
 		
 		return;
 	}
-	
 
 	// Crop spawn.
 	if (const UGGSUCropsSelection* CropsSelection = GetGameInstance()->GetSubsystem<UGGSUCropsSelection>(); CropsSelection)
@@ -38,7 +34,7 @@ void AGGSUField::SpawnCrop(UGGSUCropDataAsset* CropDataAsset)
 bool AGGSUField::HarvestCurrentCrops()
 {
 	// TODO : 다 자랐는지 확인
-	if (true)
+	if (false)
 	{
 		// TODO : 저장소에 자원 넣는 로직
 		// 어쩌구저쩌구

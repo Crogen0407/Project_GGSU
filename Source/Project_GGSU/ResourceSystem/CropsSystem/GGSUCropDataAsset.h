@@ -6,9 +6,6 @@
 #include "Engine/DataAsset.h"
 #include "GGSUCropDataAsset.generated.h"
 
-/**
- * 
- */
 UCLASS()
 class PROJECT_GGSU_API UGGSUCropDataAsset : public UDataAsset
 {
@@ -17,6 +14,9 @@ class PROJECT_GGSU_API UGGSUCropDataAsset : public UDataAsset
 public:
 	UPROPERTY(EditAnywhere)
 	TArray<UStaticMesh*> StaticMeshes;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TObjectPtr<UTexture2D> IconTexture;
 	
 	UPROPERTY(EditAnywhere)
 	FName Name;
@@ -27,6 +27,9 @@ public:
 	UPROPERTY(EditAnywhere)
 	FText Description;
 	
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (Units = "min"))
 	float GrowthTime;
+	
+	UPROPERTY(EditAnywhere)
+	FVector2D Size;
 };

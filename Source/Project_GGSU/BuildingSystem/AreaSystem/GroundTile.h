@@ -23,7 +23,6 @@ public:
 	virtual void OnClicked() override;
 	virtual void OnHovered() override;
 	virtual void OnUnhovered() override;
-	virtual bool IsUnlocked() const override;
 
 	// 해재 상태 설정
 	void SetUnlocked(bool bNewState);
