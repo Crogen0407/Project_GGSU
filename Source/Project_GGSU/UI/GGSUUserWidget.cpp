@@ -7,19 +7,19 @@ void UGGSUUserWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	if (IsFade == false) return;
 	
 	OpacityTimer += InDeltaTime;
-	float Percent = FMath::Clamp(OpacityTimer/FadeDuration, 0.f, 1.f);
+	const float Percent = OpacityTimer/FadeDuration;
 	SetRenderOpacity(FMath::Lerp(1.f-TargetOpacity, TargetOpacity, Percent));
 
 	if (Percent > 1.f)
 	{
 		SetRenderOpacity(TargetOpacity);
+		SetVisibility(TargetOpacity == 1.f ? ESlateVisibility::Visible : ESlateVisibility::HitTestInvisible);
 		IsFade = false;
 	}
 }
 
 void UGGSUUserWidget::Show(const float Duration)
 {
-	SetIsEnabled(true);
 	TargetOpacity = 1.f;
 	OpacityTimer = 0.f;
 	FadeDuration = Duration;
@@ -28,7 +28,6 @@ void UGGSUUserWidget::Show(const float Duration)
 
 void UGGSUUserWidget::Hide(const float Duration)
 {
-	SetIsEnabled(false);
 	TargetOpacity = 0.f;
 	OpacityTimer = 0.f;
 	FadeDuration = Duration;

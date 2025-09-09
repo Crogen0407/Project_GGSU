@@ -29,5 +29,5 @@ private:
 	bool IsFade = false;
 	float FadeDuration;
 	float TargetOpacity;
-	float OpacityTimer;
+	float OpacityTimer = 0.f;
 };

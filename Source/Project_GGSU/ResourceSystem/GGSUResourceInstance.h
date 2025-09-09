@@ -44,3 +44,4 @@ public:
 private:
 	TMap<EResourceType, uint32> ResourceAmount;
 };
+
