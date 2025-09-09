@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Widget/GGSUOpenAreaWidget.h"
+#include "GGSUOpenAreaWidget.h"
 
 void UGGSUOpenAreaWidget::NativeConstruct()
 {

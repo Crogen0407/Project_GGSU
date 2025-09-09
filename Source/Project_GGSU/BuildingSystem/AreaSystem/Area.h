@@ -20,7 +20,6 @@ public:
 
 protected:
 	virtual void BeginPlay() override;
-
 public:
 	// 구역 해금
 	bool UnlockArea();
@@ -39,4 +38,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	UGGSUResourceInstance* ResourceInstance;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	TObjectPtr<class UWidgetComponent> OpenAreaWidgetComponent;
 };
