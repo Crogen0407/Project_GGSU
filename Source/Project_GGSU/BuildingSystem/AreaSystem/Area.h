@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "ResourceSystem/GGSUCurrencyDataAsset.h"
 #include "ResourceSystem/GGSUResourceInstance.h"
 #include "Area.generated.h"
 
@@ -28,6 +29,9 @@ protected:
 	// 구역 해금 비용
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	int32 UnlockCost;
+	// 구역 해금 자원
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
+	UGGSUCurrencyDataAsset* UnlockCurrency;
 
 	// 구역의 모든 땅
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")

@@ -20,7 +20,7 @@ void AArea::BeginPlay()
 
 bool AArea::UnlockArea()
 {
-	if (ResourceInstance->TryRemoveResource(EResourceType::Gold, UnlockCost))
+	if (ResourceInstance->TryRemoveResource(UnlockCurrency, UnlockCost))
 	{
 		// 이 구역에 속한 모든 땅 해금
 		for (AGGSUBuilding* Building : Buildings)

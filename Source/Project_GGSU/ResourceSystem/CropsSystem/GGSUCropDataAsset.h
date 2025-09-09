@@ -4,22 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
+#include "ResourceSystem/GGSUResourceDataAsset.h"
 #include "GGSUCropDataAsset.generated.h"
 
 UCLASS()
-class PROJECT_GGSU_API UGGSUCropDataAsset : public UDataAsset
+class PROJECT_GGSU_API UGGSUCropDataAsset : public UGGSUResourceDataAsset
 {
 	GENERATED_BODY()
 
 public:
 	UPROPERTY(EditAnywhere)
 	TArray<UStaticMesh*> StaticMeshes;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TObjectPtr<UTexture2D> IconTexture;
-	
-	UPROPERTY(EditAnywhere)
-	FName Name;
 	
 	UPROPERTY(EditAnywhere)
 	FText DisplayName;

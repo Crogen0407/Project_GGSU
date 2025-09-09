@@ -17,7 +17,7 @@ void UGGSUCropSelectBar::CreateCropElements()
 {
 	if (CropIcons && ItemWidgetClass)
 	{
-		for (int32 i = 0; i < CropSetDataAsset->GetDropsCount(); ++i)
+		for (int32 i = 0; i < CropSetDataAsset->GetCropsCount(); ++i)
 		{
 			if (UGGSUCropIcon* CreatedItemWidget = CreateWidget<UGGSUCropIcon>(this, ItemWidgetClass))
 			{
