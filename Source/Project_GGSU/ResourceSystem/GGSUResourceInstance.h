@@ -3,6 +3,9 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GGSUResourceDataAsset.h"
+#include "CropsSystem/GGSUCropsSetDataAsset.h"
+#include "CropsSystem/GGSUCropDataAsset.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "GGSUResourceInstance.generated.h"
 
@@ -22,16 +25,35 @@ class PROJECT_GGSU_API UGGSUResourceInstance : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 
+public:
+// 생성 시점에 호출됨
+virtual void Initialize(FSubsystemCollectionBase& Collection) override
+	{
+		Super::Initialize(Collection);
+
+		UGGSUCropsSetDataAsset* ResourceSetDataAsset = UGGSUCropsSetDataAsset::GetInstance();
+		
+		TArray<UGGSUCropDataAsset*> CropDataAssets = ResourceSetDataAsset->GetCropAssets();
+		for (UGGSUCropDataAsset* CropDataAsset : CropDataAssets)
+		{
+			ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CropDataAsset), 0);
+		}
+		TArray<UGGSUCurrencyDataAsset*> CurrencyDataAssets = ResourceSetDataAsset->GetCurrencyAssets();
+		for (UGGSUCurrencyDataAsset* CurrencyDataAsset : CurrencyDataAssets)
+		{
+			ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), 0);
+		}
+	}
 
 public:
-	uint32 GetResource(EResourceType type) { return ResourceAmount[type]; }
-	void AddResource(EResourceType type, uint32 value) { ResourceAmount[type] += value; }
-	void RemoveResource(EResourceType type, uint32 value)
+	uint32 GetResource(const UGGSUResourceDataAsset* type) { return ResourceAmount[type]; }
+	void AddResource(const UGGSUResourceDataAsset* type, uint32 value) { ResourceAmount[type] += value; }
+	void RemoveResource(const UGGSUResourceDataAsset* type, uint32 value)
 	{
 		if (ResourceAmount[type] >= value)
 			ResourceAmount[type] -= value;
 	}
-	bool TryRemoveResource(EResourceType type, uint32 value)
+	bool TryRemoveResource(const UGGSUResourceDataAsset* type, uint32 value)
 	{
 		if (ResourceAmount[type] >= value)
 		{
@@ -41,6 +63,7 @@ public:
 		return false;
 	}
 	
-private:
-	TMap<EResourceType, uint32> ResourceAmount;
+public:
+	UPROPERTY(EditAnywhere)
+	TMap<UGGSUResourceDataAsset*, uint32> ResourceAmount;
 };
