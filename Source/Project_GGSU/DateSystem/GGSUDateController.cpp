@@ -37,6 +37,6 @@ void AGGSUDateController::Tick(float DeltaTime)
 	const float CurrentMinuteAngle =  OneHourAngle * Time.GetMinute() / 60.f;
 	const float FinalAngle = CurrentHourAngle + CurrentMinuteAngle + 90.f;
 	
-	LightSceneComponent->SetWorldRotation(FRotator(180, 45.f, 0.f));
+	LightSceneComponent->SetWorldRotation(FRotator(FinalAngle, 45.f, 0.f));
 }
 
