@@ -13,8 +13,8 @@ void UGGSUUserWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	if (Percent > 1.f)
 	{
 		SetRenderOpacity(TargetOpacity);
+		SetVisibility(TargetOpacity == 0 ? ESlateVisibility::Visible : ESlateVisibility::Collapsed);
 		IsFade = false;
-		SetIsEnabled(TargetOpacity == 1.f);
 	}
 }
 
