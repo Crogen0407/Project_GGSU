@@ -19,7 +19,7 @@ AArea::AArea()
 	if (OpenAreaWidgetRef.Succeeded()) {
 		OpenAreaWidgetComponent->SetWidgetClass(OpenAreaWidgetRef.Class);
 		OpenAreaWidgetComponent->SetWidgetSpace(EWidgetSpace::Screen);
-		OpenAreaWidgetComponent->SetDrawSize(FVector2D(50.0f , 50.0f));
+		OpenAreaWidgetComponent->SetDrawSize(FVector2D(120.0f , 50.0f));
 		OpenAreaWidgetComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 }
@@ -29,17 +29,17 @@ void AArea::BeginPlay()
 	
 	UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(GetWorld());
 	ResourceInstance = GameInstance->GetSubsystem<UGGSUResourceInstance>();
-
+	ResourceInstance->AddResource(GoldItemData, 50);
+	
 	UGGSUOpenAreaWidget* OpenAreaWidget = Cast<UGGSUOpenAreaWidget>(OpenAreaWidgetComponent->GetUserWidgetObject());
 	if (OpenAreaWidget) {
-		OpenAreaWidget->SettingUI(UnlockCost);
-		UE_LOG(LogTemp, Warning, TEXT("setting ui"));
+		OpenAreaWidget->SettingUI(UnlockCost, this);
 	}
 }
 
 bool AArea::UnlockArea()
 {
-	if (ResourceInstance->TryRemoveResource(UnlockCurrency, UnlockCost))
+	if (ResourceInstance->TryRemoveResource(GoldItemData, UnlockCost))
 	{
 		// 이 구역에 속한 모든 땅 해금
 		for (AGGSUBuilding* Building : Buildings)

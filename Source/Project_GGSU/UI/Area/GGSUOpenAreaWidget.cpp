@@ -3,6 +3,8 @@
 
 #include "GGSUOpenAreaWidget.h"
 
+#include "BuildingSystem/AreaSystem/Area.h"
+
 void UGGSUOpenAreaWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
@@ -12,13 +14,15 @@ void UGGSUOpenAreaWidget::NativeConstruct()
 	}
 }
 
-void UGGSUOpenAreaWidget::SettingUI(int price)
+void UGGSUOpenAreaWidget::SettingUI(int price, AArea* owner)
 {
+	OwnerArea = owner;
 	FText PriceText = FText::Format(FText::FromString(TEXT("{0}")), FText::AsNumber(price));
 	Price_Txt->SetText(PriceText);
 }
 
 void UGGSUOpenAreaWidget::OnBuyBtnClick()
 {
-	UE_LOG(LogTemp, Warning, TEXT("connect ui"));
+	OwnerArea->UnlockArea();
+	//UE_LOG(LogTemp, Warning, TEXT("connect ui"));
 }

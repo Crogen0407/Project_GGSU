@@ -30,7 +30,7 @@ protected:
 	int32 UnlockCost;
 	// 구역 해금 자원
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
-	UGGSUCurrencyDataAsset* UnlockCurrency;
+	UGGSUCurrencyDataAsset* GoldItemData;
 
 	// 구역의 모든 땅
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
