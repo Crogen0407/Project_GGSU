@@ -15,6 +15,7 @@ void UGGSUInputMapperComponent::BeginPlay()
 
 	CachedMovementComponent = GetOwner()->GetComponentByClass<UGGSUPlayerMovementComponent>();
 	CachedCameraBoomComponent = GetOwner()->GetComponentByClass<USpringArmComponent>();
+
 	
 	if (CachedMovementComponent == nullptr)
 		UE_LOG(LogTemp, Error, TEXT("In BeginPlay, CachedMovementComponent is NULL!"));
