@@ -15,7 +15,7 @@ UGGSUUserWidget* UGGSUUIManager::ShowPopupUI(TSubclassOf<UGGSUUserWidget> UserWi
 		return UserWidgetInstance;
 	}
 
-	if (false == WidgetInstances[UserWidgetClass]->GetIsEnabled())
+	if (ESlateVisibility::HitTestInvisible == WidgetInstances[UserWidgetClass]->GetVisibility())
 		WidgetInstances[UserWidgetClass]->Show(0.25f);
 	
 	return WidgetInstances[UserWidgetClass];
@@ -25,6 +25,6 @@ void UGGSUUIManager::HidePopupUI(TSubclassOf<UGGSUUserWidget> UserWidgetClass)
 {
 	if (false == WidgetInstances.Contains(UserWidgetClass)) return;
 
-	if (true == WidgetInstances[UserWidgetClass]->GetIsEnabled())
+	if (ESlateVisibility::Visible == WidgetInstances[UserWidgetClass]->GetVisibility())
 		WidgetInstances[UserWidgetClass]->Hide(0.25f);
 }
