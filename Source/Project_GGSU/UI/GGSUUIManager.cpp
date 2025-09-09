@@ -1,6 +1,4 @@
 #include "UI/GGSUUIManager.h"
-
-#include "GGSUHUD.h"
 #include "UI/GGSUUserWidget.h"
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/PlayerController.h"
