@@ -29,7 +29,7 @@ void AArea::BeginPlay()
 	
 	UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(GetWorld());
 	ResourceInstance = GameInstance->GetSubsystem<UGGSUResourceInstance>();
-	ResourceInstance->AddResource(GoldItemData, 50);
+	//ResourceInstance->AddResource(GoldItemData, 50);
 	
 	UGGSUOpenAreaWidget* OpenAreaWidget = Cast<UGGSUOpenAreaWidget>(OpenAreaWidgetComponent->GetUserWidgetObject());
 	if (OpenAreaWidget) {
@@ -55,4 +55,9 @@ bool AArea::UnlockArea()
     
 	UE_LOG(LogTemp, Warning, TEXT("not enough money"));
 	return false;
+}
+
+void AArea::SetActiveUI(bool active)
+{
+	OpenAreaWidgetComponent->SetHiddenInGame(active); // 안보임
 }

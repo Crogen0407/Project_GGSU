@@ -16,14 +16,6 @@ class PROJECT_GGSU_API UGGSUCropsSetDataAsset : public UPrimaryDataAsset
 	GENERATED_BODY()
 
 public:
-	static UGGSUCropsSetDataAsset* GetInstance()
-	{
-		FStringAssetReference AssetRef(TEXT("/Script/Project_GGSU.GGSUCropsSetDataAsset'/Game/CropsDataAsset/ResourceSet.ResourceSet'"));
-		Instance = Cast<UGGSUCropsSetDataAsset>(StaticLoadObject(UGGSUCropsSetDataAsset::StaticClass(), nullptr, *AssetRef.ToString()));
-		return Instance;
-	}
-
-public:
 	UGGSUCropDataAsset* GetCropsAsset(FName Name);
 	TArray<UGGSUCropDataAsset*> GetCropAssets() const;
 	UGGSUCurrencyDataAsset* GetCurrencyAssets(FName Name);
@@ -40,7 +32,4 @@ protected:
 	TArray<UGGSUCropDataAsset*> CropsAssets;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Crops")
 	TArray<UGGSUCurrencyDataAsset*> CurrencyAssets;
-
-private:
-	static UGGSUCropsSetDataAsset* Instance;
 };

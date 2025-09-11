@@ -26,24 +26,8 @@ class PROJECT_GGSU_API UGGSUResourceInstance : public UGameInstanceSubsystem
 	GENERATED_BODY()
 
 public:
-// 생성 시점에 호출됨
-virtual void Initialize(FSubsystemCollectionBase& Collection) override
-	{
-		Super::Initialize(Collection);
-
-		UGGSUCropsSetDataAsset* ResourceSetDataAsset = UGGSUCropsSetDataAsset::GetInstance();
-		
-		TArray<UGGSUCropDataAsset*> CropDataAssets = ResourceSetDataAsset->GetCropAssets();
-		for (UGGSUCropDataAsset* CropDataAsset : CropDataAssets)
-		{
-			ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CropDataAsset), 0);
-		}
-		TArray<UGGSUCurrencyDataAsset*> CurrencyDataAssets = ResourceSetDataAsset->GetCurrencyAssets();
-		for (UGGSUCurrencyDataAsset* CurrencyDataAsset : CurrencyDataAssets)
-		{
-			ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), 0);
-		}
-	}
+	// 생성 시점에 호출됨
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
 public:
 	uint32 GetResource(const UGGSUResourceDataAsset* type) { return ResourceAmount[type]; }
@@ -55,6 +39,11 @@ public:
 	}
 	bool TryRemoveResource(const UGGSUResourceDataAsset* type, uint32 value)
 	{
+		if (ResourceAmount.Contains(type) == false)
+		{
+			return false;
+		}
+		
 		if (ResourceAmount[type] >= value)
 		{
 			ResourceAmount[type] -= value;
