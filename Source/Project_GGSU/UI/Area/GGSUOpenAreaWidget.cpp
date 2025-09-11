@@ -23,6 +23,9 @@ void UGGSUOpenAreaWidget::SettingUI(int price, AArea* owner)
 
 void UGGSUOpenAreaWidget::OnBuyBtnClick()
 {
-	OwnerArea->UnlockArea();
-	//UE_LOG(LogTemp, Warning, TEXT("connect ui"));
+	if (OwnerArea->UnlockArea())
+	{
+		OwnerArea->SetActiveUI(true);
+		UE_LOG(LogTemp, Warning, TEXT("hide ui"));
+	}
 }
