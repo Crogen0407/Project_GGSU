@@ -23,7 +23,7 @@ protected:
 public:
 	// 구역 해금
 	bool UnlockArea();
-
+	void SetActiveUI(bool active);
 protected:
 	// 구역 해금 비용
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")

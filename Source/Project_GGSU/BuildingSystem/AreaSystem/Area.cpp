@@ -56,3 +56,8 @@ bool AArea::UnlockArea()
 	UE_LOG(LogTemp, Warning, TEXT("not enough money"));
 	return false;
 }
+
+void AArea::SetActiveUI(bool active)
+{
+	OpenAreaWidgetComponent->SetHiddenInGame(active); // 안보임
+}
