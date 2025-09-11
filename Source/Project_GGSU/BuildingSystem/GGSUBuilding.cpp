@@ -35,7 +35,7 @@ void AGGSUBuilding::BeginPlay()
 	Super::BeginPlay();
 
 	if (IsUnlocked)
-		Visual->SetScalarParameterValueOnMaterials(FName(""), 1.f);
+		Visual->SetScalarParameterValueOnMaterials(FName("IsLock"), 1.f);
 }
 
 // Called every frame
