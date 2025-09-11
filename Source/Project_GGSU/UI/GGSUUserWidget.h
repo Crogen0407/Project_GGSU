@@ -20,10 +20,10 @@ protected:
 
 public:
 	UFUNCTION(BlueprintCallable)
-	void Show(float Duration);
-	
+	virtual void Show(float Duration);
+
 	UFUNCTION(BlueprintCallable)
-	void Hide(float Duration);
+	virtual void Hide(float Duration);
 
 private:
 	bool IsFade = false;

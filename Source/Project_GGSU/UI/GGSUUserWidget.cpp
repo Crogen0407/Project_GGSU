@@ -18,7 +18,7 @@ void UGGSUUserWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	}
 }
 
-void UGGSUUserWidget::Show(const float Duration)
+void UGGSUUserWidget::Show(float Duration)
 {
 	TargetOpacity = 1.f;
 	OpacityTimer = 0.f;
@@ -26,10 +26,11 @@ void UGGSUUserWidget::Show(const float Duration)
 	IsFade = true;
 }
 
-void UGGSUUserWidget::Hide(const float Duration)
+void UGGSUUserWidget::Hide(float Duration)
 {
 	TargetOpacity = 0.f;
 	OpacityTimer = 0.f;
 	FadeDuration = Duration;
 	IsFade = true;
 }
+
