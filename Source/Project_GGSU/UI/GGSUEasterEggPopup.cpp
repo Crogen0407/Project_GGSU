@@ -5,12 +5,13 @@
 
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
+#include "EasterEggs/GGSUEasterEgg.h"
 
-void UGGSUEasterEggPopup::Setup(FString Name, FString Description, TObjectPtr<UTexture2D> Icon)
+void UGGSUEasterEggPopup::Setup(FEasterEggData EasterEggData)
 {
-	EasterEggName = Name;
-	EasterEggDescription = Description;
-	EasterEggIcon = Icon;
+	EasterEggName = EasterEggData.EasterEggName;
+	EasterEggDescription = EasterEggData.EasterEggDescription;
+	EasterEggIcon = EasterEggData.EasterEggIcon;
 }
 
 void UGGSUEasterEggPopup::Show(float Duration)

@@ -8,6 +8,21 @@
 #include "GGSUEasterEgg.generated.h"
 
 class UGGSUEasterEggPopup;
+class UGGSUEasterEggsDataInstance;
+
+USTRUCT(BlueprintType)
+struct FEasterEggData
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString EasterEggName;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString EasterEggDescription;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TObjectPtr<UTexture2D> EasterEggIcon;
+};
 
 UCLASS()
 class PROJECT_GGSU_API AGGSUEasterEgg : public AActor, public IGGSUSelectableObject
@@ -31,17 +46,17 @@ public:
 	virtual void OnHovered() override;
 	virtual void OnUnhovered() override;
 
+private:
+	UPROPERTY()
+	TObjectPtr<UGGSUEasterEggsDataInstance> EasterEggsDataInstance;
+
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<UStaticMeshComponent> StaticMeshComponent;
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI)
-	FString EasterEggName;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI)
-	FString EasterEggDescription;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI)
-	TObjectPtr<UTexture2D> EasterEggIcon;
+	FEasterEggData EasterEggData;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI)
 	TSubclassOf<UGGSUEasterEggPopup> EasterEggPopupClass;
 };
