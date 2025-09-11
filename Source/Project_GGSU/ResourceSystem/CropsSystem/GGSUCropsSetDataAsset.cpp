@@ -5,9 +5,6 @@
 
 #include "GGSUCropDataAsset.h"
 
-UGGSUCropsSetDataAsset* UGGSUCropsSetDataAsset::Instance;
-
-
 UGGSUCropDataAsset* UGGSUCropsSetDataAsset::GetCropsAsset(FName Name)
 {
 	for (auto CropsAsset : CropsAssets)
