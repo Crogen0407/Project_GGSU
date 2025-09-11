@@ -6,6 +6,7 @@
 #include "UI/GGSUUserWidget.h"
 #include "GGSUEasterEggPopup.generated.h"
 
+struct FEasterEggData;
 /**
  * 
  */
@@ -15,7 +16,7 @@ class PROJECT_GGSU_API UGGSUEasterEggPopup : public UGGSUUserWidget
 	GENERATED_BODY()
 
 public:
-	void Setup(FString Name, FString Description, TObjectPtr<UTexture2D> Icon);
+	void Setup(FEasterEggData EasterEggData);
 
 	virtual void Show(float Duration) override;
 
