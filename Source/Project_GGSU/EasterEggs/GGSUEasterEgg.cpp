@@ -11,7 +11,6 @@ AGGSUEasterEgg::AGGSUEasterEgg()
 
 	StaticMeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("MeshComponent");
 	StaticMeshComponent->SetupAttachment(RootComponent);
-	StaticMeshComponent->SetStaticMesh(StaticMesh);
 }
 
 // Called when the game starts or when spawned

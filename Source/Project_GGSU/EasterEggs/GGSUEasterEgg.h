@@ -31,13 +31,11 @@ public:
 	virtual void OnHovered() override;
 	virtual void OnUnhovered() override;
 
-private:
-	UPROPERTY()
+protected:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TObjectPtr<UStaticMeshComponent> StaticMeshComponent;
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI)
-	TObjectPtr<UStaticMesh> StaticMesh;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI)
 	FString EasterEggName;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI)
