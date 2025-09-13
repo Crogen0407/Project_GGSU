@@ -27,11 +27,11 @@ public:
 
 private:
 	FDateTime Time;
+
+public:
+	UPROPERTY(EditAnywhere, Category="Root")
+	USceneComponent* RootSceneComponent;
 	
-private:
-	UPROPERTY(VisibleAnywhere, Category="Lights")
-	USceneComponent* LightSceneComponent;	
-	
-	UPROPERTY(VisibleAnywhere, Category="Lights")
-	UDirectionalLightComponent* SunDirectionalLightComponent;
+	UPROPERTY(EditAnywhere, Category="Lights")
+	USceneComponent* LightSceneComponent;
 };
