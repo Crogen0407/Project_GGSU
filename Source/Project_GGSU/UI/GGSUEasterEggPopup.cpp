@@ -12,11 +12,6 @@ void UGGSUEasterEggPopup::Setup(FEasterEggData EasterEggData)
 	EasterEggName = EasterEggData.EasterEggName;
 	EasterEggDescription = EasterEggData.EasterEggDescription;
 	EasterEggIcon = EasterEggData.EasterEggIcon;
-}
-
-void UGGSUEasterEggPopup::Show(float Duration)
-{
-	Super::Show(Duration);
 
 	TitleText->SetText(FText::FromString(EasterEggName));
 	DescriptionText->SetText(FText::FromString(EasterEggDescription));

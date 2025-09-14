@@ -3,16 +3,16 @@
 #include "Blueprint/UserWidget.h"
 #include "GameFramework/PlayerController.h"
 
-UGGSUUserWidget* UGGSUUIManager::ShowPopupUI(TSubclassOf<UGGSUUserWidget> UserWidgetClass)
+UGGSUUserWidget* UGGSUUIManager::ShowPopupUI(const TSubclassOf<UGGSUUserWidget> UserWidgetClass)
 {
 	if (false == WidgetInstances.Contains(UserWidgetClass))
 	{
 		UGGSUUserWidget* UserWidgetInstance = CreateWidget<UGGSUUserWidget>(GetWorld()->GetFirstPlayerController(), UserWidgetClass);
 		WidgetInstances.Add(UserWidgetClass, UserWidgetInstance);
 
+		UserWidgetInstance->SetRenderOpacity(0.f);
+		UserWidgetInstance->SetVisibility(ESlateVisibility::HitTestInvisible);
 		UserWidgetInstance->AddToViewport();
-						
-		return UserWidgetInstance;
 	}
 
 	if (ESlateVisibility::HitTestInvisible == WidgetInstances[UserWidgetClass]->GetVisibility())

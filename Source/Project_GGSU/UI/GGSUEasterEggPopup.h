@@ -18,8 +18,6 @@ class PROJECT_GGSU_API UGGSUEasterEggPopup : public UGGSUUserWidget
 public:
 	void Setup(FEasterEggData EasterEggData);
 
-	virtual void Show(float Duration) override;
-
 	FString EasterEggName;
 	FString EasterEggDescription;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = UI)
