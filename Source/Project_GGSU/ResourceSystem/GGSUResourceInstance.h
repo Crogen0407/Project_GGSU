@@ -4,8 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GGSUResourceDataAsset.h"
-#include "CropsSystem/GGSUCropsSetDataAsset.h"
-#include "CropsSystem/GGSUCropDataAsset.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "GGSUResourceInstance.generated.h"
 
@@ -17,20 +15,25 @@ enum EResourceType
 	
 };
 
-/**
- * 
- */
+class UGGSUResourceDataAsset;
+class UGGSUCropsSetDataAsset;
+
 UCLASS()
 class PROJECT_GGSU_API UGGSUResourceInstance : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 
+	UGGSUResourceInstance();
+
+	virtual ~UGGSUResourceInstance() override;
+	
 public:
 	// 생성 시점에 호출됨
 	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
 
 public:
-	uint32 GetResource(const UGGSUResourceDataAsset* type) { return ResourceAmount[type]; }
+	UFUNCTION(BlueprintCallable)
+	int GetResource(const UGGSUResourceDataAsset* type) { return ResourceAmount[type]; }
 	void AddResource(const UGGSUResourceDataAsset* type, uint32 value) { ResourceAmount[type] += value; }
 	void RemoveResource(const UGGSUResourceDataAsset* type, uint32 value)
 	{
@@ -53,6 +56,9 @@ public:
 	}
 	
 public:
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UGGSUCropsSetDataAsset> CropsSetDataAsset;
+	
 	UPROPERTY(EditAnywhere)
 	TMap<UGGSUResourceDataAsset*, uint32> ResourceAmount;
 };

@@ -2,25 +2,34 @@
 
 
 #include "GGSUResourceInstance.h"
+#include "CropsSystem/GGSUCropsSetDataAsset.h"
+#include "CropsSystem/GGSUCropDataAsset.h"
 
-#include "Engine/AssetManager.h"
+UGGSUResourceInstance::UGGSUResourceInstance()
+{
+	static ConstructorHelpers::FObjectFinder<UGGSUCropsSetDataAsset> CropsSetDataAssetObject(TEXT("/Game/CropsDataAsset/Resources/ResourceSet"));
+
+	if (CropsSetDataAssetObject.Object == nullptr) return;
+	
+	CropsSetDataAsset = CropsSetDataAssetObject.Object;	
+}
+
+UGGSUResourceInstance::~UGGSUResourceInstance()
+{
+}
 
 void UGGSUResourceInstance::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
 
-	UAssetManager& AssetManager = UAssetManager::Get();
-
-	UGGSUCropsSetDataAsset* ResourceSetDataAsset = nullptr;
-	
-	//TArray<UGGSUCropDataAsset*> CropDataAssets = ResourceSetDataAsset->GetCropAssets();
-	//for (UGGSUCropDataAsset* CropDataAsset : CropDataAssets)
-	//{
-	//	ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CropDataAsset), 0);
-	//}
-	//TArray<UGGSUCurrencyDataAsset*> CurrencyDataAssets = ResourceSetDataAsset->GetCurrencyAssets();
-	//for (UGGSUCurrencyDataAsset* CurrencyDataAsset : CurrencyDataAssets)
-	//{
-	//	ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), 0);
-	//}
+	TArray<UGGSUCropDataAsset*> CropDataAssets = CropsSetDataAsset->GetCropAssets();
+	for (UGGSUCropDataAsset* CropDataAsset : CropDataAssets)
+	{
+		ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CropDataAsset), 0);
+	}
+	TArray<UGGSUCurrencyDataAsset*> CurrencyDataAssets = CropsSetDataAsset->GetCurrencyAssets();
+	for (UGGSUCurrencyDataAsset* CurrencyDataAsset : CurrencyDataAssets)
+	{
+		ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), 0);
+	}
 }
