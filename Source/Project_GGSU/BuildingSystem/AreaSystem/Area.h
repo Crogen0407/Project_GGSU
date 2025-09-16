@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BuildingSystem/GGSUField.h"
 #include "GameFramework/Actor.h"
 #include "ResourceSystem/GGSUCurrencyDataAsset.h"
 #include "ResourceSystem/GGSUResourceInstance.h"
@@ -17,13 +18,14 @@ class PROJECT_GGSU_API AArea : public AActor
 	
 public:	
 	AArea();
-
 protected:
 	virtual void BeginPlay() override;
 public:
 	// 구역 해금
 	bool UnlockArea();
 	void SetActiveUI(bool active);
+
+	TArray<AGGSUField*> GetFields();
 protected:
 	// 구역 해금 비용
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
@@ -34,7 +36,11 @@ protected:
 
 	// 구역의 모든 땅
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
-	TArray<AGGSUBuilding*> Buildings;
+	TArray<AGGSUBuilding*> FanceBuildings;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
+	TArray<AGGSUField*> FieldBuildings;
+	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	UGGSUResourceInstance* ResourceInstance;

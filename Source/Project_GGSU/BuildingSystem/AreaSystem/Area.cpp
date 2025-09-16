@@ -29,11 +29,26 @@ void AArea::BeginPlay()
 	
 	UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(GetWorld());
 	ResourceInstance = GameInstance->GetSubsystem<UGGSUResourceInstance>();
-	//ResourceInstance->AddResource(GoldItemData, 50);
 	
 	UGGSUOpenAreaWidget* OpenAreaWidget = Cast<UGGSUOpenAreaWidget>(OpenAreaWidgetComponent->GetUserWidgetObject());
 	if (OpenAreaWidget) {
 		OpenAreaWidget->SettingUI(UnlockCost, this);
+	}
+
+
+	TArray<AActor*> AttachedActors;
+	GetAttachedActors(AttachedActors);
+	
+	for (AActor* Actor : AttachedActors)
+	{
+		if (AGGSUField* Field = Cast<AGGSUField>(Actor))
+		{
+			FieldBuildings.Add(Field);
+		}
+		else if (AGGSUBuilding* Building = Cast<AGGSUBuilding>(Actor))
+		{
+			FanceBuildings.Add(Building);
+		}
 	}
 }
 
@@ -41,8 +56,15 @@ bool AArea::UnlockArea()
 {
 	if (ResourceInstance->TryRemoveResource(GoldItemData, UnlockCost))
 	{
-		// 이 구역에 속한 모든 땅 해금
-		for (AGGSUBuilding* Building : Buildings)
+		// fance랑 fieldd해금
+		for (AGGSUBuilding* Building : FanceBuildings)
+		{
+			if (Building)
+			{
+				Building->OnUnlock();
+			}
+		}
+		for (AGGSUBuilding* Building : FieldBuildings)
 		{
 			if (Building)
 			{
@@ -60,4 +82,9 @@ bool AArea::UnlockArea()
 void AArea::SetActiveUI(bool active)
 {
 	OpenAreaWidgetComponent->SetHiddenInGame(active); // 안보임
+}
+
+TArray<AGGSUField*> AArea::GetFields()
+{
+	return FieldBuildings;
 }
