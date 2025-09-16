@@ -35,4 +35,7 @@ private:
 	void MoveForward(float Val);
 	void MoveRight(float Val);
 	void MoveCameraDistance(float Val);
+
+private:
+	bool* IsEnable;
 };

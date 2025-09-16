@@ -1,6 +1,7 @@
 #include "UI/GGSUUIManager.h"
 #include "UI/GGSUUserWidget.h"
 #include "Blueprint/UserWidget.h"
+#include "Core/Player/GGSUPlayerController.h"
 #include "GameFramework/PlayerController.h"
 
 UGGSUUserWidget* UGGSUUIManager::ShowPopupUI(const TSubclassOf<UGGSUUserWidget> UserWidgetClass)
@@ -17,6 +18,9 @@ UGGSUUserWidget* UGGSUUIManager::ShowPopupUI(const TSubclassOf<UGGSUUserWidget> 
 
 	if (ESlateVisibility::HitTestInvisible == WidgetInstances[UserWidgetClass]->GetVisibility())
 		WidgetInstances[UserWidgetClass]->Show(0.25f);
+
+	if (AGGSUPlayerController* PC = Cast<AGGSUPlayerController>(GetWorld()->GetFirstPlayerController()))
+		PC->Disable();
 	
 	return WidgetInstances[UserWidgetClass];
 }
@@ -27,4 +31,7 @@ void UGGSUUIManager::HidePopupUI(TSubclassOf<UGGSUUserWidget> UserWidgetClass)
 
 	if (ESlateVisibility::Visible == WidgetInstances[UserWidgetClass]->GetVisibility())
 		WidgetInstances[UserWidgetClass]->Hide(0.25f);
+
+	if (AGGSUPlayerController* PC = Cast<AGGSUPlayerController>(GetWorld()->GetFirstPlayerController()))
+		PC->Enable();
 }

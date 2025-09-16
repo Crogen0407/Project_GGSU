@@ -20,6 +20,9 @@ class PROJECT_GGSU_API AGGSUPlayerController : public APlayerController
 public:
 	AGGSUPlayerController();
 
+	void Enable();
+	void Disable();
+	
 protected:
 	virtual void SetupInputComponent() override;
 
@@ -41,6 +44,9 @@ private:
 	float TraceDistance = 1000000.0f;
 	bool IsSelecting = false;
 
+public:
+	bool IsEnable = true;
+	
 private:
 	bool IsGameStarted = false;
 };
