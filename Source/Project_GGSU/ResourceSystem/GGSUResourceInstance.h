@@ -34,13 +34,13 @@ public:
 public:
 	UFUNCTION(BlueprintCallable)
 	int GetResource(const UGGSUResourceDataAsset* type) { return ResourceAmount[type]; }
-	void AddResource(const UGGSUResourceDataAsset* type, uint32 value) { ResourceAmount[type] += value; }
-	void RemoveResource(const UGGSUResourceDataAsset* type, uint32 value)
+	void AddResource(const UGGSUResourceDataAsset* type, int value) { ResourceAmount[type] += value; }
+	void RemoveResource(const UGGSUResourceDataAsset* type, int value)
 	{
 		if (ResourceAmount[type] >= value)
 			ResourceAmount[type] -= value;
 	}
-	bool TryRemoveResource(const UGGSUResourceDataAsset* type, uint32 value)
+	bool TryRemoveResource(const UGGSUResourceDataAsset* type, int value)
 	{
 		if (ResourceAmount.Contains(type) == false)
 		{
@@ -59,7 +59,7 @@ public:
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UGGSUCropsSetDataAsset> CropsSetDataAsset;
 	
-	UPROPERTY(EditAnywhere)
-	TMap<UGGSUResourceDataAsset*, uint32> ResourceAmount;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TMap<UGGSUResourceDataAsset*, int> ResourceAmount;
 };
 

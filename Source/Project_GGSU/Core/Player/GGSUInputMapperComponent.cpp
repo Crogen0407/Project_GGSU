@@ -1,4 +1,5 @@
 #include "GGSUInputMapperComponent.h"
+#include "GGSUPlayerController.h"
 #include "GGSUPlayerMovementComponent.h"
 #include "MathUtil.h"
 #include "GameFramework/PlayerInput.h"
@@ -16,6 +17,8 @@ void UGGSUInputMapperComponent::BeginPlay()
 	CachedMovementComponent = GetOwner()->GetComponentByClass<UGGSUPlayerMovementComponent>();
 	CachedCameraBoomComponent = GetOwner()->GetComponentByClass<USpringArmComponent>();
 
+	if (AGGSUPlayerController* PC = Cast<AGGSUPlayerController>(GetWorld()->GetFirstPlayerController()))
+		IsEnable = &PC->IsEnable;
 	
 	if (CachedMovementComponent == nullptr)
 		UE_LOG(LogTemp, Error, TEXT("In BeginPlay, CachedMovementComponent is NULL!"));
@@ -56,18 +59,21 @@ void UGGSUInputMapperComponent::InitializeDefaultPawnInputBindings()
 
 void UGGSUInputMapperComponent::MoveForward(float Val)
 {
+	if (*IsEnable == false) return;
 	if (CachedMovementComponent)
 		CachedMovementComponent->MoveForward(Val);
 }
 
 void UGGSUInputMapperComponent::MoveRight(float Val)
 {
+	if (*IsEnable == false) return;
 	if (CachedMovementComponent)
 		CachedMovementComponent->MoveRight(Val);
 }
 
 void UGGSUInputMapperComponent::MoveCameraDistance(float Val)
 {
+	if (*IsEnable == false) return;
 	if (CachedCameraBoomComponent)
 		CachedCameraBoomComponent->TargetArmLength = FMathf::Clamp(CachedCameraBoomComponent->TargetArmLength - Val * 100, 250.f, 5000.f);
 }

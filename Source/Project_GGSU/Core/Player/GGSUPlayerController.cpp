@@ -23,23 +23,35 @@ AGGSUPlayerController::AGGSUPlayerController()
 	}
 }
 
+void AGGSUPlayerController::Enable()
+{
+	IsEnable = true;
+}
+
+void AGGSUPlayerController::Disable()
+{
+	IsEnable = false;
+}
+
 void AGGSUPlayerController::SetupInputComponent()
 {
 	Super::SetupInputComponent();
-
+	
 	InputComponent->BindAction("Click", EInputEvent::IE_Pressed, this, &AGGSUPlayerController::HandlePressed);
 	InputComponent->BindAction("Click", EInputEvent::IE_Released, this, &AGGSUPlayerController::HandleReleased);
 }
+
 
 void AGGSUPlayerController::Tick(float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
+	if (IsEnable == false) return;
+	
 	if (IsSelecting)
 	{
 		Select();
 	}
-	
 }
 
 bool AGGSUPlayerController::InputKey(const FInputKeyParams& Params)

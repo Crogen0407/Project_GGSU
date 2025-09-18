@@ -7,7 +7,7 @@
 
 UGGSUResourceInstance::UGGSUResourceInstance()
 {
-	static ConstructorHelpers::FObjectFinder<UGGSUCropsSetDataAsset> CropsSetDataAssetObject(TEXT("/Game/CropsDataAsset/Resources/ResourceSet"));
+	static ConstructorHelpers::FObjectFinder<UGGSUCropsSetDataAsset> CropsSetDataAssetObject(TEXT("/Game/CropsDataAsset/Resources/DA_ResourceSet"));
 
 	if (CropsSetDataAssetObject.Object == nullptr) return;
 	

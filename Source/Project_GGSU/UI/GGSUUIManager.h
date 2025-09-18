@@ -16,8 +16,12 @@ class PROJECT_GGSU_API UGGSUUIManager : public UGameInstanceSubsystem
 	GENERATED_BODY()
 
 public:
+	UFUNCTION(BlueprintCallable)
 	UGGSUUserWidget* ShowPopupUI(TSubclassOf<UGGSUUserWidget> UserWidgetClass);
+	
+	UFUNCTION(BlueprintCallable)
 	void HidePopupUI(TSubclassOf<UGGSUUserWidget> UserWidgetClass);
+	
 private:
 	UPROPERTY(Transient)
 	TMap<TSubclassOf<UGGSUUserWidget>, UGGSUUserWidget*> WidgetInstances;
