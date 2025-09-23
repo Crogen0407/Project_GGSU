@@ -9,12 +9,17 @@ UGGSUUserWidget* UGGSUUIManager::ShowPopupUI(const TSubclassOf<UGGSUUserWidget> 
 	if (false == WidgetInstances.Contains(UserWidgetClass))
 	{
 		UGGSUUserWidget* UserWidgetInstance = CreateWidget<UGGSUUserWidget>(GetWorld()->GetFirstPlayerController(), UserWidgetClass);
-		WidgetInstances.Add(UserWidgetClass, UserWidgetInstance);
+		WidgetInstances.Add(UserWidgetClass, UserWidgetInstance); 
 
 		UserWidgetInstance->SetRenderOpacity(0.f);
 		UserWidgetInstance->SetVisibility(ESlateVisibility::HitTestInvisible);
-		UserWidgetInstance->AddToViewport();
 	}
+	else
+	{
+		WidgetInstances[UserWidgetClass]->RemoveFromParent();
+	}
+
+	WidgetInstances[UserWidgetClass]->AddToViewport(999);
 
 	if (ESlateVisibility::HitTestInvisible == WidgetInstances[UserWidgetClass]->GetVisibility())
 		WidgetInstances[UserWidgetClass]->Show(0.25f);

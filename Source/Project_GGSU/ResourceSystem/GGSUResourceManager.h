@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "GGSUResourceDataAsset.h"
 #include "Subsystems/GameInstanceSubsystem.h"
-#include "GGSUResourceInstance.generated.h"
+#include "GGSUResourceManager.generated.h"
 
 UENUM()
 enum EResourceType
@@ -15,17 +15,19 @@ enum EResourceType
 	
 };
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FResourceChangedEvent, int, CurrentResourceAmount);
+
 class UGGSUResourceDataAsset;
 class UGGSUCropsSetDataAsset;
 
 UCLASS()
-class PROJECT_GGSU_API UGGSUResourceInstance : public UGameInstanceSubsystem
+class PROJECT_GGSU_API UGGSUResourceManager : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 
-	UGGSUResourceInstance();
+	UGGSUResourceManager();
 
-	virtual ~UGGSUResourceInstance() override;
+	virtual ~UGGSUResourceManager() override;
 	
 public:
 	// 생성 시점에 호출됨
@@ -34,28 +36,14 @@ public:
 public:
 	UFUNCTION(BlueprintCallable)
 	int GetResource(const UGGSUResourceDataAsset* type) { return ResourceAmount[type]; }
-	void AddResource(const UGGSUResourceDataAsset* type, int value) { ResourceAmount[type] += value; }
-	void RemoveResource(const UGGSUResourceDataAsset* type, int value)
-	{
-		if (ResourceAmount[type] >= value)
-			ResourceAmount[type] -= value;
-	}
-	bool TryRemoveResource(const UGGSUResourceDataAsset* type, int value)
-	{
-		if (ResourceAmount.Contains(type) == false)
-		{
-			return false;
-		}
-		
-		if (ResourceAmount[type] >= value)
-		{
-			ResourceAmount[type] -= value;
-			return true;
-		}
-		return false;
-	}
+	void AddResource(const UGGSUResourceDataAsset* type, int value);
+	void RemoveResource(const UGGSUResourceDataAsset* type, int value);
+	bool TryRemoveResource(const UGGSUResourceDataAsset* type, int value);
 	
 public:
+	UPROPERTY(EditAnywhere)
+	TMap<UGGSUResourceDataAsset*, FResourceChangedEvent> ResourceChangedEvents;
+	
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UGGSUCropsSetDataAsset> CropsSetDataAsset;
 	

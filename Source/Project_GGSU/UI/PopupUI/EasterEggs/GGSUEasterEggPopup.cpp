@@ -1,8 +1,4 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
-#include "UI/GGSUEasterEggPopup.h"
-
+#include "UI/PopupUI/EasterEggs/GGSUEasterEggPopup.h"
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
 #include "EasterEggs/GGSUEasterEgg.h"
