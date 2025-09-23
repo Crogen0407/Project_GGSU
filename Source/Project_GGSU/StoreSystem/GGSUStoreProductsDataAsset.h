@@ -14,7 +14,7 @@ struct FProductsGroup
 	GENERATED_BODY()
 	
 	UPROPERTY(EditAnywhere)
-	TArray<UGGSUItemDataAsset*> Items;
+	TMap<UGGSUItemDataAsset*, int> Items;
 };
 
 UCLASS()

@@ -17,7 +17,7 @@ class PROJECT_GGSU_API UGGSUStoreElement : public UGGSUUserWidget
 	GENERATED_BODY()
 
 public:
-	void Setup(UGGSUItemDataAsset* TargetItemDataAsset);
+	void Setup(UGGSUItemDataAsset* TargetItemDataAsset, int Price);
 	void HandleBuyItem();
 	
 public:
@@ -27,6 +27,9 @@ public:
 	UPROPERTY(meta=(BindWidget))
 	UButton* BuyButton;
 
+	UPROPERTY(meta=(BindWidget))
+	UTextBlock* PriceText;
+	
 	UPROPERTY(meta=(BindWidget))
 	UImage* IconImage;
 	

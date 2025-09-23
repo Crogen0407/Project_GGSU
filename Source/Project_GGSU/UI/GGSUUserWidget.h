@@ -10,7 +10,7 @@ class UGGSUPresenterBase;
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable)
 class PROJECT_GGSU_API UGGSUUserWidget : public UUserWidget
 {
 	GENERATED_BODY()

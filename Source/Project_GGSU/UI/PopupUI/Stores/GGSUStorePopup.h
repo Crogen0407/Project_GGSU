@@ -6,12 +6,15 @@
 #include "UI/GGSUUserWidget.h"
 #include "GGSUStorePopup.generated.h"
 
+class UGGSUStoreCategory;
+class UGGSUStoreCategoryButton;
+class UWidgetSwitcher;
 class UHorizontalBox;
 class UGGSUItemDataAsset;
 class UGGSUStoreProductsDataAsset;
 class UGGSUStoreElement;
 
-UCLASS()
+UCLASS(Blueprintable)
 class PROJECT_GGSU_API UGGSUStorePopup : public UGGSUUserWidget
 {
 	GENERATED_BODY()
@@ -19,18 +22,32 @@ class PROJECT_GGSU_API UGGSUStorePopup : public UGGSUUserWidget
 protected:
 	virtual void NativeOnInitialized() override;
 
+	UFUNCTION()
+	void HandleOpenCategory();
+
+private:
+	
 public:
 	UPROPERTY(meta=(BindWidget))
-	TObjectPtr<UHorizontalBox> StoreElementList;
-	
-private:
-	UPROPERTY(Transient)
-	TMap<UGGSUItemDataAsset*, UGGSUStoreElement*> StoreElements;
+	TObjectPtr<UHorizontalBox> StoreCategoryButtons;
+
+	UPROPERTY(meta=(BindWidget))
+	TObjectPtr<UWidgetSwitcher> StoreCategorySwitcher;
 	
 public:
 	UPROPERTY(EditAnywhere, Category="StorePopup")
 	TSubclassOf<UGGSUUserWidget> StoreElementClass;  
+
+	UPROPERTY(EditAnywhere, Category="StorePopup")
+	TSubclassOf<UGGSUStoreCategory> StoreCategoryClass;
 	
 	UPROPERTY(EditAnywhere, Category="StorePopup")
+	TSubclassOf<UGGSUStoreCategoryButton> StoreCategoryButtonClass;
+	
+public:
+	UPROPERTY(EditAnywhere, Category="StorePopup")
 	TObjectPtr<UGGSUStoreProductsDataAsset> StoreProductsDataAsset;
+
+private:
+	int CachedCategoryIndex;
 };
