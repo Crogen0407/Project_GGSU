@@ -3,7 +3,7 @@
 #include "GGSUEasterEggsDataInstance.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/GGSUUIManager.h"
-#include "UI/GGSUEasterEggPopup.h"
+#include "UI/PopupUI/EasterEggs/GGSUEasterEggPopup.h"
 
 // Sets default values
 AGGSUEasterEgg::AGGSUEasterEgg()

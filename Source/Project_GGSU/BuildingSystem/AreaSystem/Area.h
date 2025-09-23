@@ -6,7 +6,7 @@
 #include "BuildingSystem/GGSUField.h"
 #include "GameFramework/Actor.h"
 #include "ResourceSystem/GGSUCurrencyDataAsset.h"
-#include "ResourceSystem/GGSUResourceInstance.h"
+#include "ResourceSystem/GGSUResourceManager.h"
 #include "Area.generated.h"
 
 class AGGSUBuilding;
@@ -46,7 +46,7 @@ protected:
 	
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
-	UGGSUResourceInstance* ResourceInstance;
+	UGGSUResourceManager* ResourceInstance;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
 	TObjectPtr<class UWidgetComponent> OpenAreaWidgetComponent;

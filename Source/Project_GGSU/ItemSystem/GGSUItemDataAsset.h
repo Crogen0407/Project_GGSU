@@ -13,5 +13,14 @@ UCLASS()
 class PROJECT_GGSU_API UGGSUItemDataAsset : public UDataAsset
 {
 	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FName DisplayName;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FString Description;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TObjectPtr<UTexture2D> IconTexture;
 };

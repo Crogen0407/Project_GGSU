@@ -10,7 +10,7 @@ struct FEasterEggData;
 /**
  * 
  */
-UCLASS()
+UCLASS(Blueprintable)
 class PROJECT_GGSU_API UGGSUEasterEggPopup : public UGGSUUserWidget
 {
 	GENERATED_BODY()

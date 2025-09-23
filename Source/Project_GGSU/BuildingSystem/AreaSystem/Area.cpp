@@ -28,7 +28,7 @@ void AArea::BeginPlay()
 	Super::BeginPlay();
 	
 	UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(GetWorld());
-	ResourceInstance = GameInstance->GetSubsystem<UGGSUResourceInstance>();
+	ResourceInstance = GameInstance->GetSubsystem<UGGSUResourceManager>();
 	
 	UGGSUOpenAreaWidget* OpenAreaWidget = Cast<UGGSUOpenAreaWidget>(OpenAreaWidgetComponent->GetUserWidgetObject());
 	if (OpenAreaWidget) {
