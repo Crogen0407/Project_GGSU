@@ -18,6 +18,7 @@ class PROJECT_GGSU_API UGGSUStoreElement : public UGGSUUserWidget
 
 public:
 	void Setup(UGGSUItemDataAsset* TargetItemDataAsset, int Price);
+	UFUNCTION()
 	void HandleBuyItem();
 	
 public:

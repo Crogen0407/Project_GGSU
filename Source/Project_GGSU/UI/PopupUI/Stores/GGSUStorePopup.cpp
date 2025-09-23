@@ -1,10 +1,12 @@
 #include "UI/PopupUI/Stores/GGSUStorePopup.h"
 #include "Components/HorizontalBox.h"
+#include "Components/TextBlock.h"
 #include "Components/WidgetSwitcher.h"
 #include "StoreSystem/GGSUStoreProductsDataAsset.h"
 #include "UI/PopupUI/Stores/GGSUStoreElement.h"
 #include "UI/PopupUI/Stores/GGSUStoreCategoryButton.h"
 #include "UI/PopupUI/Stores/GGSUStoreCategory.h"
+#include "Components/HorizontalBoxSlot.h"
 
 void UGGSUStorePopup::NativeOnInitialized()
 {
@@ -17,15 +19,17 @@ void UGGSUStorePopup::NativeOnInitialized()
 		if (auto NewStoreCategoryButton = CreateWidget<UGGSUStoreCategoryButton>(this, StoreCategoryButtonClass))
 		{
 			int index = CachedCategoryIndex;
+			NewStoreCategoryButton->CategoryNameText->SetText(FText::FromString(ProductsGroup.Key));
 			NewStoreCategoryButton->OnClicked.BindLambda([this, index]()
 			{
 				StoreCategorySwitcher->SetActiveWidgetIndex(index);
 			});
 			NewStoreCategoryButton->Setup();
-			StoreCategoryButtons->AddChildToHorizontalBox(NewStoreCategoryButton);
+			UHorizontalBoxSlot* ButtonSlot = StoreCategoryButtons->AddChildToHorizontalBox(NewStoreCategoryButton);
+			ButtonSlot->SetSize(FSlateChildSize(ESlateSizeRule::Fill));
 			NewStoreCategoryButton->SetPadding(FMargin(10.0f, 25.0f, 10.0f, 0.0f));
 		}
-		
+
 		for (auto Item : ProductsGroup.Value.Items)
 		{
 			if (auto NewStoreCategory = CreateWidget<UGGSUStoreCategory>(this, StoreCategoryClass))
