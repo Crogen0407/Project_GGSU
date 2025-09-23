@@ -7,7 +7,7 @@
 #include "Components/TextBlock.h"
 
 
-void UGGSUMessageBox::Init(const FText& Text)
+void UGGSUMessageBox::Setup(const FText& Text)
 {
 	ButtonCount = 0;
 	FirstButtonClickCallback = nullptr;

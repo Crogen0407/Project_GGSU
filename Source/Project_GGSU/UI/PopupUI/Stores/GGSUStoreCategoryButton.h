@@ -22,6 +22,9 @@ public:
 private:
 	UFUNCTION()
 	void HandleClick();
+
+public:
+	FClickedEvent OnClicked;
 	
 public:
 	UPROPERTY(meta = (BindWidget))
@@ -29,7 +32,4 @@ public:
 	
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UTextBlock> CategoryNameText;
-
-	FClickedEvent OnClicked;
-	
 };

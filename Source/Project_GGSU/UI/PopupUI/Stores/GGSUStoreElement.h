@@ -6,6 +6,7 @@
 #include "UI/GGSUUserWidget.h"
 #include "GGSUStoreElement.generated.h"
 
+class UGGSUStoreBuyMessageBox;
 class UImage;
 class UTextBlock;
 class UButton;
@@ -35,6 +36,11 @@ public:
 	UImage* IconImage;
 	
 public:
+	int CachedPrice;
+	
 	UPROPERTY(Transient)
 	UGGSUItemDataAsset* CachedTargetItemDataAsset;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UGGSUStoreBuyMessageBox> StoreBuyMessageBoxClass;
 };
