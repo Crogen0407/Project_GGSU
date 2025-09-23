@@ -1,5 +1,4 @@
 #include "UI/PopupUI/Stores/GGSUStorePopup.h"
-#include "Components/Button.h"
 #include "Components/HorizontalBox.h"
 #include "Components/WidgetSwitcher.h"
 #include "StoreSystem/GGSUStoreProductsDataAsset.h"
@@ -17,7 +16,12 @@ void UGGSUStorePopup::NativeOnInitialized()
 	{
 		if (auto NewStoreCategoryButton = CreateWidget<UGGSUStoreCategoryButton>(this, StoreCategoryButtonClass))
 		{
-			NewStoreCategoryButton->Button->OnClicked.AddDynamic(this, &UGGSUStorePopup::HandleOpenCategory);
+			int index = CachedCategoryIndex;
+			NewStoreCategoryButton->OnClicked.BindLambda([this, index]()
+			{
+				StoreCategorySwitcher->SetActiveWidgetIndex(index);
+			});
+			NewStoreCategoryButton->Setup();
 			StoreCategoryButtons->AddChildToHorizontalBox(NewStoreCategoryButton);
 			NewStoreCategoryButton->SetPadding(FMargin(10.0f, 25.0f, 10.0f, 0.0f));
 		}
@@ -39,11 +43,4 @@ void UGGSUStorePopup::NativeOnInitialized()
 		}
 		CachedCategoryIndex++; 
 	}
-}
-
-void UGGSUStorePopup::HandleOpenCategory()
-{
-	int Index = CachedCategoryIndex;
-	UE_LOG(LogTemp, Log, TEXT("%d"), Index);
-	StoreCategorySwitcher->SetActiveWidgetIndex(Index);
 }

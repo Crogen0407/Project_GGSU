@@ -9,16 +9,27 @@
 class UButton;
 class UTextBlock;
 
+DECLARE_DELEGATE(FClickedEvent)
+
 UCLASS()
 class PROJECT_GGSU_API UGGSUStoreCategoryButton : public UUserWidget
 {
 	GENERATED_BODY()
 
 public:
+	void Setup();
+	
+private:
+	UFUNCTION()
+	void HandleClick();
+	
+public:
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UButton> Button;
 	
 	UPROPERTY(meta = (BindWidget))
 	TObjectPtr<UTextBlock> CategoryNameText;
+
+	FClickedEvent OnClicked;
 	
 };
