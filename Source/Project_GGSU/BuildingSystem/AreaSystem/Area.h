@@ -27,6 +27,9 @@ public:
 
 	TArray<AGGSUField*> GetFields();
 protected:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
+	bool IsUnlockArea = false;
+	
 	// 구역 해금 비용
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	int32 UnlockCost;

@@ -50,6 +50,12 @@ void AArea::BeginPlay()
 			FanceBuildings.Add(Building);
 		}
 	}
+	if (IsUnlockArea)
+	{
+		UnlockCost = 0;
+		SetActiveUI(true);
+		UnlockArea();
+	}
 }
 
 bool AArea::UnlockArea()
