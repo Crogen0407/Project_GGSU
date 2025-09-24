@@ -1,5 +1,4 @@
 #include "UI/PopupUI/Stores/GGSUStoreBuyMessageBox.h"
-#include "ItemSystem/GGSUItemDataAsset.h"
 #include "ResourceSystem/GGSUResourceManager.h"
 
 void UGGSUStoreBuyMessageBox::NativeOnInitialized()

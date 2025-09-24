@@ -2,7 +2,7 @@
 #include "Components/Button.h"
 #include "Components/Image.h"
 #include "Components/TextBlock.h"
-#include "ItemSystem/GGSUItemDataAsset.h"
+#include "ResourceSystem/ItemSystem/GGSUItemDataAsset.h"
 #include "UI/GGSUUIManager.h"
 #include "UI/PopupUI/Stores/GGSUStoreBuyMessageBox.h"
 

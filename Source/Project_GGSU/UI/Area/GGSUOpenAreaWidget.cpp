@@ -23,6 +23,7 @@ void UGGSUOpenAreaWidget::SettingUI(int price, AArea* owner)
 
 void UGGSUOpenAreaWidget::OnBuyBtnClick()
 {
+	UE_LOG(LogTemp, Warning, TEXT("밍"));
 	if (OwnerArea->UnlockArea())
 	{
 		OwnerArea->SetActiveUI(true);
