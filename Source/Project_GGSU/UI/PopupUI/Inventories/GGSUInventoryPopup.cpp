@@ -1,5 +1,6 @@
 #include "UI/PopupUI/Inventories/GGSUInventoryPopup.h"
 #include "Components/TileView.h"
+#include "ResourceSystem/GGSUCurrencyDataAsset.h"
 #include "ResourceSystem/GGSUResourceDataAsset.h"
 #include "ResourceSystem/GGSUResourceManager.h"
 
@@ -13,7 +14,7 @@ void UGGSUInventoryPopup::Show_Implementation(float Duration)
 	{
 		for (auto ResourcePair : ResourceManager->ResourceAmount)
 		{
-			if (ResourcePair.Key->IsInventoryElement)
+			if (ResourcePair.Value > 0 && nullptr == Cast<UGGSUCurrencyDataAsset>(ResourcePair.Key))
 				AddElement(ResourcePair.Key, ResourcePair.Value);
 		}
 	}

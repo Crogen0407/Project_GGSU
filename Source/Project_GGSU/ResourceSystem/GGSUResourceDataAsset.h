@@ -20,7 +20,4 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	FName Name;
-
-	UPROPERTY(EditAnywhere)
-	bool IsInventoryElement = true;
 };

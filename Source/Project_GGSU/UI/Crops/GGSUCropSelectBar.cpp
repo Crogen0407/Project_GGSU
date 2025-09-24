@@ -2,7 +2,7 @@
 #include "UI/Crops/GGSUCropIcon.h"
 #include "Components/HorizontalBox.h"
 #include "Components/HorizontalBoxSlot.h"
-#include "ResourceSystem/CropsSystem/GGSUCropsSetDataAsset.h"
+#include "ResourceSystem/CropsSystem/GGSUResourceSetDataAsset.h"
 
 void UGGSUCropSelectBar::NativeConstruct()
 {

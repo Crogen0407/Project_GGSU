@@ -2,13 +2,13 @@
 
 
 #include "GGSUResourceManager.h"
-#include "CropsSystem/GGSUCropsSetDataAsset.h"
+#include "CropsSystem/GGSUResourceSetDataAsset.h"
 #include "CropsSystem/GGSUCropDataAsset.h"
 #include "UI/GGSUResourceElement.h"
 
 UGGSUResourceManager::UGGSUResourceManager()
 {
-	static ConstructorHelpers::FObjectFinder<UGGSUCropsSetDataAsset> CropsSetDataAssetObject(TEXT("/Game/DataAssets/Resources/DA_ResourceSet"));
+	static ConstructorHelpers::FObjectFinder<UGGSUResourceSetDataAsset> CropsSetDataAssetObject(TEXT("/Game/DataAssets/Resources/DA_ResourceSet"));
 
 	if (CropsSetDataAssetObject.Object == nullptr) return;
 	
@@ -36,34 +36,41 @@ void UGGSUResourceManager::Initialize(FSubsystemCollectionBase& Collection)
 		ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), 0);
 		ResourceChangedEvents.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), {});
 	}
-}
 
-void UGGSUResourceManager::AddResource(const UGGSUResourceDataAsset* type, int value)
-{
-	ResourceAmount[type] += value;
-	ResourceChangedEvents[type].Broadcast(ResourceAmount[type]);
-}
-
-void UGGSUResourceManager::RemoveResource(const UGGSUResourceDataAsset* type, int value)
-{
-	if (ResourceAmount[type] >= value)
+	TArray<UGGSUResourceDataAsset*> OtherDataAssets = CropsSetDataAsset->GetOtherAssets();
+	for (UGGSUResourceDataAsset* OtherDataAsset : OtherDataAssets)
 	{
-		ResourceAmount[type] -= value;
-		ResourceChangedEvents[type].Broadcast(ResourceAmount[type]);
+		ResourceAmount.Add(OtherDataAsset, 0);
+		ResourceChangedEvents.Add(OtherDataAsset, {});
 	}
 }
 
-bool UGGSUResourceManager::TryRemoveResource(const UGGSUResourceDataAsset* type, int value)
+void UGGSUResourceManager::AddResource(const UGGSUResourceDataAsset* Type, int Value)
 {
-	if (ResourceAmount.Contains(type) == false)
+	ResourceAmount[Type] += Value;
+	ResourceChangedEvents[Type].Broadcast(ResourceAmount[Type]);
+}
+
+void UGGSUResourceManager::RemoveResource(const UGGSUResourceDataAsset* Type, int Value)
+{
+	if (ResourceAmount[Type] >= Value)
+	{
+		ResourceAmount[Type] -= Value;
+		ResourceChangedEvents[Type].Broadcast(ResourceAmount[Type]);
+	}
+}
+
+bool UGGSUResourceManager::TryRemoveResource(const UGGSUResourceDataAsset* Type, int Value)
+{
+	if (ResourceAmount.Contains(Type) == false)
 	{
 		return false;
 	}
 		
-	if (ResourceAmount[type] >= value)
+	if (ResourceAmount[Type] >= Value)
 	{
-		ResourceAmount[type] -= value;
-		ResourceChangedEvents[type].Broadcast(ResourceAmount[type]);
+		ResourceAmount[Type] -= Value;
+		ResourceChangedEvents[Type].Broadcast(ResourceAmount[Type]);
 		return true;
 	}
 	return false;

@@ -6,7 +6,7 @@
 #include "Blueprint/UserWidget.h"
 #include "GGSUCropSelectBar.generated.h"
 
-class UGGSUCropsSetDataAsset;
+class UGGSUResourceSetDataAsset;
 class UGGSUCropIcon;
 class UHorizontalBox;
 
@@ -29,5 +29,5 @@ public:
 	TSubclassOf<UGGSUCropIcon> ItemWidgetClass;
 
 	UPROPERTY(EditAnywhere, Category = "Crop")
-	UGGSUCropsSetDataAsset* CropSetDataAsset;
+	UGGSUResourceSetDataAsset* CropSetDataAsset;
 };

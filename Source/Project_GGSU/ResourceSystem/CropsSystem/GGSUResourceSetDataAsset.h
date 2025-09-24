@@ -5,21 +5,23 @@
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
 #include "ResourceSystem/GGSUCurrencyDataAsset.h"
-#include "GGSUCropsSetDataAsset.generated.h"
+#include "GGSUResourceSetDataAsset.generated.h"
 
 class AGGSUCrop;
 class UGGSUCropDataAsset;
+class UGGSUResourceDataAsset;
 
 UCLASS()
-class PROJECT_GGSU_API UGGSUCropsSetDataAsset : public UPrimaryDataAsset
+class PROJECT_GGSU_API UGGSUResourceSetDataAsset : public UPrimaryDataAsset
 {
 	GENERATED_BODY()
 
 public:
 	UGGSUCropDataAsset* GetCropsAsset(FName Name);
-	TArray<UGGSUCropDataAsset*> GetCropAssets() const;
 	UGGSUCurrencyDataAsset* GetCurrencyAssets(FName Name);
+	TArray<UGGSUCropDataAsset*> GetCropAssets() const;
 	TArray<UGGSUCurrencyDataAsset*> GetCurrencyAssets() const;
+	TArray<UGGSUResourceDataAsset*> GetOtherAssets() const;
 	
 public:
 	int GetCropsCount() const
@@ -28,8 +30,10 @@ public:
 	}
 
 protected:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Crops")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource")
 	TArray<UGGSUCropDataAsset*> CropsAssets;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Crops")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource")
 	TArray<UGGSUCurrencyDataAsset*> CurrencyAssets;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource")
+	TArray<UGGSUResourceDataAsset*> OtherAssets;
 };
