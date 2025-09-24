@@ -16,7 +16,7 @@ void UGGSUStoreBuyMessageBox::Setup(const FText& Text)
 		if (UGGSUResourceManager* ResourceManager = GetGameInstance()->GetSubsystem<UGGSUResourceManager>())
 		{
 			ResourceManager->RemoveResource(GoldResource, ItemCount * ItemPrice);
-			ResourceManager->AddResource(TargetItem, ItemCount);
+			ResourceManager->AddResource(TargetResource, ItemCount);
 		}
 	});
 

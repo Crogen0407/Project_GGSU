@@ -6,7 +6,7 @@
 #include "Engine/DataAsset.h"
 #include "GGSUStoreProductsDataAsset.generated.h"
 
-class UGGSUItemDataAsset;
+class UGGSUResourceDataAsset;
 
 USTRUCT()
 struct FProductsGroup
@@ -14,7 +14,7 @@ struct FProductsGroup
 	GENERATED_BODY()
 	
 	UPROPERTY(EditAnywhere)
-	TMap<UGGSUItemDataAsset*, int> Items;
+	TMap<UGGSUResourceDataAsset*, int> Items;
 };
 
 UCLASS()

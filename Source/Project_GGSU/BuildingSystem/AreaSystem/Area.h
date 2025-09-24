@@ -44,7 +44,6 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	TArray<AGGSUField*> FieldBuildings;
 	
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	UGGSUResourceManager* ResourceInstance;
 

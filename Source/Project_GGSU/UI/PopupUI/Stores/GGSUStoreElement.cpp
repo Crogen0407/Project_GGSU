@@ -6,17 +6,17 @@
 #include "UI/GGSUUIManager.h"
 #include "UI/PopupUI/Stores/GGSUStoreBuyMessageBox.h"
 
-void UGGSUStoreElement::Setup(UGGSUItemDataAsset* TargetItemDataAsset, int Price)
+void UGGSUStoreElement::Setup(UGGSUResourceDataAsset* TargetResourceDataAsset, const int Price)
 {
-	TitleText->SetText(FText::FromName(TargetItemDataAsset->Name));
-	if (TargetItemDataAsset->IconTexture)
-		IconImage->SetBrushFromTexture(TargetItemDataAsset->IconTexture);
+	TitleText->SetText(FText::FromName(TargetResourceDataAsset->Name));
+	if (TargetResourceDataAsset->IconTexture)
+		IconImage->SetBrushFromTexture(TargetResourceDataAsset->IconTexture);
 
 	PriceText->SetText(FText::FromString(FString::FromInt(Price)));
 	
 	BuyButton->OnClicked.AddDynamic(this, &UGGSUStoreElement::HandleBuyItem);
 
-	CachedTargetItemDataAsset = TargetItemDataAsset;
+	CachedTargetItemDataAsset = TargetResourceDataAsset;
 	CachedPrice = Price;
 }
 
@@ -26,7 +26,7 @@ void UGGSUStoreElement::HandleBuyItem()
 	{
 		if (UGGSUStoreBuyMessageBox* MessageBox = Cast<UGGSUStoreBuyMessageBox>(UIManager->ShowPopupUI(StoreBuyMessageBoxClass)))
 		{
-			MessageBox->TargetItem = CachedTargetItemDataAsset;
+			MessageBox->TargetResource = CachedTargetItemDataAsset;
 			MessageBox->ItemPrice = CachedPrice;
 
 			const FString Text = CachedTargetItemDataAsset->Name.ToString() + "을(를) 구매하시겠습니까?"; 

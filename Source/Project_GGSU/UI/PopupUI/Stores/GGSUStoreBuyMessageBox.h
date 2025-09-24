@@ -33,7 +33,7 @@ public:
 	TObjectPtr<UGGSUResourceDataAsset> GoldResource;
 	
 	UPROPERTY(Transient)
-	TObjectPtr<UGGSUItemDataAsset> TargetItem;
+	TObjectPtr<UGGSUResourceDataAsset> TargetResource;
 
 	UPROPERTY(EditAnywhere)
 	int ItemCount;

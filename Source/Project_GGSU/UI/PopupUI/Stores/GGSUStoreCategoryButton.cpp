@@ -12,6 +12,5 @@ void UGGSUStoreCategoryButton::Setup()
 
 void UGGSUStoreCategoryButton::HandleClick()
 {
-	UE_LOG(LogTemp, Log, TEXT("ASFDASDFASDF"));
 	OnClicked.Execute();
 }

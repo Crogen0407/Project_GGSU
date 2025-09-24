@@ -7,6 +7,7 @@
 #include "UI/PopupUI/Stores/GGSUStoreCategoryButton.h"
 #include "UI/PopupUI/Stores/GGSUStoreCategory.h"
 #include "Components/HorizontalBoxSlot.h"
+#include "ResourceSystem/GGSUResourceDataAsset.h"
 
 void UGGSUStorePopup::NativeOnInitialized()
 {
@@ -30,21 +31,23 @@ void UGGSUStorePopup::NativeOnInitialized()
 			NewStoreCategoryButton->SetPadding(FMargin(10.0f, 25.0f, 10.0f, 0.0f));
 		}
 
-		for (auto Item : ProductsGroup.Value.Items)
+		if (auto NewStoreCategory = CreateWidget<UGGSUStoreCategory>(this, StoreCategoryClass))
 		{
-			if (auto NewStoreCategory = CreateWidget<UGGSUStoreCategory>(this, StoreCategoryClass))
+			StoreCategorySwitcher->AddChild(NewStoreCategory);
+			NewStoreCategory->SetPadding(FMargin(10.0f));
+
+			for (auto Item : ProductsGroup.Value.Items)
 			{
-				StoreCategorySwitcher->AddChild(NewStoreCategory);
-				NewStoreCategory->SetPadding(FMargin(10.0f));
-				
 				if (auto NewStoreElement = CreateWidget<UGGSUStoreElement>(this, StoreElementClass))
 				{
+					UE_LOG(LogTemp, Log, TEXT("Character Name :: %s"), *Item.Key->Name.ToString());
 					NewStoreElement->Setup(Item.Key, Item.Value);
 					NewStoreCategory->StoreElementList->AddChild(NewStoreElement);
 					NewStoreElement->SetPadding(FMargin(50.0f));
 				}
 			}
 		}
+
 		CachedCategoryIndex++; 
 	}
 }

@@ -6,11 +6,11 @@
 #include "UI/GGSUUserWidget.h"
 #include "GGSUStoreElement.generated.h"
 
+class UGGSUResourceDataAsset;
 class UGGSUStoreBuyMessageBox;
 class UImage;
 class UTextBlock;
 class UButton;
-class UGGSUItemDataAsset;
 
 UCLASS()
 class PROJECT_GGSU_API UGGSUStoreElement : public UGGSUUserWidget
@@ -18,7 +18,7 @@ class PROJECT_GGSU_API UGGSUStoreElement : public UGGSUUserWidget
 	GENERATED_BODY()
 
 public:
-	void Setup(UGGSUItemDataAsset* TargetItemDataAsset, int Price);
+	void Setup(UGGSUResourceDataAsset* TargetResourceDataAsset, int Price);
 	UFUNCTION()
 	void HandleBuyItem();
 	
@@ -39,7 +39,7 @@ public:
 	int CachedPrice;
 	
 	UPROPERTY(Transient)
-	UGGSUItemDataAsset* CachedTargetItemDataAsset;
+	UGGSUResourceDataAsset* CachedTargetItemDataAsset;
 
 	UPROPERTY(EditAnywhere)
 	TSubclassOf<UGGSUStoreBuyMessageBox> StoreBuyMessageBoxClass;
