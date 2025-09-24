@@ -8,9 +8,9 @@
 
 void UGGSUStoreElement::Setup(UGGSUResourceDataAsset* TargetResourceDataAsset, const int Price)
 {
-	TitleText->SetText(FText::FromName(TargetResourceDataAsset->Name));
-	if (TargetResourceDataAsset->IconTexture)
-		IconImage->SetBrushFromTexture(TargetResourceDataAsset->IconTexture);
+	TitleText->SetText(FText::FromName(TargetResourceDataAsset->GetName()));
+	if (TargetResourceDataAsset->GetIconTexture())
+		IconImage->SetBrushFromTexture(TargetResourceDataAsset->GetIconTexture());
 
 	PriceText->SetText(FText::FromString(FString::FromInt(Price)));
 	
@@ -29,7 +29,7 @@ void UGGSUStoreElement::HandleBuyItem()
 			MessageBox->TargetResource = CachedTargetItemDataAsset;
 			MessageBox->ItemPrice = CachedPrice;
 
-			const FString Text = CachedTargetItemDataAsset->Name.ToString() + "을(를) 구매하시겠습니까?"; 
+			const FString Text = CachedTargetItemDataAsset->GetName().ToString() + "을(를) 구매하시겠습니까?"; 
 			MessageBox->Setup(FText::FromString(Text));
 		}
 	}

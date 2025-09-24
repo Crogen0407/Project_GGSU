@@ -14,8 +14,4 @@ UCLASS()
 class PROJECT_GGSU_API UGGSUItemDataAsset : public UGGSUResourceDataAsset
 {
 	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FString Description;
 };

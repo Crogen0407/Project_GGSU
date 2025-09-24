@@ -45,7 +45,7 @@ public:
 	TMap<UGGSUResourceDataAsset*, FResourceChangedEvent> ResourceChangedEvents;
 	
 	UPROPERTY(EditAnywhere)
-	TObjectPtr<UGGSUResourceSetDataAsset> CropsSetDataAsset;
+	TObjectPtr<UGGSUResourceSetDataAsset> ResourceSetDataAsset;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TMap<UGGSUResourceDataAsset*, int> ResourceAmount;

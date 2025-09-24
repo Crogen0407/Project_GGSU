@@ -25,12 +25,12 @@ void UGGSUInventoryPopup::Hide(float Duration)
 	Super::Hide(Duration);
 }
 
-void UGGSUInventoryPopup::AddElement(const UGGSUResourceDataAsset* TargetResource, const int Count)
+void UGGSUInventoryPopup::AddElement(UGGSUResourceDataAsset* TargetResource, const int Count)
 {
 	UGGSUInventoryElementObject* NewItem = NewObject<UGGSUInventoryElementObject>(this);
-	NewItem->Name = TargetResource->Name.ToString();
+	NewItem->Name = TargetResource->GetName().ToString();
 	NewItem->Count = Count;
-	NewItem->IconTexture = TargetResource->IconTexture;
+	NewItem->IconTexture = TargetResource->GetIconTexture();
 	
 	InventoryView->AddItem(NewItem);
 

@@ -35,7 +35,7 @@ public:
 	virtual void Show_Implementation(float Duration) override;
 	virtual void Hide(float Duration) override;
 
-	void AddElement(const UGGSUResourceDataAsset* TargetResource, int Count);
+	void AddElement(UGGSUResourceDataAsset* TargetResource, int Count);
 	
 public:
 	UPROPERTY(meta=(BindWidget))

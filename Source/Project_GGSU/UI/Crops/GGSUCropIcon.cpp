@@ -11,8 +11,8 @@ void UGGSUCropIcon::SetTargetCrop(UGGSUCropDataAsset* InCrop)
 	if (TargetCrop)
 		Button->OnClicked.AddDynamic(this, &UGGSUCropIcon::HandleSelectTargetCrop);
 	
-	if (InCrop->IconTexture)
-		IconImage->SetBrushFromTexture(InCrop->IconTexture);
+	if (InCrop->GetIconTexture())
+		IconImage->SetBrushFromTexture(InCrop->GetIconTexture());
 }
 
 void UGGSUCropIcon::HandleSelectTargetCrop()

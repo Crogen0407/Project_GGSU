@@ -1,15 +1,11 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
-#include "ResourceSystem/CropsSystem/GGSUResourceSetDataAsset.h"
-
-#include "GGSUCropDataAsset.h"
+#include "ResourceSystem/GGSUResourceSetDataAsset.h"
+#include "CropsSystem/GGSUCropDataAsset.h"
 
 UGGSUCropDataAsset* UGGSUResourceSetDataAsset::GetCropsAsset(FName Name)
 {
 	for (auto CropsAsset : CropsAssets)
 	{
-		if (CropsAsset->Name.IsEqual(Name))
+		if (CropsAsset->GetName().IsEqual(Name))
 		 	return CropsAsset;
 	}
 
@@ -20,7 +16,7 @@ UGGSUCurrencyDataAsset* UGGSUResourceSetDataAsset::GetCurrencyAssets(FName Name)
 {
 	for (auto CurrencyAsset : CurrencyAssets)
 	{
-		if (CurrencyAsset->Name.IsEqual(Name))
+		if (CurrencyAsset->GetName().IsEqual(Name))
 		 	return CurrencyAsset;
 	}
 
@@ -31,7 +27,6 @@ TArray<UGGSUCropDataAsset*> UGGSUResourceSetDataAsset::GetCropAssets() const
 {
 	return CropsAssets;
 }
-
 
 TArray<UGGSUCurrencyDataAsset*> UGGSUResourceSetDataAsset::GetCurrencyAssets() const
 {
