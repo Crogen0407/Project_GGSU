@@ -32,7 +32,7 @@ void UGGSUResourceManager::Initialize(FSubsystemCollectionBase& Collection)
 	const TArray<UGGSUCurrencyDataAsset*> CurrencyDataAssets = ResourceSetDataAsset->GetCurrencyAssets();
 	for (UGGSUCurrencyDataAsset* CurrencyDataAsset : CurrencyDataAssets)
 	{
-		ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), 0);
+		ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), CurrencyDataAsset->DefaultValue);
 		ResourceChangedEvents.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), {});
 	}
 
