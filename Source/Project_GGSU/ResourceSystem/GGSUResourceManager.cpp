@@ -1,18 +1,14 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "GGSUResourceManager.h"
-#include "CropsSystem/GGSUCropsSetDataAsset.h"
+#include "GGSUResourceSetDataAsset.h"
 #include "CropsSystem/GGSUCropDataAsset.h"
-#include "UI/GGSUResourceElement.h"
 
 UGGSUResourceManager::UGGSUResourceManager()
 {
-	static ConstructorHelpers::FObjectFinder<UGGSUCropsSetDataAsset> CropsSetDataAssetObject(TEXT("/Game/CropsDataAsset/Resources/DA_ResourceSet"));
+	static ConstructorHelpers::FObjectFinder<UGGSUResourceSetDataAsset> CropsSetDataAssetObject(TEXT("/Game/DataAssets/Resources/DA_ResourceSet"));
 
 	if (CropsSetDataAssetObject.Object == nullptr) return;
 	
-	CropsSetDataAsset = CropsSetDataAssetObject.Object;	
+	ResourceSetDataAsset = CropsSetDataAssetObject.Object;	
 }
 
 UGGSUResourceManager::~UGGSUResourceManager()
@@ -23,47 +19,57 @@ void UGGSUResourceManager::Initialize(FSubsystemCollectionBase& Collection)
 {
 	Super::Initialize(Collection);
 
-	TArray<UGGSUCropDataAsset*> CropDataAssets = CropsSetDataAsset->GetCropAssets();
+	// 작물 에셋 초기화
+	const TArray<UGGSUCropDataAsset*> CropDataAssets = ResourceSetDataAsset->GetCropAssets();
 	for (UGGSUCropDataAsset* CropDataAsset : CropDataAssets)
 	{
 		ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CropDataAsset), 0);
 		ResourceChangedEvents.Add(Cast<UGGSUResourceDataAsset>(CropDataAsset), {});
 	}
-	
-	TArray<UGGSUCurrencyDataAsset*> CurrencyDataAssets = CropsSetDataAsset->GetCurrencyAssets();
+
+	// 재화 관련 초기화
+	const TArray<UGGSUCurrencyDataAsset*> CurrencyDataAssets = ResourceSetDataAsset->GetCurrencyAssets();
 	for (UGGSUCurrencyDataAsset* CurrencyDataAsset : CurrencyDataAssets)
 	{
 		ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), 0);
 		ResourceChangedEvents.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), {});
 	}
-}
 
-void UGGSUResourceManager::AddResource(const UGGSUResourceDataAsset* type, int value)
-{
-	ResourceAmount[type] += value;
-	ResourceChangedEvents[type].Broadcast(ResourceAmount[type]);
-}
-
-void UGGSUResourceManager::RemoveResource(const UGGSUResourceDataAsset* type, int value)
-{
-	if (ResourceAmount[type] >= value)
+	// 기타 관련 초기화(걍 잡다한 ResourceDataAsset들 다 여기에)
+	const TArray<UGGSUResourceDataAsset*> OtherDataAssets = ResourceSetDataAsset->GetOtherAssets();
+	for (UGGSUResourceDataAsset* OtherDataAsset : OtherDataAssets)
 	{
-		ResourceAmount[type] -= value;
-		ResourceChangedEvents[type].Broadcast(ResourceAmount[type]);
+		ResourceAmount.Add(OtherDataAsset, 0);
+		ResourceChangedEvents.Add(OtherDataAsset, {});
 	}
 }
 
-bool UGGSUResourceManager::TryRemoveResource(const UGGSUResourceDataAsset* type, int value)
+void UGGSUResourceManager::AddResource(const UGGSUResourceDataAsset* Type, const int Value)
 {
-	if (ResourceAmount.Contains(type) == false)
+	ResourceAmount[Type] += Value;
+	ResourceChangedEvents[Type].Broadcast(ResourceAmount[Type]);
+}
+
+void UGGSUResourceManager::RemoveResource(const UGGSUResourceDataAsset* Type, const int Value)
+{
+	if (ResourceAmount[Type] >= Value)
+	{
+		ResourceAmount[Type] -= Value;
+		ResourceChangedEvents[Type].Broadcast(ResourceAmount[Type]);
+	}
+}
+
+bool UGGSUResourceManager::TryRemoveResource(const UGGSUResourceDataAsset* Type, const int Value)
+{
+	if (ResourceAmount.Contains(Type) == false)
 	{
 		return false;
 	}
 		
-	if (ResourceAmount[type] >= value)
+	if (ResourceAmount[Type] >= Value)
 	{
-		ResourceAmount[type] -= value;
-		ResourceChangedEvents[type].Broadcast(ResourceAmount[type]);
+		ResourceAmount[Type] -= Value;
+		ResourceChangedEvents[Type].Broadcast(ResourceAmount[Type]);
 		return true;
 	}
 	return false;

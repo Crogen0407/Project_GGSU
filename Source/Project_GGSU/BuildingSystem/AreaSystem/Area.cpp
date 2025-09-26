@@ -11,6 +11,9 @@ AArea::AArea()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
+	RootSceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
+	SetRootComponent(RootSceneComponent);
+	
 	OpenAreaWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("UIComponent"));
 	OpenAreaWidgetComponent->SetupAttachment(GetRootComponent());
 	OpenAreaWidgetComponent->SetRelativeLocation(FVector(0.0f , 0.0f , 90.0f));
@@ -29,9 +32,8 @@ void AArea::BeginPlay()
 	
 	UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(GetWorld());
 	ResourceInstance = GameInstance->GetSubsystem<UGGSUResourceManager>();
-	
-	UGGSUOpenAreaWidget* OpenAreaWidget = Cast<UGGSUOpenAreaWidget>(OpenAreaWidgetComponent->GetUserWidgetObject());
-	if (OpenAreaWidget) {
+
+	if (UGGSUOpenAreaWidget* OpenAreaWidget = Cast<UGGSUOpenAreaWidget>(OpenAreaWidgetComponent->GetUserWidgetObject())) {
 		OpenAreaWidget->SettingUI(UnlockCost, this);
 	}
 

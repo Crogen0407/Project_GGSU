@@ -15,7 +15,7 @@ class PROJECT_GGSU_API UGGSUMessageBox : public UGGSUUserWidget
 	GENERATED_BODY()
 
 public:
-	void Init(const FText& Text);
+	virtual void Setup(const FText& Text);
 	void AddButton(const FText& Text, const TFunction<void()>& ClickCallback);
 
 protected:
@@ -26,9 +26,9 @@ protected:
 	TFunction<void()> SecondButtonClickCallback;
 
 	UFUNCTION()
-	void OnFirstButtonClicked() { FirstButtonClickCallback(); }
+	virtual void OnFirstButtonClicked() { FirstButtonClickCallback(); }
 	UFUNCTION()
-	void OnSecondButtonClicked() { SecondButtonClickCallback(); }
+	virtual void OnSecondButtonClicked() { SecondButtonClickCallback(); }
 	
 public:
 	UPROPERTY(meta=(BindWidget))

@@ -16,17 +16,20 @@ class PROJECT_GGSU_API UGGSUOpenAreaWidget : public UUserWidget
 
 public:
 	virtual void NativeConstruct() override;
+	
 public:
 	UFUNCTION()
 	void OnBuyBtnClick();
 	
 	void SettingUI(int price, AArea* owner);
+	
 protected:
 	UPROPERTY(meta = (BindWidget))
 	class UButton* BuyArea_Btn;
 
 	UPROPERTY(meta = (BindWidget))
 	class UTextBlock* Price_Txt;
+	
 public:
 	UPROPERTY(BlueprintReadWrite, meta = (ExposeOnSpawn = "true"))
 	AArea* OwnerArea;

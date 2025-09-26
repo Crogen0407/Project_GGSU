@@ -18,7 +18,7 @@ enum EResourceType
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FResourceChangedEvent, int, CurrentResourceAmount);
 
 class UGGSUResourceDataAsset;
-class UGGSUCropsSetDataAsset;
+class UGGSUResourceSetDataAsset;
 
 UCLASS()
 class PROJECT_GGSU_API UGGSUResourceManager : public UGameInstanceSubsystem
@@ -35,17 +35,17 @@ public:
 
 public:
 	UFUNCTION(BlueprintCallable)
-	int GetResource(const UGGSUResourceDataAsset* type) { return ResourceAmount[type]; }
-	void AddResource(const UGGSUResourceDataAsset* type, int value);
-	void RemoveResource(const UGGSUResourceDataAsset* type, int value);
-	bool TryRemoveResource(const UGGSUResourceDataAsset* type, int value);
+	int GetResource(const UGGSUResourceDataAsset* Type) { return ResourceAmount[Type]; }
+	void AddResource(const UGGSUResourceDataAsset* Type, int Value);
+	void RemoveResource(const UGGSUResourceDataAsset* Type, int Value);
+	bool TryRemoveResource(const UGGSUResourceDataAsset* Type, int Value);
 	
 public:
 	UPROPERTY(EditAnywhere)
 	TMap<UGGSUResourceDataAsset*, FResourceChangedEvent> ResourceChangedEvents;
 	
 	UPROPERTY(EditAnywhere)
-	TObjectPtr<UGGSUCropsSetDataAsset> CropsSetDataAsset;
+	TObjectPtr<UGGSUResourceSetDataAsset> ResourceSetDataAsset;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TMap<UGGSUResourceDataAsset*, int> ResourceAmount;

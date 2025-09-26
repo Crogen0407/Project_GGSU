@@ -22,7 +22,7 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "GGSUUserWidget")
 	void Show(float Duration);
 
-	void Show_Implementation(float Duration);
+	virtual void Show_Implementation(float Duration);
 	
 	UFUNCTION(BlueprintCallable)
 	virtual void Hide(float Duration);

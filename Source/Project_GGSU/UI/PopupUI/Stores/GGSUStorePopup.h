@@ -22,11 +22,6 @@ class PROJECT_GGSU_API UGGSUStorePopup : public UGGSUUserWidget
 protected:
 	virtual void NativeOnInitialized() override;
 
-	UFUNCTION()
-	void HandleOpenCategory();
-
-private:
-	
 public:
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UHorizontalBox> StoreCategoryButtons;

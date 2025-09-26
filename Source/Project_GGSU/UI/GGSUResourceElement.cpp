@@ -7,7 +7,7 @@ void UGGSUResourceElement::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	Icon->SetBrushFromTexture(TargetResource->IconTexture);
+	Icon->SetBrushFromTexture(TargetResource->GetIconTexture());
 	
 	if (UGGSUResourceManager* ResourceManager = GetGameInstance()->GetSubsystem<UGGSUResourceManager>())
 	{

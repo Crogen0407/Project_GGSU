@@ -34,7 +34,7 @@ void AGGSUBuilding::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (IsUnlocked)
+	if (false == IsUnlocked)
 		Visual->SetScalarParameterValueOnMaterials(FName("IsLock"), 1.f);
 }
 
@@ -61,7 +61,6 @@ void AGGSUBuilding::OnUnhovered()
 void AGGSUBuilding::OnUnlock()
 {
 	IsUnlocked = true;
-	
 	Visual->SetScalarParameterValueOnMaterials(FName("IsLocked"), 0.f);
 }
 
