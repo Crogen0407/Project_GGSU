@@ -6,20 +6,19 @@
 #include "BuildingSystem/GGSUBuilding.h"
 #include "GGSUField.generated.h"
 
-class UGGSUCropDataAsset;
 class AGGSUCrop;
+class UGGSUCropSeedDataAsset;
 
 UCLASS()
 class PROJECT_GGSU_API AGGSUField : public AGGSUBuilding
 {
 	GENERATED_BODY()
-
 	
 	virtual ~AGGSUField() override {}
 	
 public:
 	virtual void OnClicked() override;
-	void SpawnCrop(UGGSUCropDataAsset* CropDataAsset);
+	void SpawnCrop(UGGSUCropSeedDataAsset* CropSeed);
 	bool HarvestCurrentCrops();
 	
 protected:

@@ -1,25 +1,25 @@
 #include "UI/Crops/GGSUCropIcon.h"
 #include "Components/Image.h"
 #include "Components/Button.h"
-#include "ResourceSystem/CropsSystem/GGSUCropDataAsset.h"
+#include "ResourceSystem/CropsSystem/GGSUCropSeedDataAsset.h"
 #include "ResourceSystem/CropsSystem/GGSUCropsSelection.h"
 
-void UGGSUCropIcon::SetTargetCrop(UGGSUCropDataAsset* InCrop)
+void UGGSUCropIcon::SetTargetCropSeed(UGGSUCropSeedDataAsset* InCropSeed)
 {
-	TargetCrop = InCrop;
+	TargetCrop = InCropSeed;
 
 	if (TargetCrop)
 		Button->OnClicked.AddDynamic(this, &UGGSUCropIcon::HandleSelectTargetCrop);
 	
-	if (InCrop->GetIconTexture())
-		IconImage->SetBrushFromTexture(InCrop->GetIconTexture());
+	if (InCropSeed->GetIconTexture())
+		IconImage->SetBrushFromTexture(InCropSeed->GetIconTexture());
 }
 
 void UGGSUCropIcon::HandleSelectTargetCrop()
 {
 	if (UGGSUCropsSelection* CropsSelection = GetGameInstance()->GetSubsystem<UGGSUCropsSelection>())
 	{
-		CropsSelection->SetSelectedCrop(TargetCrop);
+		CropsSelection->SetSelectedCropSeed(TargetCrop);
 	}
 }
 

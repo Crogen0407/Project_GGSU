@@ -34,7 +34,7 @@ void UGGSUCropSelectBar::CreateCropElements()
 				}
 				
 				// 초기화
-				CreatedItemWidget->SetTargetCrop(CropSetDataAsset->GetCropAssets()[i]);
+				CreatedItemWidget->SetTargetCropSeed(CropSetDataAsset->GetCropSeedAssets()[i]);
 			}
 		}
 	}

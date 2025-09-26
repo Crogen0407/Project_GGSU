@@ -1,8 +1,5 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "ResourceSystem/CropsSystem/GGSUCrop.h"
-#include "GGSUCropDataAsset.h"
+#include "GGSUCropSeedDataAsset.h"
 #include "DateSystem/GGSUDateManager.h"
 
 // Sets default values
@@ -18,11 +15,11 @@ AGGSUCrop::AGGSUCrop()
 	MeshComponent->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
 }
 
-void AGGSUCrop::Initialize(UGGSUCropDataAsset* CropDataAsset)
+void AGGSUCrop::Initialize(UGGSUCropSeedDataAsset* CropSeed)
 {
-	CachedCropsDataAsset = CropDataAsset;
+	CachedCropSeed = CropSeed;
 	SpawnTime = UGGSUDateManager::GetTime();
-	MeshCount = CropDataAsset->StaticMeshes.Num();
+	MeshCount = CropSeed->GetStaticMeshes().Num();
 }
 
 // Called every frame
@@ -30,7 +27,7 @@ void AGGSUCrop::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (CachedCropsDataAsset == nullptr) return;
+	if (CachedCropSeed == nullptr) return;
 
 	Age = UGGSUDateManager::GetTime() - SpawnTime;
 
@@ -46,10 +43,10 @@ void AGGSUCrop::Tick(float DeltaTime)
 
 UStaticMesh* AGGSUCrop::GetCurrentStaticMesh() const
 {
-	float Amount = Age.GetTotalMinutes() / CachedCropsDataAsset->GrowthTime;	// 0~1
+	float Amount = Age.GetTotalMinutes() / CachedCropSeed->GetGrowthTime();	// 0~1
 	int32 Index = FMath::Floor(MeshCount * Amount);
 	Index = FMath::Clamp(Index, 0, MeshCount - 1);
 	
-	return CachedCropsDataAsset->StaticMeshes[Index];
+	return CachedCropSeed->GetStaticMeshes()[Index];
 }
 

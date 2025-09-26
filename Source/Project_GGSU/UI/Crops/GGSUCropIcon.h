@@ -8,7 +8,7 @@
 
 class UButton;
 class UImage;
-class UGGSUCropDataAsset;
+class UGGSUCropSeedDataAsset;
 
 UCLASS()
 class PROJECT_GGSU_API UGGSUCropIcon : public UGGSUUserWidget
@@ -16,14 +16,14 @@ class PROJECT_GGSU_API UGGSUCropIcon : public UGGSUUserWidget
 	GENERATED_BODY()
 
 public:
-	void SetTargetCrop(UGGSUCropDataAsset* InCrop);
+	void SetTargetCropSeed(UGGSUCropSeedDataAsset* InCropSeed);
 
 	UFUNCTION()
 	void HandleSelectTargetCrop(); 
 	
 public:
 	UPROPERTY(Transient, BlueprintReadOnly)
-	TObjectPtr<UGGSUCropDataAsset> TargetCrop;
+	TObjectPtr<UGGSUCropSeedDataAsset> TargetCrop;
 
 	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
 	UImage* IconImage;
