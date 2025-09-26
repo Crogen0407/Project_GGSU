@@ -15,10 +15,10 @@ class PROJECT_GGSU_API UGGSUItemDataAsset : public UGGSUResourceDataAsset
 	GENERATED_BODY()
 
 public:
+	UFUNCTION(blueprintCallable)
 	UGGSUItemEffect* GetEffect(UObject* Owner);
 	
 public:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TSubclassOf<UGGSUItemEffect> ItemEffect;
-	
 };
