@@ -1,6 +1,7 @@
 #include "UI/PopupUI/Inventories/GGSUInventoryPopup.h"
 #include "Components/TileView.h"
 #include "ResourceSystem/GGSUCurrencyDataAsset.h"
+#include "ResourceSystem/GGSUGradeResource.h"
 #include "ResourceSystem/GGSUResourceDataAsset.h"
 #include "ResourceSystem/GGSUResourceManager.h"
 
@@ -31,6 +32,16 @@ void UGGSUInventoryPopup::AddElement(UGGSUResourceDataAsset* TargetResource, con
 	NewItem->Name = TargetResource->GetName().ToString();
 	NewItem->Count = Count;
 	NewItem->IconTexture = TargetResource->GetIconTexture();
+
+	if (IGGSUGradeResource* GradeResource = Cast<IGGSUGradeResource>(TargetResource))
+	{
+		NewItem->IsGradeResource = true;
+		NewItem->ResourceGrade = GradeResource->GetGrade();
+	}
+	else
+	{
+		NewItem->IsGradeResource = false;
+	}
 	
 	InventoryView->AddItem(NewItem);
 

@@ -23,18 +23,3 @@ UGGSUCurrencyDataAsset* UGGSUResourceSetDataAsset::GetCurrencyAssets(FName Name)
 
 	return nullptr;
 }
-
-TArray<UGGSUCropSeedDataAsset*> UGGSUResourceSetDataAsset::GetCropSeedAssets() const
-{
-	return CropSeedAssets;
-}
-
-TArray<UGGSUCurrencyDataAsset*> UGGSUResourceSetDataAsset::GetCurrencyAssets() const
-{
-	return CurrencyAssets;
-}
-
-TArray<UGGSUResourceDataAsset*> UGGSUResourceSetDataAsset::GetOtherAssets() const
-{
-	return OtherAssets;
-}

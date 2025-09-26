@@ -4,20 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
+#include "ResourceSystem/GGSUGradeResource.h"
 #include "ResourceSystem/GGSUResourceDataAsset.h"
 #include "GGSUCropDataAsset.generated.h"
 
-UENUM(BlueprintType)
-enum class ECropGrade : uint8
-{
-	D = 0,
-	C = 1,
-	B = 2,
-	A = 3,
-};
-
 UCLASS()
-class PROJECT_GGSU_API UGGSUCropDataAsset : public UGGSUResourceDataAsset
+class PROJECT_GGSU_API UGGSUCropDataAsset : public UGGSUResourceDataAsset, public IGGSUGradeResource
 {
 	GENERATED_BODY()
 
@@ -27,6 +19,13 @@ public:
 		return (static_cast<int>(CropGrade) + 1) * SellingPrice;
 	}
 
+	UFUNCTION(BlueprintCallable)
+	virtual EResourceGrade GetGrade() override
+	{
+		return CropGrade;
+	}
+
+protected:
 	UPROPERTY(EditAnywhere)
-	ECropGrade CropGrade;
+	EResourceGrade CropGrade;
 };

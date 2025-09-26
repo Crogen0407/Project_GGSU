@@ -7,6 +7,7 @@
 #include "ResourceSystem/GGSUCurrencyDataAsset.h"
 #include "GGSUResourceSetDataAsset.generated.h"
 
+class UGGSUItemDataAsset;
 class AGGSUCrop;
 class UGGSUResourceDataAsset;
 class UGGSUCropSeedDataAsset;
@@ -19,9 +20,23 @@ class PROJECT_GGSU_API UGGSUResourceSetDataAsset : public UPrimaryDataAsset
 public:
 	UGGSUCropSeedDataAsset* GetCropSeedAsset(FName Name);
 	UGGSUCurrencyDataAsset* GetCurrencyAssets(FName Name);
-	TArray<UGGSUCropSeedDataAsset*> GetCropSeedAssets() const;
-	TArray<UGGSUCurrencyDataAsset*> GetCurrencyAssets() const;
-	TArray<UGGSUResourceDataAsset*> GetOtherAssets() const;
+	TArray<UGGSUCropSeedDataAsset*> GetCropSeedAssets() const
+	{
+		return CropSeedAssets;
+	}
+	TArray<UGGSUCurrencyDataAsset*> GetCurrencyAssets() const
+	{
+		return CurrencyAssets;
+	}
+	TArray<UGGSUResourceDataAsset*> GetOtherAssets() const
+	{
+		return OtherAssets;
+	}
+
+	TArray<UGGSUItemDataAsset*> GetItemsAssets() const
+	{
+		return ItemAssets;
+	}
 	
 public:
 	int GetCropsCount() const
@@ -36,4 +51,6 @@ protected:
 	TArray<UGGSUCurrencyDataAsset*> CurrencyAssets;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource")
 	TArray<UGGSUResourceDataAsset*> OtherAssets;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource")
+	TArray<UGGSUItemDataAsset*> ItemAssets;
 };

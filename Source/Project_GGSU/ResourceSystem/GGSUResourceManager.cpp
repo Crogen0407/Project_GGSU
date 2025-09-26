@@ -1,6 +1,7 @@
 #include "GGSUResourceManager.h"
 #include "GGSUResourceSetDataAsset.h"
 #include "CropsSystem/GGSUCropSeedDataAsset.h"
+#include "ResourceSystem/ItemSystem/GGSUItemDataAsset.h"
 
 UGGSUResourceManager::UGGSUResourceManager()
 {
@@ -41,6 +42,14 @@ void UGGSUResourceManager::Initialize(FSubsystemCollectionBase& Collection)
 	{
 		ResourceAmount.Add(OtherDataAsset, 0);
 		ResourceChangedEvents.Add(OtherDataAsset, {});
+	}
+
+	// 아이템 관련 초기화
+	const TArray<UGGSUItemDataAsset*> ItemDataAssets = ResourceSetDataAsset->GetItemsAssets();
+	for (UGGSUItemDataAsset* ItemDataAsset : ItemDataAssets)
+	{
+		ResourceAmount.Add(ItemDataAsset, 0);
+		ResourceChangedEvents.Add(ItemDataAsset, {});
 	}
 }
 

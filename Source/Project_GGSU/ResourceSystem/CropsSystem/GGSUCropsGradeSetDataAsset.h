@@ -10,12 +10,12 @@ class PROJECT_GGSU_API UGGSUCropsGradeSetDataAsset : public UDataAsset
 	GENERATED_BODY()
 
 public:
-	UGGSUCropDataAsset* GetCrop(const ECropGrade CropGrade)
+	UGGSUCropDataAsset* GetCrop(const EResourceGrade CropGrade)
 	{
 		return Crops[CropGrade];
 	}
 	
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TMap<ECropGrade, UGGSUCropDataAsset*> Crops;
+	TMap<EResourceGrade, UGGSUCropDataAsset*> Crops;
 };

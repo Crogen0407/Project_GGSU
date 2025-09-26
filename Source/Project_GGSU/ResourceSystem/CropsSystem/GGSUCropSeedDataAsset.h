@@ -10,7 +10,7 @@ class PROJECT_GGSU_API UGGSUCropSeedDataAsset : public UGGSUResourceDataAsset
 	GENERATED_BODY()
 
 public:
-	virtual UGGSUCropDataAsset* GetCrop(const ECropGrade CropGrade) const
+	virtual UGGSUCropDataAsset* GetCrop(const EResourceGrade CropGrade) const
 	{
 		return Crops[CropGrade];
 	}
@@ -33,5 +33,5 @@ protected:
 	float GrowthTime;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TMap<ECropGrade, UGGSUCropDataAsset*> Crops;
+	TMap<EResourceGrade, UGGSUCropDataAsset*> Crops;
 };

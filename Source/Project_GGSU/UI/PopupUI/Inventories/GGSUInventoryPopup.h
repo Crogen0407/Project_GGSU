@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ResourceSystem/GGSUGradeResource.h"
 #include "UI/GGSUUserWidget.h"
 #include "GGSUInventoryPopup.generated.h"
 
@@ -22,6 +23,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	UTexture2D* IconTexture;
+
+	bool IsGradeResource = false;
+	EResourceGrade ResourceGrade;
 };
 
 class UTileView;
