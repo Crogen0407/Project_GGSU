@@ -8,8 +8,8 @@
 #include "GGSUResourceSetDataAsset.generated.h"
 
 class AGGSUCrop;
-class UGGSUCropDataAsset;
 class UGGSUResourceDataAsset;
+class UGGSUCropSeedDataAsset;
 
 UCLASS()
 class PROJECT_GGSU_API UGGSUResourceSetDataAsset : public UPrimaryDataAsset
@@ -17,21 +17,21 @@ class PROJECT_GGSU_API UGGSUResourceSetDataAsset : public UPrimaryDataAsset
 	GENERATED_BODY()
 
 public:
-	UGGSUCropDataAsset* GetCropsAsset(FName Name);
+	UGGSUCropSeedDataAsset* GetCropSeedAsset(FName Name);
 	UGGSUCurrencyDataAsset* GetCurrencyAssets(FName Name);
-	TArray<UGGSUCropDataAsset*> GetCropAssets() const;
+	TArray<UGGSUCropSeedDataAsset*> GetCropSeedAssets() const;
 	TArray<UGGSUCurrencyDataAsset*> GetCurrencyAssets() const;
 	TArray<UGGSUResourceDataAsset*> GetOtherAssets() const;
 	
 public:
 	int GetCropsCount() const
 	{
-		return CropsAssets.Num();
+		return CropSeedAssets.Num();
 	}
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource")
-	TArray<UGGSUCropDataAsset*> CropsAssets;
+	TArray<UGGSUCropSeedDataAsset*> CropSeedAssets;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource")
 	TArray<UGGSUCurrencyDataAsset*> CurrencyAssets;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Resource")

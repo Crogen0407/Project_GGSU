@@ -1,6 +1,6 @@
 #include "GGSUResourceManager.h"
 #include "GGSUResourceSetDataAsset.h"
-#include "CropsSystem/GGSUCropDataAsset.h"
+#include "CropsSystem/GGSUCropSeedDataAsset.h"
 
 UGGSUResourceManager::UGGSUResourceManager()
 {
@@ -20,8 +20,8 @@ void UGGSUResourceManager::Initialize(FSubsystemCollectionBase& Collection)
 	Super::Initialize(Collection);
 
 	// 작물 에셋 초기화
-	const TArray<UGGSUCropDataAsset*> CropDataAssets = ResourceSetDataAsset->GetCropAssets();
-	for (UGGSUCropDataAsset* CropDataAsset : CropDataAssets)
+	const TArray<UGGSUCropSeedDataAsset*> CropDataAssets = ResourceSetDataAsset->GetCropSeedAssets();
+	for (UGGSUCropSeedDataAsset* CropDataAsset : CropDataAssets)
 	{
 		ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CropDataAsset), 0);
 		ResourceChangedEvents.Add(Cast<UGGSUResourceDataAsset>(CropDataAsset), {});

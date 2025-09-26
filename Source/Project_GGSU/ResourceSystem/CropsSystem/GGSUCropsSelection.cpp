@@ -1,11 +1,11 @@
 #include "ResourceSystem/CropsSystem/GGSUCropsSelection.h"
 
-void UGGSUCropsSelection::SetSelectedCrop(UGGSUCropDataAsset* NewCropDataAsset)
+void UGGSUCropsSelection::SetSelectedCropSeed(UGGSUCropSeedDataAsset* NewCropSeed)
 {
-	SelectedCropDataAsset = NewCropDataAsset;
+	SelectedCropSeed = NewCropSeed;
 }
 
-UGGSUCropDataAsset* UGGSUCropsSelection::GetSelectedCrop() const
+UGGSUCropSeedDataAsset* UGGSUCropsSelection::GetSelectedCropSeed() const
 {
-	return SelectedCropDataAsset;
+	return SelectedCropSeed;
 }

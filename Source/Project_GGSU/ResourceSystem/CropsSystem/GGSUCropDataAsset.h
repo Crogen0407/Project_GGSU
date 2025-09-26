@@ -27,13 +27,6 @@ public:
 		return (static_cast<int>(CropGrade) + 1) * SellingPrice;
 	}
 
-public:
-	UPROPERTY(EditAnywhere)
-	TArray<UStaticMesh*> StaticMeshes;
-
 	UPROPERTY(EditAnywhere)
 	ECropGrade CropGrade;
-	
-	UPROPERTY(EditAnywhere, meta = (Units = "min"))
-	float GrowthTime;
 };

@@ -7,11 +7,18 @@
 #include "ResourceSystem/GGSUResourceDataAsset.h"
 #include "GGSUItemDataAsset.generated.h"
 
-/**
- * 
- */
+class UGGSUItemEffect;
+
 UCLASS()
 class PROJECT_GGSU_API UGGSUItemDataAsset : public UGGSUResourceDataAsset
 {
 	GENERATED_BODY()
+
+public:
+	UGGSUItemEffect* GetEffect(UObject* Owner);
+	
+public:
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<UGGSUItemEffect> ItemEffect;
+	
 };

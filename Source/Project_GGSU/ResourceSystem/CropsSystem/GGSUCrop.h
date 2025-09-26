@@ -6,7 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "GGSUCrop.generated.h"
 
-class UGGSUCropDataAsset;
+class UGGSUCropSeedDataAsset;
 
 UCLASS()
 class PROJECT_GGSU_API AGGSUCrop : public AActor
@@ -18,7 +18,7 @@ public:
 	AGGSUCrop();
 
 public:
-	virtual void Initialize(UGGSUCropDataAsset* CropsDataAsset);
+	virtual void Initialize(UGGSUCropSeedDataAsset* CropSeed);
 	
 public:	
 	// Called every frame
@@ -39,5 +39,5 @@ public:
 
 public:
 	UPROPERTY(EditAnywhere)
-	TObjectPtr<UGGSUCropDataAsset> CachedCropsDataAsset;
+	TObjectPtr<UGGSUCropSeedDataAsset> CachedCropSeed;
 };

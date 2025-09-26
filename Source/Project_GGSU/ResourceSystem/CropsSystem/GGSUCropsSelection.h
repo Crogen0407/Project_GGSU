@@ -5,7 +5,7 @@
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "GGSUCropsSelection.generated.h"
 
-class UGGSUCropDataAsset;
+class UGGSUCropSeedDataAsset;
 
 UCLASS()
 class PROJECT_GGSU_API UGGSUCropsSelection : public UGameInstanceSubsystem
@@ -13,10 +13,10 @@ class PROJECT_GGSU_API UGGSUCropsSelection : public UGameInstanceSubsystem
 	GENERATED_BODY()
 
 public:
-	void SetSelectedCrop(UGGSUCropDataAsset* NewCropDataAsset);
-	UGGSUCropDataAsset* GetSelectedCrop() const;
+	void SetSelectedCropSeed(UGGSUCropSeedDataAsset* NewCropSeed);
+	UGGSUCropSeedDataAsset* GetSelectedCropSeed() const;
 
 protected:
 	UPROPERTY(Transient)
-	TObjectPtr<UGGSUCropDataAsset> SelectedCropDataAsset;
+	TObjectPtr<UGGSUCropSeedDataAsset> SelectedCropSeed;
 };

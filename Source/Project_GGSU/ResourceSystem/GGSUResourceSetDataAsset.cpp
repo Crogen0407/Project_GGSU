@@ -1,9 +1,10 @@
 #include "ResourceSystem/GGSUResourceSetDataAsset.h"
 #include "CropsSystem/GGSUCropDataAsset.h"
+#include "CropsSystem/GGSUCropSeedDataAsset.h"
 
-UGGSUCropDataAsset* UGGSUResourceSetDataAsset::GetCropsAsset(FName Name)
+UGGSUCropSeedDataAsset* UGGSUResourceSetDataAsset::GetCropSeedAsset(FName Name)
 {
-	for (auto CropsAsset : CropsAssets)
+	for (auto CropsAsset : CropSeedAssets)
 	{
 		if (CropsAsset->GetName().IsEqual(Name))
 		 	return CropsAsset;
@@ -23,9 +24,9 @@ UGGSUCurrencyDataAsset* UGGSUResourceSetDataAsset::GetCurrencyAssets(FName Name)
 	return nullptr;
 }
 
-TArray<UGGSUCropDataAsset*> UGGSUResourceSetDataAsset::GetCropAssets() const
+TArray<UGGSUCropSeedDataAsset*> UGGSUResourceSetDataAsset::GetCropSeedAssets() const
 {
-	return CropsAssets;
+	return CropSeedAssets;
 }
 
 TArray<UGGSUCurrencyDataAsset*> UGGSUResourceSetDataAsset::GetCurrencyAssets() const

@@ -1,6 +1,4 @@
 #include "BuildingSystem/GGSUField.h"
-
-#include "ResourceSystem/CropsSystem/GGSUCropDataAsset.h"
 #include "ResourceSystem/CropsSystem/GGSUCropsGenerator.h"
 #include "ResourceSystem/CropsSystem/GGSUCropsSelection.h"
 #include "ResourceSystem/CropsSystem/GGSUCrop.h"
@@ -19,15 +17,15 @@ void AGGSUField::OnClicked()
 
 	// Crop spawn.
 	if (const UGGSUCropsSelection* CropsSelection = GetGameInstance()->GetSubsystem<UGGSUCropsSelection>(); CropsSelection)
-		if (UGGSUCropDataAsset* CropDataAsset = CropsSelection->GetSelectedCrop())
-			SpawnCrop(CropDataAsset);
+		if (UGGSUCropSeedDataAsset* CropSeed = CropsSelection->GetSelectedCropSeed())
+			SpawnCrop(CropSeed);
 }
 
-void AGGSUField::SpawnCrop(UGGSUCropDataAsset* CropDataAsset)
+void AGGSUField::SpawnCrop(UGGSUCropSeedDataAsset* CropSeed)
 {
 	if (const UGGSUCropsGenerator* CropsGenerator = GetGameInstance()->GetSubsystem<UGGSUCropsGenerator>())
 	{
-		CurrentCrops = CropsGenerator->SpawnCrop(CropDataAsset, GetActorLocation());
+		CurrentCrops = CropsGenerator->SpawnCrop(CropSeed, GetActorLocation());
 	}
 }
 
