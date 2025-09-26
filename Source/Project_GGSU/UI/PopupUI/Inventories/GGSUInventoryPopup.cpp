@@ -14,7 +14,7 @@ void UGGSUInventoryPopup::Show_Implementation(float Duration)
 	{
 		for (auto ResourcePair : ResourceManager->ResourceAmount)
 		{
-			if (ResourcePair.Value > 0 && nullptr == Cast<UGGSUCurrencyDataAsset>(ResourcePair.Key))
+			if (nullptr == Cast<UGGSUCurrencyDataAsset>(ResourcePair.Key))
 				AddElement(ResourcePair.Key, ResourcePair.Value);
 		}
 	}
