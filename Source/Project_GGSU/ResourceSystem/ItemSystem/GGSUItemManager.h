@@ -18,6 +18,8 @@ class PROJECT_GGSU_API UGGSUItemManager : public UTickableWorldSubsystem
 
 public:
 	virtual void Tick(float DeltaTime) override;
+	virtual ETickableTickType GetTickableTickType() const override;
+	virtual TStatId GetStatId() const override;
 
 public:
 	UPROPERTY(Transient)

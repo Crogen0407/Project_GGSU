@@ -15,3 +15,13 @@ void UGGSUItemManager::Tick(float DeltaTime)
 			Effect->Tick(DeltaTime);
 	}
 }
+
+ETickableTickType UGGSUItemManager::GetTickableTickType() const
+{
+	return ETickableTickType::Always;
+}
+
+TStatId UGGSUItemManager::GetStatId() const
+{
+	RETURN_QUICK_DECLARE_CYCLE_STAT(UMyWorldSubsystem, STATGROUP_Tickables);
+}
