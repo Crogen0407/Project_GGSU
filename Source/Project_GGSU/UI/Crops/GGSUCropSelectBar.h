@@ -6,6 +6,8 @@
 #include "Blueprint/UserWidget.h"
 #include "GGSUCropSelectBar.generated.h"
 
+class UGGSUResourceDataAsset;
+class UGGSUResourceManager;
 class UGGSUResourceSetDataAsset;
 class UGGSUCropIcon;
 class UHorizontalBox;
@@ -19,15 +21,25 @@ protected:
 	virtual void NativeConstruct() override;
 
 	void CreateCropElements();
+	
+	UFUNCTION()
+	void HandleChangeCropSeedCount(UGGSUResourceDataAsset* Type, int Value);
 
 public:
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UHorizontalBox> CropIcons;
-	
+
+public:	
 	// 에디터에서 생성할 자식 위젯의 WBP 클래스를 지정할 수 있습니다.
-	UPROPERTY(EditDefaultsOnly, Category = "Crop")
+	UPROPERTY(EditDefaultsOnly, Category = "CropSelectBar")
 	TSubclassOf<UGGSUCropIcon> ItemWidgetClass;
 
-	UPROPERTY(EditAnywhere, Category = "Crop")
-	UGGSUResourceSetDataAsset* CropSetDataAsset;
+	UPROPERTY(EditAnywhere, Category = "CropSelectBar")
+	UGGSUResourceSetDataAsset* ResourceSetDataAsset;
+
+	UPROPERTY(Transient)
+	UGGSUResourceManager* CachedResourceManager;
+
+	UPROPERTY(Transient)
+	TMap<UGGSUResourceDataAsset*, UGGSUCropIcon*> CropIconMap;
 };

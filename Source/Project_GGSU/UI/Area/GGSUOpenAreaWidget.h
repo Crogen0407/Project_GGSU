@@ -21,7 +21,7 @@ public:
 	UFUNCTION()
 	void OnBuyBtnClick();
 	
-	void SettingUI(int price, AArea* owner);
+	void Setup(int Price, AArea* Owner);
 	
 protected:
 	UPROPERTY(meta = (BindWidget))

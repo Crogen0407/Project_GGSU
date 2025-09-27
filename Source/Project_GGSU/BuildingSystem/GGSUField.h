@@ -18,7 +18,9 @@ class PROJECT_GGSU_API AGGSUField : public AGGSUBuilding
 	
 public:
 	virtual void OnClicked() override;
+	virtual void OnUnlock() override;
 	void SpawnCrop(UGGSUCropSeedDataAsset* CropSeed);
+	
 	bool HarvestCurrentCrops();
 	
 protected:

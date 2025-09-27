@@ -16,7 +16,7 @@ protected:
 	virtual void NativeOnInitialized() override;
 
 public:
-	virtual void Setup(const FText& Text) override;
+	virtual void Setup(const FText Text) override;
 	
 public:
 	UPROPERTY(meta=(BindWidget))

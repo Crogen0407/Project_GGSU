@@ -6,6 +6,7 @@
 #include "UI/GGSUUserWidget.h"
 #include "GGSUCropIcon.generated.h"
 
+class UTextBlock;
 class UButton;
 class UImage;
 class UGGSUCropSeedDataAsset;
@@ -19,7 +20,9 @@ public:
 	void SetTargetCropSeed(UGGSUCropSeedDataAsset* InCropSeed);
 
 	UFUNCTION()
-	void HandleSelectTargetCrop(); 
+	void HandleSelectTargetCrop();
+
+	void SetCount(int Count);
 	
 public:
 	UPROPERTY(Transient, BlueprintReadOnly)
@@ -30,4 +33,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
 	UButton* Button;
+
+	UPROPERTY(BlueprintReadOnly, meta=(BindWidget))
+	UTextBlock* CountText;
 };

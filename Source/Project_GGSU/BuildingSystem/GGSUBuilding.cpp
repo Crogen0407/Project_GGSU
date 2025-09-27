@@ -33,9 +33,6 @@ AGGSUBuilding::AGGSUBuilding()
 void AGGSUBuilding::BeginPlay()
 {
 	Super::BeginPlay();
-
-	if (false == IsUnlocked)
-		Visual->SetScalarParameterValueOnMaterials(FName("IsLock"), 1.f);
 }
 
 // Called every frame
@@ -61,6 +58,31 @@ void AGGSUBuilding::OnUnhovered()
 void AGGSUBuilding::OnUnlock()
 {
 	IsUnlocked = true;
-	Visual->SetScalarParameterValueOnMaterials(FName("IsLocked"), 0.f);
+}
+
+void AGGSUBuilding::Disable()
+{
+	SetActorHiddenInGame(true);
+	SetActorTickEnabled(false);
+
+	if (BoxComponent)
+	{
+		BoxComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		BoxComponent->SetGenerateOverlapEvents(false);
+		BoxComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Ignore);
+	}
+}
+
+void AGGSUBuilding::Enable()
+{
+	SetActorHiddenInGame(false);
+	SetActorTickEnabled(true);
+
+	if (BoxComponent)
+	{
+		BoxComponent->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+		BoxComponent->SetGenerateOverlapEvents(true);
+		BoxComponent->SetCollisionResponseToAllChannels(ECollisionResponse::ECR_Block);
+	}
 }
 

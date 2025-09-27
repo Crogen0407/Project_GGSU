@@ -9,6 +9,7 @@
 #include "ResourceSystem/GGSUResourceManager.h"
 #include "Area.generated.h"
 
+class UGGSUMessageBox;
 class AGGSUBuilding;
 
 UCLASS()
@@ -26,6 +27,7 @@ public:
 	void SetActiveUI(bool active);
 
 	TArray<AGGSUField*> GetFields();
+	
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	bool IsUnlockArea = false;
@@ -38,6 +40,11 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	UGGSUCurrencyDataAsset* GoldItemData;
 
+	// 구역 해금 자원
+	UPROPERTY(EditAnywhere, Category = "Area")
+	TSubclassOf<UGGSUMessageBox> MessageBoxClass;
+
+public:
 	// 구역의 모든 땅
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	TArray<AGGSUBuilding*> FanceBuildings;
@@ -45,12 +52,12 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
 	TArray<AGGSUField*> FieldBuildings;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Area")
-	UGGSUResourceManager* ResourceInstance;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Area")
 	TObjectPtr<class UWidgetComponent> OpenAreaWidgetComponent;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Area")
 	TObjectPtr<USceneComponent> RootSceneComponent;
+
+	UPROPERTY(Transient)
+	UGGSUResourceManager* ResourceInstance;
 };

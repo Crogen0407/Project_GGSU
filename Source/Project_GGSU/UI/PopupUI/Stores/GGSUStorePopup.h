@@ -6,6 +6,7 @@
 #include "UI/GGSUUserWidget.h"
 #include "GGSUStorePopup.generated.h"
 
+class UGGSUResourceDataAsset;
 class UGGSUStoreCategory;
 class UGGSUStoreCategoryButton;
 class UWidgetSwitcher;
@@ -22,6 +23,9 @@ class PROJECT_GGSU_API UGGSUStorePopup : public UGGSUUserWidget
 protected:
 	virtual void NativeOnInitialized() override;
 
+	int GetSellingPrice(UGGSUResourceDataAsset* ResourceDataAsset,int DefaultPrice);
+	int GenerateAndPrintRandomNumbers(int Seed);
+	
 public:
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UHorizontalBox> StoreCategoryButtons;
@@ -45,4 +49,7 @@ public:
 
 private:
 	int CachedCategoryIndex;
+
+	UPROPERTY(Transient)
+	FRandomStream RandomStream;
 };

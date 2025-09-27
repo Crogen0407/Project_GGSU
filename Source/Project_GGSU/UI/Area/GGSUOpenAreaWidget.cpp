@@ -14,18 +14,14 @@ void UGGSUOpenAreaWidget::NativeConstruct()
 	}
 }
 
-void UGGSUOpenAreaWidget::SettingUI(int price, AArea* owner)
+void UGGSUOpenAreaWidget::Setup(const int Price, AArea* Owner)
 {
-	OwnerArea = owner;
-	FText PriceText = FText::Format(FText::FromString(TEXT("{0}")), FText::AsNumber(price));
+	OwnerArea = Owner;
+	const FText PriceText = FText::Format(FText::FromString(TEXT("{0}")), FText::AsNumber(Price));
 	Price_Txt->SetText(PriceText);
 }
 
 void UGGSUOpenAreaWidget::OnBuyBtnClick()
 {
-	if (OwnerArea->UnlockArea())
-	{
-		OwnerArea->SetActiveUI(true);
-		UE_LOG(LogTemp, Warning, TEXT("hide ui"));
-	}
+	OwnerArea->UnlockArea();
 }

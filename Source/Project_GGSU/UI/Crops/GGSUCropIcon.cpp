@@ -1,6 +1,7 @@
 #include "UI/Crops/GGSUCropIcon.h"
 #include "Components/Image.h"
 #include "Components/Button.h"
+#include "Components/TextBlock.h"
 #include "ResourceSystem/CropsSystem/GGSUCropSeedDataAsset.h"
 #include "ResourceSystem/CropsSystem/GGSUCropsSelection.h"
 
@@ -21,6 +22,11 @@ void UGGSUCropIcon::HandleSelectTargetCrop()
 	{
 		CropsSelection->SetSelectedCropSeed(TargetCrop);
 	}
+}
+
+void UGGSUCropIcon::SetCount(const int Count)
+{
+	CountText->SetText(FText::FromString(FString::FromInt(Count)));
 }
 
 

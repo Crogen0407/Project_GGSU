@@ -15,8 +15,8 @@ class PROJECT_GGSU_API UGGSUMessageBox : public UGGSUUserWidget
 	GENERATED_BODY()
 
 public:
-	virtual void Setup(const FText& Text);
-	void AddButton(const FText& Text, const TFunction<void()>& ClickCallback);
+	virtual void Setup(const FText Text);
+	void AddButton(const FText Text, const TFunction<void()>& ClickCallback);
 
 protected:
 	UPROPERTY()

@@ -30,7 +30,11 @@ public:
 	virtual void OnClicked() override;
 	virtual void OnHovered() override;
 	virtual void OnUnhovered() override;
-	void OnUnlock();
+
+public:
+	virtual void OnUnlock();
+	virtual void Disable();
+	virtual void Enable();
 
 public:
 	UPROPERTY(VisibleAnywhere)

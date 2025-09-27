@@ -21,6 +21,12 @@ void AGGSUField::OnClicked()
 			SpawnCrop(CropSeed);
 }
 
+void AGGSUField::OnUnlock()
+{
+	Enable();
+	Super::OnUnlock();
+}
+
 void AGGSUField::SpawnCrop(UGGSUCropSeedDataAsset* CropSeed)
 {
 	if (const UGGSUCropsGenerator* CropsGenerator = GetGameInstance()->GetSubsystem<UGGSUCropsGenerator>())

@@ -7,6 +7,7 @@
 #include "UI/PopupUI/Stores/GGSUStoreCategoryButton.h"
 #include "UI/PopupUI/Stores/GGSUStoreCategory.h"
 #include "Components/HorizontalBoxSlot.h"
+#include "DateSystem/GGSUDateManager.h"
 #include "ResourceSystem/GGSUResourceDataAsset.h"
 
 void UGGSUStorePopup::NativeOnInitialized()
@@ -55,7 +56,7 @@ void UGGSUStorePopup::NativeOnInitialized()
 				if (const auto NewStoreElement = CreateWidget<UGGSUStoreElement>(this, StoreElementClass))
 				{
 					// 초기화, Switcher에 자식으로 추가 및 사이즈 조절
-					NewStoreElement->Setup(Item.Key, Item.Value);
+					NewStoreElement->Setup(Item.Key, GetSellingPrice(Item.Key, Item.Value));
 					NewStoreCategory->StoreElementList->AddChild(NewStoreElement);
 					NewStoreElement->SetPadding(FMargin(50.0f));
 				}
@@ -66,3 +67,26 @@ void UGGSUStorePopup::NativeOnInitialized()
 		CachedCategoryIndex++; 
 	}
 }
+
+int UGGSUStorePopup::GetSellingPrice(UGGSUResourceDataAsset* ResourceDataAsset, int DefaultPrice)
+{
+	const FDateTime Time = UGGSUDateManager::GetTime();
+		
+	const int32 Day = Time.GetDay();
+	const int32 Month = Time.GetMonth();
+	const int32 Year = Time.GetYear();
+	const int32 RandomSeed = Day + Month + Year + GetTypeHash(ResourceDataAsset->GetName());
+		
+	const int RandomRange = GenerateAndPrintRandomNumbers(RandomSeed);
+		
+	return DefaultPrice + RandomRange;
+}
+
+int UGGSUStorePopup::GenerateAndPrintRandomNumbers(int Seed)
+{
+	RandomStream.Initialize(Seed);
+	const int32 RandomInt = RandomStream.RandRange(-5, 5);
+
+	return RandomInt;
+}
+
