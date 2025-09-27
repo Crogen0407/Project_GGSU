@@ -26,7 +26,7 @@ public:
 	virtual void OnUnlock() override;
 	void SpawnCrop(UGGSUCropSeedDataAsset* CropSeed);
 	
-	bool HarvestCurrentCrops();
+	bool HarvestCurrentCrops() const;
 	
 protected:
 	UPROPERTY(Transient)
@@ -37,4 +37,7 @@ protected:
 
 	UPROPERTY(Transient)
 	UGGSUResourceManager* CachedResourceManager;
+
+	UPROPERTY(Transient)
+	UGGSUCropSeedDataAsset* TargetCropSeed;
 };

@@ -31,14 +31,20 @@ void AGGSUCrop::Tick(float DeltaTime)
 
 	Age = UGGSUDateManager::GetTime() - SpawnTime;
 
-	UStaticMesh* CurrentMesh = GetCurrentStaticMesh();
-	if (MeshComponent->GetStaticMesh() != CurrentMesh)
+	if (UStaticMesh* CurrentMesh = GetCurrentStaticMesh(); MeshComponent->GetStaticMesh() != CurrentMesh)
 	{
-		for (int i = 0; i < 4; ++i)
-		{
-			MeshComponent->SetStaticMesh(CurrentMesh);
-		}
+		MeshComponent->SetStaticMesh(CurrentMesh);
 	}
+
+	if (IsCropFullyGrown())
+	{
+		// TODO : 반짝반짝
+	}
+}
+
+bool AGGSUCrop::IsCropFullyGrown() const
+{
+	return Age.GetTotalMinutes() / CachedCropSeed->GetGrowthTime() >= 1.f;
 }
 
 UStaticMesh* AGGSUCrop::GetCurrentStaticMesh() const

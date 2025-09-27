@@ -55,13 +55,13 @@ void AGGSUField::SpawnCrop(UGGSUCropSeedDataAsset* CropSeed)
 	}
 }
 
-bool AGGSUField::HarvestCurrentCrops()
+bool AGGSUField::HarvestCurrentCrops() const
 {
 	// TODO : 다 자랐는지 확인
-	if (false)
+	if (CurrentCrops->IsCropFullyGrown())
 	{
-		// TODO : 저장소에 자원 넣는 로직
-		// 어쩌구저쩌구
+		// TODO : 등급 반영
+		GetGameInstance()->GetSubsystem<UGGSUResourceManager>()->AddResource(TargetCropSeed->GetCrop(EResourceGrade::D), 1);
 
 		// 오브젝트 없애기
 		if (UWorld* World = GetWorld())
@@ -70,7 +70,5 @@ bool AGGSUField::HarvestCurrentCrops()
 		return true; 
 	}
 
-
-	// TODO : 메시지 띄우기
 	return false;		
 }
