@@ -15,7 +15,7 @@ enum EResourceType
 	
 };
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FResourceChangedEvent, int, CurrentResourceAmount);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FResourceChangedEvent, UGGSUResourceDataAsset*, ResourceDataAsset, int, CurrentResourceAmount);
 
 class UGGSUResourceDataAsset;
 class UGGSUResourceSetDataAsset;
@@ -36,9 +36,9 @@ public:
 public:
 	UFUNCTION(BlueprintCallable)
 	int GetResource(const UGGSUResourceDataAsset* Type) { return ResourceAmount[Type]; }
-	void AddResource(const UGGSUResourceDataAsset* Type, int Value);
-	void RemoveResource(const UGGSUResourceDataAsset* Type, int Value);
-	bool TryRemoveResource(const UGGSUResourceDataAsset* Type, int Value);
+	void AddResource(UGGSUResourceDataAsset* Type, int Value);
+	void RemoveResource(UGGSUResourceDataAsset* Type, int Value);
+	bool TryRemoveResource(UGGSUResourceDataAsset* Type, int Value);
 	
 public:
 	UPROPERTY(EditAnywhere)

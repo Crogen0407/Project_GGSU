@@ -24,7 +24,7 @@ protected:
 	
 private:
 	UFUNCTION()
-	void HandleChangeAmountText(int CurrentAmount);
+	void HandleChangeAmountText(UGGSUResourceDataAsset* ResourceDataAsset, int CurrentAmount);
 	
 public:
 	UPROPERTY(meta=(BindWidget))

@@ -54,22 +54,22 @@ void UGGSUResourceManager::Initialize(FSubsystemCollectionBase& Collection)
 	}
 }
 
-void UGGSUResourceManager::AddResource(const UGGSUResourceDataAsset* Type, const int Value)
+void UGGSUResourceManager::AddResource(UGGSUResourceDataAsset* Type, const int Value)
 {
 	ResourceAmount[Type] += Value;
-	ResourceChangedEvents[Type].Broadcast(ResourceAmount[Type]);
+	ResourceChangedEvents[Type].Broadcast(Type, ResourceAmount[Type]);
 }
 
-void UGGSUResourceManager::RemoveResource(const UGGSUResourceDataAsset* Type, const int Value)
+void UGGSUResourceManager::RemoveResource(UGGSUResourceDataAsset* Type, const int Value)
 {
 	if (ResourceAmount[Type] >= Value)
 	{
 		ResourceAmount[Type] -= Value;
-		ResourceChangedEvents[Type].Broadcast(ResourceAmount[Type]);
+		ResourceChangedEvents[Type].Broadcast(Type, ResourceAmount[Type]);
 	}
 }
 
-bool UGGSUResourceManager::TryRemoveResource(const UGGSUResourceDataAsset* Type, const int Value)
+bool UGGSUResourceManager::TryRemoveResource(UGGSUResourceDataAsset* Type, const int Value)
 {
 	if (ResourceAmount.Contains(Type) == false)
 	{
@@ -79,7 +79,7 @@ bool UGGSUResourceManager::TryRemoveResource(const UGGSUResourceDataAsset* Type,
 	if (ResourceAmount[Type] >= Value)
 	{
 		ResourceAmount[Type] -= Value;
-		ResourceChangedEvents[Type].Broadcast(ResourceAmount[Type]);
+		ResourceChangedEvents[Type].Broadcast(Type, ResourceAmount[Type]);
 		return true;
 	}
 	return false;

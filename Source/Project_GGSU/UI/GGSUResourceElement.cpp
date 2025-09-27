@@ -30,7 +30,7 @@ void UGGSUResourceElement::NativeDestruct()
 	}
 }
 
-void UGGSUResourceElement::HandleChangeAmountText(int CurrentAmount)
+void UGGSUResourceElement::HandleChangeAmountText(UGGSUResourceDataAsset* ResourceDataAsset, int CurrentAmount)
 {
 	AmountText->SetText(FText::AsNumber(CurrentAmount));
 }

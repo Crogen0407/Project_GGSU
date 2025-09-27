@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "DateSystem/GGSUDateManager.h"
 #include "Engine/DataAsset.h"
 #include "ResourceSystem/GGSUGradeResource.h"
 #include "ResourceSystem/GGSUResourceDataAsset.h"
@@ -14,11 +15,11 @@ class PROJECT_GGSU_API UGGSUCropDataAsset : public UGGSUResourceDataAsset, publi
 	GENERATED_BODY()
 
 public:
-	virtual int GetSellingPrice() override
-	{
-		return (static_cast<int>(CropGrade) + 1) * SellingPrice;
-	}
+	virtual int GetSellingPrice() override;
 
+	UFUNCTION(BlueprintCallable, Category = "CropDataAsset")
+	int GenerateAndPrintRandomNumbers(int Seed);
+	
 	UFUNCTION(BlueprintCallable)
 	virtual EResourceGrade GetGrade() override
 	{
@@ -28,4 +29,7 @@ public:
 protected:
 	UPROPERTY(EditAnywhere)
 	EResourceGrade CropGrade;
+	
+	UPROPERTY(Transient)
+	FRandomStream RandomStream;
 };

@@ -39,7 +39,7 @@ public:
 	}
 	
 public:
-	int GetCropsCount() const
+	int GetCropSeedsCount() const
 	{
 		return CropSeedAssets.Num();
 	}
