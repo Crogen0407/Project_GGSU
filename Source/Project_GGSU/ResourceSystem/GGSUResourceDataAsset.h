@@ -14,6 +14,7 @@ public:
 	virtual TObjectPtr<UTexture2D> GetIconTexture() { return IconTexture; }
 	virtual FName GetName() { return Name; }
 	virtual FString GetDescription() { return Description; }
+	virtual int GetDefaultValue() { return DefaultValue; }
 	
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -27,4 +28,7 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	int SellingPrice;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	int DefaultValue;
 };

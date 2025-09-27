@@ -13,8 +13,4 @@ UCLASS()
 class PROJECT_GGSU_API UGGSUCurrencyDataAsset : public UGGSUResourceDataAsset
 {
 	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	int DefaultValue;
 };

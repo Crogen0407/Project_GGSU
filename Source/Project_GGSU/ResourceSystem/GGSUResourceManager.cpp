@@ -1,4 +1,5 @@
 #include "GGSUResourceManager.h"
+
 #include "GGSUResourceSetDataAsset.h"
 #include "CropsSystem/GGSUCropSeedDataAsset.h"
 #include "ResourceSystem/ItemSystem/GGSUItemDataAsset.h"
@@ -24,7 +25,7 @@ void UGGSUResourceManager::Initialize(FSubsystemCollectionBase& Collection)
 	const TArray<UGGSUCropSeedDataAsset*> CropDataAssets = ResourceSetDataAsset->GetCropSeedAssets();
 	for (UGGSUCropSeedDataAsset* CropDataAsset : CropDataAssets)
 	{
-		ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CropDataAsset), 0);
+		ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CropDataAsset), CropDataAsset->GetDefaultValue());
 		ResourceChangedEvents.Add(Cast<UGGSUResourceDataAsset>(CropDataAsset), {});
 	}
 
@@ -32,7 +33,7 @@ void UGGSUResourceManager::Initialize(FSubsystemCollectionBase& Collection)
 	const TArray<UGGSUCurrencyDataAsset*> CurrencyDataAssets = ResourceSetDataAsset->GetCurrencyAssets();
 	for (UGGSUCurrencyDataAsset* CurrencyDataAsset : CurrencyDataAssets)
 	{
-		ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), CurrencyDataAsset->DefaultValue);
+		ResourceAmount.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), CurrencyDataAsset->GetDefaultValue());
 		ResourceChangedEvents.Add(Cast<UGGSUResourceDataAsset>(CurrencyDataAsset), {});
 	}
 
@@ -40,7 +41,7 @@ void UGGSUResourceManager::Initialize(FSubsystemCollectionBase& Collection)
 	const TArray<UGGSUResourceDataAsset*> OtherDataAssets = ResourceSetDataAsset->GetOtherAssets();
 	for (UGGSUResourceDataAsset* OtherDataAsset : OtherDataAssets)
 	{
-		ResourceAmount.Add(OtherDataAsset, 0);
+		ResourceAmount.Add(OtherDataAsset, OtherDataAsset->GetDefaultValue());
 		ResourceChangedEvents.Add(OtherDataAsset, {});
 	}
 
@@ -48,7 +49,7 @@ void UGGSUResourceManager::Initialize(FSubsystemCollectionBase& Collection)
 	const TArray<UGGSUItemDataAsset*> ItemDataAssets = ResourceSetDataAsset->GetItemsAssets();
 	for (UGGSUItemDataAsset* ItemDataAsset : ItemDataAssets)
 	{
-		ResourceAmount.Add(ItemDataAsset, 0);
+		ResourceAmount.Add(ItemDataAsset, ItemDataAsset->GetDefaultValue());
 		ResourceChangedEvents.Add(ItemDataAsset, {});
 	}
 }
