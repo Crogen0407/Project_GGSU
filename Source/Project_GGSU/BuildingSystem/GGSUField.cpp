@@ -1,7 +1,18 @@
 #include "BuildingSystem/GGSUField.h"
+
+#include "ResourceSystem/GGSUResourceManager.h"
 #include "ResourceSystem/CropsSystem/GGSUCropsGenerator.h"
 #include "ResourceSystem/CropsSystem/GGSUCropsSelection.h"
 #include "ResourceSystem/CropsSystem/GGSUCrop.h"
+#include "ResourceSystem/CropsSystem/GGSUCropSeedDataAsset.h"
+
+void AGGSUField::BeginPlay()
+{
+	Super::BeginPlay();
+	
+	CachedCropsSelection = GetGameInstance()->GetSubsystem<UGGSUCropsSelection>();
+	CachedResourceManager = GetGameInstance()->GetSubsystem<UGGSUResourceManager>();
+}
 
 void AGGSUField::OnClicked()
 {
@@ -16,9 +27,18 @@ void AGGSUField::OnClicked()
 	}
 
 	// Crop spawn.
-	if (const UGGSUCropsSelection* CropsSelection = GetGameInstance()->GetSubsystem<UGGSUCropsSelection>(); CropsSelection)
-		if (UGGSUCropSeedDataAsset* CropSeed = CropsSelection->GetSelectedCropSeed())
+	if (CachedCropsSelection == nullptr) return;
+	if (CachedResourceManager == nullptr) return;
+	
+	if (UGGSUCropSeedDataAsset* CropSeed = CachedCropsSelection->GetSelectedCropSeed())
+	{
+		if (CachedResourceManager->GetResource(CropSeed) > 0)
+		{
 			SpawnCrop(CropSeed);
+			CachedResourceManager->RemoveResource(CropSeed, 1);
+		}
+	}
+	
 }
 
 void AGGSUField::OnUnlock()

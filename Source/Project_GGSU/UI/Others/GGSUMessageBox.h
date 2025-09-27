@@ -6,9 +6,9 @@
 #include "UI/GGSUUserWidget.h"
 #include "GGSUMessageBox.generated.h"
 
-/**
- * 
- */
+class UTextBlock;
+class UButton;
+
 UCLASS()
 class PROJECT_GGSU_API UGGSUMessageBox : public UGGSUUserWidget
 {
@@ -32,17 +32,17 @@ protected:
 	
 public:
 	UPROPERTY(meta=(BindWidget))
-	class UTextBlock* TitleText;
+	UTextBlock* TitleText;
 	
 	UPROPERTY(meta=(BindWidget))
-	class UTextBlock* FirstButtonText;
+	UTextBlock* FirstButtonText;
 	
 	UPROPERTY(meta=(BindWidget))
-	class UTextBlock* SecondButtonText;
+	UTextBlock* SecondButtonText;
 	
 	UPROPERTY(meta=(BindWidget))
-	class UButton* FirstButton;
+	UButton* FirstButton;
 	
 	UPROPERTY(meta=(BindWidget))
-	class UButton* SecondButton;
+	UButton* SecondButton;
 };

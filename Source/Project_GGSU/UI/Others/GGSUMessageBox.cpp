@@ -12,9 +12,12 @@ void UGGSUMessageBox::Setup(const FText Text)
 	ButtonCount = 0;
 	FirstButtonClickCallback = nullptr;
 	SecondButtonClickCallback = nullptr;
+	
 	FirstButton->OnClicked.Clear();
 	SecondButton->OnClicked.Clear();
-	
+
+	FirstButton->SetVisibility(ESlateVisibility::Collapsed);
+	SecondButton->SetVisibility(ESlateVisibility::Collapsed);
 	FirstButtonText->SetVisibility(ESlateVisibility::Collapsed);
 	SecondButtonText->SetVisibility(ESlateVisibility::Collapsed);
 	
@@ -30,6 +33,7 @@ void UGGSUMessageBox::AddButton(const FText Text, const TFunction<void()>& Click
 	UTextBlock* TargetButtonText = ButtonCount == 1 ? FirstButtonText : SecondButtonText;
 
 	TargetButtonText->SetText(Text);
+	TargetButtonText->SetVisibility(ESlateVisibility::Visible);
 	TargetButton->SetVisibility(ESlateVisibility::Visible);
 
 	if (ButtonCount == 1)

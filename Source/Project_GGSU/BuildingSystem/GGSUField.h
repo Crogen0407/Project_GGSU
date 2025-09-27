@@ -6,6 +6,8 @@
 #include "BuildingSystem/GGSUBuilding.h"
 #include "GGSUField.generated.h"
 
+class UGGSUResourceManager;
+class UGGSUCropsSelection;
 class AGGSUCrop;
 class UGGSUCropSeedDataAsset;
 
@@ -15,7 +17,10 @@ class PROJECT_GGSU_API AGGSUField : public AGGSUBuilding
 	GENERATED_BODY()
 	
 	virtual ~AGGSUField() override {}
-	
+
+protected:
+	virtual void BeginPlay() override;
+
 public:
 	virtual void OnClicked() override;
 	virtual void OnUnlock() override;
@@ -26,4 +31,10 @@ public:
 protected:
 	UPROPERTY(Transient)
 	TObjectPtr<AGGSUCrop> CurrentCrops;
+	
+	UPROPERTY(Transient)
+	UGGSUCropsSelection* CachedCropsSelection;
+
+	UPROPERTY(Transient)
+	UGGSUResourceManager* CachedResourceManager;
 };
