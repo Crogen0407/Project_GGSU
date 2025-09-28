@@ -75,7 +75,7 @@ int UGGSUStorePopup::GetSellingPrice(UGGSUResourceDataAsset* ResourceDataAsset, 
 	const int32 Day = Time.GetDay();
 	const int32 Month = Time.GetMonth();
 	const int32 Year = Time.GetYear();
-	const int32 RandomSeed = Day + Month + Year + GetTypeHash(ResourceDataAsset->GetName());
+	const int32 RandomSeed = Day + Month + Year + GetTypeHash(ResourceDataAsset->GetName()) + 123564356;
 		
 	const int RandomRange = GenerateAndPrintRandomNumbers(RandomSeed);
 		

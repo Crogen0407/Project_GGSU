@@ -6,6 +6,8 @@
 #include "UI/GGSUUserWidget.h"
 #include "GGSUStoreElement.generated.h"
 
+class UGGSUStoreProductsDataAsset;
+class UGGSUCurrencyDataAsset;
 class UGGSUResourceDataAsset;
 class UGGSUStoreBuyMessageBox;
 class UImage;
@@ -36,11 +38,18 @@ public:
 	UImage* IconImage;
 	
 public:
-	int CachedPrice;
+	UPROPERTY(EditAnywhere, Category=StoreElement)
+	TSubclassOf<UGGSUStoreBuyMessageBox> StoreBuyMessageBoxClass;
+
+	UPROPERTY(EditAnywhere, Category=StoreElement)
+	TObjectPtr<UGGSUStoreProductsDataAsset> StoreProducts;
 	
+	UPROPERTY(EditAnywhere, Category=StoreElement)
+	TObjectPtr<UGGSUCurrencyDataAsset> TargetCurrency;
+	
+public:
 	UPROPERTY(Transient)
 	UGGSUResourceDataAsset* CachedTargetItemDataAsset;
-
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<UGGSUStoreBuyMessageBox> StoreBuyMessageBoxClass;
+	
+	int CachedPrice;
 };

@@ -23,6 +23,13 @@ class PROJECT_GGSU_API UGGSUStoreProductsDataAsset : public UDataAsset
 	GENERATED_BODY()
 
 public:
+	int GetPrice(const UGGSUResourceDataAsset* TargetResource);
+	
+public:
 	UPROPERTY(EditAnywhere)
 	TMap<FString, FProductsGroup> Showcases;
+
+protected:
+	UPROPERTY(Transient)
+	TMap<UGGSUResourceDataAsset*, int> ResourcePrices;
 };

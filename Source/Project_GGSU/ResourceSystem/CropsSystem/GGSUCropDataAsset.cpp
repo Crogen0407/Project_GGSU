@@ -10,7 +10,7 @@ int UGGSUCropDataAsset::GetSellingPrice()
 	const int32 Day = Time.GetDay();
 	const int32 Month = Time.GetMonth();
 	const int32 Year = Time.GetYear();
-	const int32 RandomSeed = Day + Month + Year + GetTypeHash(Name);
+	const int32 RandomSeed = Day + Month + Year + GetTypeHash(Name)+ 98274092;
 		
 	const int RandomRange = GenerateAndPrintRandomNumbers(RandomSeed);
 		

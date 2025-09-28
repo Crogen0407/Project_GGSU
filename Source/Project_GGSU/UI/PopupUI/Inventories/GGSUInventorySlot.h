@@ -23,7 +23,8 @@ protected:
 	virtual void NativeOnListItemObjectSet(UObject* ListItemObject) override;
 
 	void SetGrade(const EResourceGrade Grade) const;
-	
+
+public:
 	UPROPERTY(meta=(BindWidget))
 	TObjectPtr<UTextBlock> CountText;
 
