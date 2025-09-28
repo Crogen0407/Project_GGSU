@@ -44,7 +44,7 @@ void AGGSUBuilding::Tick(float DeltaTime)
 
 void AGGSUBuilding::OnClicked()
 {
-	
+	OpenBuildingEvent.Broadcast();
 }
 
 void AGGSUBuilding::OnHovered()

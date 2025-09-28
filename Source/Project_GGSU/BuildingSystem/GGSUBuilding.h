@@ -7,6 +7,8 @@
 #include "GameFramework/Actor.h"
 #include "GGSUBuilding.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOpenBuildingEvent);
+
 class UStaticMeshComponent;
 class UBoxComponent;
 
@@ -26,7 +28,7 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
-public:	
+public:
 	virtual void OnClicked() override;
 	virtual void OnHovered() override;
 	virtual void OnUnhovered() override;
@@ -37,12 +39,15 @@ public:
 	virtual void Enable();
 
 public:
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category=Building)
 	UStaticMeshComponent* Visual;
 
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY(VisibleAnywhere, Category=Building)
 	UBoxComponent* BoxComponent;
 
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category=Building)
 	bool IsUnlocked = false;
+
+	UPROPERTY(BlueprintAssignable, Category=Building)
+	FOpenBuildingEvent OpenBuildingEvent;
 };
