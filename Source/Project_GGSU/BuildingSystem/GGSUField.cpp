@@ -52,23 +52,49 @@ void AGGSUField::SpawnCrop(UGGSUCropSeedDataAsset* CropSeed)
 	if (const UGGSUCropsGenerator* CropsGenerator = GetGameInstance()->GetSubsystem<UGGSUCropsGenerator>())
 	{
 		CurrentCrops = CropsGenerator->SpawnCrop(CropSeed, GetActorLocation());
+		TargetCropSeed = CropSeed;
 	}
 }
 
-bool AGGSUField::HarvestCurrentCrops() const
+bool AGGSUField::HarvestCurrentCrops()
 {
-	// TODO : 다 자랐는지 확인
-	if (CurrentCrops->IsCropFullyGrown())
+	if (CurrentCrops == nullptr)
 	{
-		// TODO : 등급 반영
-		GetGameInstance()->GetSubsystem<UGGSUResourceManager>()->AddResource(TargetCropSeed->GetCrop(EResourceGrade::D), 1);
-
-		// 오브젝트 없애기
-		if (UWorld* World = GetWorld())
-			World->DestroyActor(CurrentCrops);
-		
-		return true; 
+		UE_LOG(LogTemp, Warning, TEXT("HarvestCurrentCrops: CurrentCrops is nullptr"));
+		return false;
 	}
 
-	return false;		
+	if (!CurrentCrops->IsCropFullyGrown())
+	{
+		UE_LOG(LogTemp, Log, TEXT("HarvestCurrentCrops: Crop is not fully grown yet"));
+		return false;
+	}
+	
+	CachedCropsSelection->SetSelectedCropSeed(nullptr);
+	UGGSUResourceManager* ResourceManager = GetGameInstance()->GetSubsystem<UGGSUResourceManager>();
+	if (ResourceManager && TargetCropSeed)
+	{
+		if (UGGSUCropDataAsset* CropResource = TargetCropSeed->GetCrop(EResourceGrade::D))
+		{
+			ResourceManager->AddResource(CropResource, 1);
+		}
+		else
+		{
+			UE_LOG(LogTemp, Warning, TEXT("HarvestCurrentCrops: TargetCropSeed->GetCrop returned nullptr"));
+		}
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("HarvestCurrentCrops: ResourceManager or TargetCropSeed is nullptr"));
+	}
+
+	if (UWorld* World = GetWorld())
+	{
+		World->DestroyActor(CurrentCrops);
+	}
+
+	CurrentCrops = nullptr;
+	TargetCropSeed = nullptr;
+
+	return true;
 }

@@ -9,3 +9,8 @@ UGGSUItemEffect* UGGSUItemDataAsset::GetEffect(UObject* Owner)
 
 	return NewEffect;
 }
+
+bool UGGSUItemDataAsset::IsCanUse_Implementation(AGGSUBuilding* Owner)
+{
+	return Owner != nullptr;
+}
