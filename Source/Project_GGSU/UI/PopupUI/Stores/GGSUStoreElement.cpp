@@ -38,9 +38,12 @@ void UGGSUStoreElement::HandleBuyItem()
 
 	if (UGGSUResourceManager* ResourceManager = GetGameInstance()->GetSubsystem<UGGSUResourceManager>())
 	{
-		if (ResourceManager->TryRemoveResource(TargetCurrency, CachedPrice))
+		if (CachedTargetItemDataAsset)
 		{
-			ResourceManager->AddResource(CachedTargetItemDataAsset, 1);
+			if (ResourceManager->TryRemoveResource(TargetCurrency, CachedPrice))
+			{
+				ResourceManager->AddResource(CachedTargetItemDataAsset, 1);
+			}	
 		}
 	}
 }

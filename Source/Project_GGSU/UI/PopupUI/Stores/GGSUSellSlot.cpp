@@ -62,7 +62,7 @@ void UGGSUSellSlot::HandleSellTargetResource()
 
 	if (CachedResourceManager->TryRemoveResource(CachedTargetResource, 1))
 	{
-		int SellCost = StoreProducts->GetPrice(CachedTargetResource);
+		const int SellCost = CachedTargetResource->GetSellingPrice();
 		CachedResourceManager->AddResource(TargetCurrency, SellCost);
 		CountText->SetText(FText::FromString(FString::FromInt(CachedResourceManager->GetResource(CachedTargetResource))));
 	}
