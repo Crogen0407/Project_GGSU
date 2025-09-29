@@ -1,6 +1,8 @@
 #include "ResourceSystem/CropsSystem/GGSUCrop.h"
 #include "GGSUCropSeedDataAsset.h"
+#include "Components/WidgetComponent.h"
 #include "DateSystem/GGSUDateManager.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AGGSUCrop::AGGSUCrop()
@@ -9,7 +11,10 @@ AGGSUCrop::AGGSUCrop()
 	PrimaryActorTick.bCanEverTick = true;
 	
 	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
-
+	
+	WidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("MatureCropSign"));
+	WidgetComponent->SetupAttachment(RootComponent);
+	
   	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("MeshComponent");
   	MeshComponent->SetupAttachment(RootComponent);
 	MeshComponent->SetRelativeLocation(FVector(0.f, 0.f, 0.f));
@@ -20,6 +25,7 @@ void AGGSUCrop::Initialize(UGGSUCropSeedDataAsset* CropSeed)
 	CachedCropSeed = CropSeed;
 	SpawnTime = UGGSUDateManager::GetTime();
 	MeshCount = CropSeed->GetStaticMeshes().Num();
+	WidgetComponent->SetVisibility(false);
 }
 
 // Called every frame
@@ -38,7 +44,7 @@ void AGGSUCrop::Tick(float DeltaTime)
 
 	if (IsCropFullyGrown())
 	{
-		// TODO : 반짝반짝
+		WidgetComponent->SetVisibility(true);
 	}
 }
 

@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "GGSUCrop.generated.h"
 
+class UWidgetComponent;
 class UGGSUCropSeedDataAsset;
 
 UCLASS()
@@ -30,9 +31,12 @@ private:
 	UStaticMesh* GetCurrentStaticMesh() const;
 
 private:
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, Category=Crop)
 	TObjectPtr<UStaticMeshComponent> MeshComponent;
 
+	UPROPERTY(EditAnywhere, Category=Crop)
+	TObjectPtr<UWidgetComponent> WidgetComponent;
+	
 	uint32 MeshCount;
 	
 public:

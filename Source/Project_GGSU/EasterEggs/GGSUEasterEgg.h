@@ -8,7 +8,7 @@
 #include "GGSUEasterEgg.generated.h"
 
 class UGGSUEasterEggPopup;
-class UGGSUEasterEggsDataInstance;
+class UGGSUEasterEggsManager;
 
 USTRUCT(BlueprintType)
 struct FEasterEggData
@@ -48,7 +48,7 @@ public:
 
 private:
 	UPROPERTY()
-	TObjectPtr<UGGSUEasterEggsDataInstance> EasterEggsDataInstance;
+	TObjectPtr<UGGSUEasterEggsManager> EasterEggsDataInstance;
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)

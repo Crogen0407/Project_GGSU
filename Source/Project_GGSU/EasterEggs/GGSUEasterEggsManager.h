@@ -5,13 +5,13 @@
 #include "CoreMinimal.h"
 #include "Subsystems/GameInstanceSubsystem.h"
 #include "GGSUEasterEgg.h"
-#include "GGSUEasterEggsDataInstance.generated.h"
+#include "GGSUEasterEggsManager.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class PROJECT_GGSU_API UGGSUEasterEggsDataInstance : public UGameInstanceSubsystem
+class PROJECT_GGSU_API UGGSUEasterEggsManager : public UGameInstanceSubsystem
 {
 	GENERATED_BODY()
 

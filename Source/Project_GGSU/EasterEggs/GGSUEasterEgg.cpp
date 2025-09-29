@@ -1,6 +1,6 @@
 #include "GGSUEasterEgg.h"
 
-#include "GGSUEasterEggsDataInstance.h"
+#include "GGSUEasterEggsManager.h"
 #include "Kismet/GameplayStatics.h"
 #include "UI/GGSUUIManager.h"
 #include "UI/PopupUI/EasterEggs/GGSUEasterEggPopup.h"
@@ -22,7 +22,7 @@ void AGGSUEasterEgg::BeginPlay()
 	Super::BeginPlay();
 	
 	UGameInstance* GameInstance = UGameplayStatics::GetGameInstance(GetWorld());
-	EasterEggsDataInstance = GameInstance->GetSubsystem<UGGSUEasterEggsDataInstance>();
+	EasterEggsDataInstance = GameInstance->GetSubsystem<UGGSUEasterEggsManager>();
 }
 
 // Called every frame
