@@ -14,7 +14,7 @@ void UGGSUSellPopup::NativeOnInitialized()
 	CachedResourceManager = GetGameInstance()->GetSubsystem<UGGSUResourceManager>();
 }
 
-void UGGSUSellPopup::LoadInventory()
+void UGGSUSellPopup::LoadInventory() const
 {
 	if (nullptr == CachedResourceManager) return;
 

@@ -24,7 +24,7 @@ protected:
 	virtual void NativeOnInitialized() override;
 
 private:
-	void LoadInventory();
+	void LoadInventory() const;
 	
 protected:
 	UPROPERTY(meta=(BindWidget))

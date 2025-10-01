@@ -1,6 +1,8 @@
 #include "ResourceSystem/ItemSystem/GGSUItemDataAsset.h"
 
 #include "GGSUItemEffect.h"
+#include "BuildingSystem/GGSUBuilding.h"
+#include "BuildingSystem/Utils/GGSUItemUseableBuilding.h"
 
 UGGSUItemEffect* UGGSUItemDataAsset::GetEffect(UObject* Owner)
 {
@@ -12,5 +14,6 @@ UGGSUItemEffect* UGGSUItemDataAsset::GetEffect(UObject* Owner)
 
 bool UGGSUItemDataAsset::IsCanUse_Implementation(AGGSUBuilding* Owner)
 {
-	return Owner != nullptr;
+	const bool IsItemBuilding = Owner->Implements<IGGSUItemUseableBuilding>(); 
+	return Owner != nullptr && IsItemBuilding;
 }

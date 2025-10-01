@@ -62,9 +62,19 @@ void UGGSUSellSlot::HandleSellTargetResource()
 
 	if (CachedResourceManager->TryRemoveResource(CachedTargetResource, 1))
 	{
-		const int SellCost = CachedTargetResource->GetSellingPrice();
-		CachedResourceManager->AddResource(TargetCurrency, SellCost);
-		CountText->SetText(FText::FromString(FString::FromInt(CachedResourceManager->GetResource(CachedTargetResource))));
+		const int ResourceCount = CachedResourceManager->GetResource(CachedTargetResource);
+
+		// 리소스를 전부 팔았다면 이 UI를 파괴하기
+		if (ResourceCount <= 0)
+		{
+			// TODO : UI 파괴
+		}
+		else
+		{
+			const int SellCost = CachedTargetResource->GetSellingPrice();
+			CachedResourceManager->AddResource(TargetCurrency, SellCost);
+			CountText->SetText(FText::FromString(FString::FromInt(ResourceCount)));	
+		}
 	}
 	else
 	{
